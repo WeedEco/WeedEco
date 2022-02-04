@@ -83,7 +83,7 @@ plot2<-function(model, x, xlims,method, pch1= NULL,  pch3= NULL, col1= NULL, col
   axis(side=1)
 }
 
-#this function uses beewarm's swarmy function to plot the same varbiables as plot 2
+#this function uses beewarm's swarmy function to plot the same variables as plot 2
 #df is the dataframe of archaeological results
 # x is the column of df which as the LD1 results
 #xlim is the limits of the x axis, while ticks is the location of the x axis labels
@@ -111,7 +111,7 @@ plot3<-function(model,df, x, xlims,ticks, col1, col2,col3, pch1, pch2, pch3, com
 
   legend("topright", inset=c(-0.05,0.05), c("Group \ncentroids", "Model","Archaeological \nsamples"), pch=c(pch1,pch2, pch3), col= c(col1,col2,col3), cex=0.95, bty="n")
 }
-#this function uses beewarm's swarmy function to plot the same varbiables as plot 2
+#this function uses beewarm's swarmy function to plot the same variables as plot 2
 #df is the dataframe of archaeological results
 #y is the column of df which as the LD1 results
 #xlim is the limits of the x axis, while ticks is the location of the x axis labels
