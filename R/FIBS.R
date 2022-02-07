@@ -11,9 +11,13 @@ model.LDA<-function(model,x){
   library(haven)
   library(MASS)
   if (model=='temperate') load(file="data_model.rda")
+  if(model=='temperate') discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model, CV = TRUE)
+  if(model=='temperate') model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model)
+
   if(model=='arid')load (file="data_model_arid.rda")
-  discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model, CV = TRUE)
-  model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model)
+  if(model=='arid') discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN,data.model, CV = TRUE)
+  if(model=='arid') model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN,data.model)
+
   predictionmodel <- predict(model_lda,data.model)
   functionalAt <- data.frame(Study = as.factor(data.model$Study),
                              Classification= predictionmodel$class,
@@ -40,9 +44,11 @@ plot1<-function(model,x, xlims,method,pch1, pch2, pch3, col1, col2, col3){
   library(MASS)
   if (model=='temperate') load(file="data_model.rda")
   if(model=='arid')load (file="data_model_arid.rda")
-  discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model, CV = TRUE)
-  model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model)
-  predictionmodel <- predict(model_lda,data.model)
+  if(model=='temperate') discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model, CV = TRUE)
+  if(model=='temperate') model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model)
+
+
+   predictionmodel <- predict(model_lda,data.model)
   functionalAt <- data.frame(Study = as.factor(data.model$Study),
                              Classification= predictionmodel$class,
                              LD1 = predictionmodel$x)
