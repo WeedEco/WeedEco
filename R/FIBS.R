@@ -101,7 +101,12 @@ plot2<-function(model, x, xlims,method, pch1= NULL,  pch3= NULL, col1= NULL, col
 #col 1 and pch 1 = centroids, col3 and pch3 is the colour and symbol of the archaeological data, col2 and pch2 are the model data
 # priority can be ascending,descending,density or random, compact can be True or false - this are from beeswarm swarmy and change the look of the graphs
 
-plot3<-function(model,df, x, xlims,ticks, col1, col2,col3, pch1, pch2, pch3, compact, priority){
+plot3<-function(model,df, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",col3="black", pch1=1, pch2=2, pch3=0, compact= F, priority= "density"){
+  library(beeswarm)
+  library(dplyr)
+  library(haven)
+  library(MASS)
+
   if (model=='temperate') load(file="data_model.rda")
   if(model=='temperate') discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model, CV = TRUE)
   if(model=='temperate') model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model)
@@ -116,7 +121,33 @@ plot3<-function(model,df, x, xlims,ticks, col1, col2,col3, pch1, pch2, pch3, com
   centroids <- functionalAt %>%
     group_by(Study) %>%
     summarise(centroid1 = mean(LD1))
-  par(mar=c(4,0,0,2), xpd=TRUE)
+  x.value<-unlist(x*-1)
+  m.value<-unlist(predictionmodel$x*-1)
+  xmin<-min(x.value)
+  xmax<-max(x.value)
+  mmin<-min(m.value)
+  mmax<-max(m.value)
+
+  dlim<-extendrange(x.value)
+  mlim<-extendrange(m.value)
+  if (is.null(xlims)){
+    if(xmin > mmin){
+      min<-mmim
+    }
+    else {min<-xmin
+    }
+    if(xmax> mmax){
+      max<-xmax
+    }else {
+      max<-mmax
+    }
+    xlims<-c(min-0.5,max+0.5)
+}
+if(is.null(ticks)){
+  ticks<-round(min-0.5):round(max+0.5)
+}
+
+  par(mar=c(4,2,0,2), xpd=TRUE)
   plot(2:5, type='n', xlim = xlims, ylim=c(0,0.17),axes=F, xlab = "", ylab="")
   points(swarmy(centroids$centroid1*-1, rep(0.15,2)), col= col1, pch=pch1, cex=1.2)
   points(swarmy(predictionmodel$x*-1, rep(0.1,2), side=1, compact=compact, priority = priority),col=col2, pch=pch2,cex=1.2)
@@ -133,6 +164,10 @@ plot3<-function(model,df, x, xlims,ticks, col1, col2,col3, pch1, pch2, pch3, com
 
 
 plot4<-function(model, df, x, xlims,ticks, col1, col3, pch1, pch3, compact, priority){
+  library(beeswarm)
+  library(dplyr)
+  library(haven)
+  library(MASS)
   if (model=='temperate') load(file="data_model.rda")
   if(model=='temperate') discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model, CV = TRUE)
   if(model=='temperate') model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model)
@@ -154,6 +189,10 @@ plot4<-function(model, df, x, xlims,ticks, col1, col3, pch1, pch3, compact, prio
 }
 
 plot5<-function(model, df,x,xlims,ticks,col1,col2,col3,pch1,pch2, pch3, compact,priority){
+  library(beeswarm)
+  library(dplyr)
+  library(haven)
+  library(MASS)
   if (model=='temperate') load(file="data_model.rda")
   if(model=='temperate') discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model, CV = TRUE)
   if(model=='temperate') model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model)

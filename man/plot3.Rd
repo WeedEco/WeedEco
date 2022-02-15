@@ -84,6 +84,9 @@ plot3(model, df, x, xlims, ticks, col1, col2, col3, pch1, pch2, pch3, compact, p
 LD1<-runif(40, min=-6.6, max=6)
 data<-data.frame(LD1)
 
+##If using with defaults
+plot3("temperate", data, data$LD1)
+
 ##If using the temperate model:
 plot3("temperate",data,data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=17, pch2=18, pch3=19, compact =F, priority = "ascending")
 
