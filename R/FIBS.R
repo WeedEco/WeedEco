@@ -94,14 +94,13 @@ plot2<-function(model, x, xlims,method, pch1= NULL,  pch3= NULL, col1= NULL, col
   axis(side=1)
 }
 
-#this function uses beewarm's swarmy function to plot the same variables as plot 2
-#df is the dataframe of archaeological results
-# x is the column of df which as the LD1 results
+#this function uses beeswarm's swarmy function to plot the same variables as plot 2
+# x is the column of data frame which as the LD1 results
 #xlim is the limits of the x axis, while ticks is the location of the x axis labels
-#col 1 and pch 1 = centroids, col3 and pch3 is the colour and symbol of the archaeological data, col2 and pch2 are the model data
+#col 1 and pch 1 = centroids, col3 and pch3 is the color and symbol of the archaeological data, col2 and pch2 are the model data
 # priority can be ascending,descending,density or random, compact can be True or false - this are from beeswarm swarmy and change the look of the graphs
 
-plot3<-function(model,df, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",col3="black", pch1=1, pch2=2, pch3=0, compact= F, priority= "density"){
+plot3<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",col3="black", pch1=1, pch2=2, pch3=0, compact= F, priority= "density"){
   library(beeswarm)
   library(dplyr)
   library(haven)
@@ -151,16 +150,15 @@ if(is.null(ticks)){
   plot(2:5, type='n', xlim = xlims, ylim=c(0,0.17),axes=F, xlab = "", ylab="")
   points(swarmy(centroids$centroid1*-1, rep(0.15,2)), col= col1, pch=pch1, cex=1.2)
   points(swarmy(predictionmodel$x*-1, rep(0.1,2), side=1, compact=compact, priority = priority),col=col2, pch=pch2,cex=1.2)
-  points(swarmy(x*-1, rep(0.03, nrow(df)), side=1,compact=compact, priority=priority), col= col3, pch=pch3,cex=1.2)
+  points(swarmy(x*-1, rep(0.03, 2), side=1,compact=compact, priority=priority), col= col3, pch=pch3,cex=1.2)
   axis(1, ticks, cex=1.5)
 
   legend("topright", inset=c(-0.05,0.05), c("Group \ncentroids", "Model","Archaeological \nsamples"), pch=c(pch1,pch2, pch3), col= c(col1,col2,col3), cex=0.95, bty="n")
 }
-#this function uses beewarm's swarmy function to plot the same variables as plot 2
-#df is the dataframe of archaeological results
-#y is the column of df which as the LD1 results
+#this function uses beeswarm's swarmy function to plot the same variables as plot 2
+#x is the column of dataframe which as the LD1 results
 #xlim is the limits of the x axis, while ticks is the location of the x axis labels
-#col 1 and pch 1 = centroids, col3 and pch3 is the colar and symbol of the archaeological data
+#col 1 and pch 1 = centroids, col3 and pch3 is the color and symbol of the archaeological data
 
 
 plot4<-function(model, df, x, xlims,ticks, col1, col3, pch1, pch3, compact, priority){

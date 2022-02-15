@@ -10,17 +10,14 @@
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-plot3(model, df, x, xlims, ticks, col1, col2, col3, pch1, pch2, pch3, compact, priority)
+plot3(model, x, xlims, ticks, col1, col2, col3, pch1, pch2, pch3, compact, priority)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{model}{the modern model to be plotted – either ‘temperate’ or ‘arid’
 %%     ~~Describe \code{model} here~~
 }
-  \item{df}{the dataframe from which x is a column of containing the linear discriminant scores of the archaeological data
-%%     ~~Describe \code{df} here~~
-}
-  \item{x}{the column x from df which contains the linear discriminant scores of the archaeological data
+  \item{x}{the column x from the data frame which contains the linear discriminant scores of the archaeological data
 %%     ~~Describe \code{x} here~~
 }
   \item{xlims}{the limits of the x axis
@@ -85,40 +82,40 @@ LD1<-runif(40, min=-6.6, max=6)
 data<-data.frame(LD1)
 
 ##If using with defaults
-plot3("temperate", data, data$LD1)
+plot3("temperate", data$LD1)
 
 ##If using the temperate model:
-plot3("temperate",data,data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=17, pch2=18, pch3=19, compact =F, priority = "ascending")
+plot3("temperate",data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=17, pch2=18, pch3=19, compact =F, priority = "ascending")
 
 ## arid model
-plot3("arid",data,data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green",  col2="red",col3="purple", pch1=17, pch2=18,pch3=19, compact =F, priority = "ascending")
+plot3("arid",data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green",  col2="red",col3="purple", pch1=17, pch2=18,pch3=19, compact =F, priority = "ascending")
 
 ##Different  prioriy options using "ascending", "descending", "density", "random","none"
 par(mfrow=c(3,2),
     oma=c(0,0,0,0),
     mar=c(0,0,0,0))
-plot3("temperate",data,data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=17, pch2=18, pch3=19, compact =F, priority = "ascending")
+plot3("temperate",data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=17, pch2=18, pch3=19, compact =F, priority = "ascending")
 mtext("ascending", 3,-1.5)
-plot3("temperate",data,data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=17, pch2=18, pch3=19, compact =F, priority = "descending")
+plot3("temperate",data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=17, pch2=18, pch3=19, compact =F, priority = "descending")
 mtext("decending", 3, -1.5)
-plot3("temperate",data,data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=17, pch2=18, pch3=19, compact =F, priority = "density")
+plot3("temperate",data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=17, pch2=18, pch3=19, compact =F, priority = "density")
 mtext("density",3, -1.5)
-plot3("temperate",data,data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=17, pch2=18, pch3=19, compact =F, priority = "random")
+plot3("temperate",data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=17, pch2=18, pch3=19, compact =F, priority = "random")
 mtext("random",3,-1.5)
-plot3("temperate",data,data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=17, pch2=18, pch3=19, compact =F, priority = "none")
+plot3("temperate",data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=17, pch2=18, pch3=19, compact =F, priority = "none")
 mtext("none",3, -1.5)
 
 ## options with compact T and F using ascending and decending priority
 par(mfrow=c(2,2),
     oma=c(0,0,0,0),
     mar=c(0,0,0,0))
-plot3("temperate",data,data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=17, pch2=18, pch3=19, compact =F, priority = "ascending")
+plot3("temperate",data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=17, pch2=18, pch3=19, compact =F, priority = "ascending")
 mtext("ascending, TRUE", 3,-1.5)
-plot3("temperate",data,data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=17, pch2=18, pch3=19, compact =T, priority = "ascending")
+plot3("temperate",data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=17, pch2=18, pch3=19, compact =T, priority = "ascending")
 mtext("ascending, FALSE", 3,-1.5)
-plot3("temperate",data,data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=17, pch2=18, pch3=19, compact =F, priority = "descending")
+plot3("temperate",data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=17, pch2=18, pch3=19, compact =F, priority = "descending")
 mtext("descending, TRUE", 3,-1.5)
-plot3("temperate",data,data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=17, pch2=18, pch3=19, compact =T, priority = "descending")
+plot3("temperate",data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=17, pch2=18, pch3=19, compact =T, priority = "descending")
 mtext("descending, FALSE", 3,-1.5)
 
 }
