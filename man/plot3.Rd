@@ -38,7 +38,7 @@ plot3(model, x, xlims, ticks, col1, col2, col3, pch1, pch2, pch3, compact, prior
   \item{pch1}{the symbol of the modern model's centroids
 %%     ~~Describe \code{pch1} here~~
 }
-  \item{pch2}{the symbol of the modern model's datapoints
+  \item{pch2}{the symbol of the modern model's datapoints- must be between 0 and 2
 %%     ~~Describe \code{pch2} here~~
 }
   \item{pch3}{the symbol of the archaeological datapoints

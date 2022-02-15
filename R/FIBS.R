@@ -116,7 +116,8 @@ plot3<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
   predictionmodel <- predict(model_lda,data.model)
   functionalAt <- data.frame(Study = as.factor(data.model$Study),
                              Classification= predictionmodel$class,
-                             LD1 = predictionmodel$x)
+                             LD1 = predictionmodel$x,
+                             pch= data.model$Study)
   centroids <- functionalAt %>%
     group_by(Study) %>%
     summarise(centroid1 = mean(LD1))
@@ -129,6 +130,10 @@ plot3<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
 
   dlim<-extendrange(x.value)
   mlim<-extendrange(m.value)
+
+  if(pch2>2){
+     stop('the parameter "pch2" must have a value less then 3')
+  }
   if (is.null(xlims)){
     if(xmin > mmin){
       min<-mmim
@@ -146,13 +151,17 @@ if(is.null(ticks)){
   ticks<-round(min-0.5):round(max+0.5)
 }
 
+  functionalAt$pch[functionalAt$pch=="1"]<-pch2+15
+  functionalAt$pch[functionalAt$pch=="2"]<-pch2
+
   par(mar=c(4,2,0,2), xpd=TRUE)
   plot(2:5, type='n', xlim = xlims, ylim=c(0,0.17),axes=F, xlab = "", ylab="")
-  points(swarmy(centroids$centroid1*-1, rep(0.15,2)), col= col1, pch=pch1, cex=1.2)
-  points(swarmy(predictionmodel$x*-1, rep(0.1,2), side=1, compact=compact, priority = priority),col=col2, pch=pch2,cex=1.2)
+  points(swarmy(centroids$centroid1*-1, rep(0.15,2)), col= col1, pch=c(pch1+15, pch1), cex=1.75)
+  points(swarmy(functionalAt$LD1*-1, rep(0.1,2), side=1, compact=compact, priority = priority),col=col2, pch=as.numeric(functionalAt$pch),cex=1.2)
   points(swarmy(x*-1, rep(0.03, 2), side=1,compact=compact, priority=priority), col= col3, pch=pch3,cex=1.2)
   axis(1, ticks, cex=1.5)
-
+  segments(min(centroids$centroid1*-1), 0.148,min(centroids$centroid1*-1),-0.007 )
+  segments(max(centroids$centroid1*-1), 0.148,max(centroids$centroid1*-1),-0.007 )
   legend("topright", inset=c(-0.05,0.05), c("Group \ncentroids", "Model","Archaeological \nsamples"), pch=c(pch1,pch2, pch3), col= c(col1,col2,col3), cex=0.95, bty="n")
 }
 #this function uses beeswarm's swarmy function to plot the same variables as plot 2
@@ -186,29 +195,78 @@ plot4<-function(model, df, x, xlims,ticks, col1, col3, pch1, pch3, compact, prio
   axis(1, ticks)
 }
 
-plot5<-function(model, df,x,xlims,ticks,col1,col2,col3,pch1,pch2, pch3, compact,priority){
-  library(beeswarm)
-  library(dplyr)
-  library(haven)
-  library(MASS)
-  if (model=='temperate') load(file="data_model.rda")
-  if(model=='temperate') discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model, CV = TRUE)
-  if(model=='temperate') model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model)
+plot5<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",col3="black", pch1=1, pch2=15, compact= F, priority= "descending", site){
+    library(beeswarm)
+    library(dplyr)
+    library(haven)
+    library(MASS)
 
-  if(model=='arid')load (file="data_model_arid.rda")
-  if(model=='arid') discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN,data.model, CV = TRUE)
-  if(model=='arid') model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN,data.model)
-  predictionmodel <- predict(model_lda,data.model)
-  functionalAt <- data.frame(Study = as.factor(data.model$Study),
-                             Classification= predictionmodel$class,
-                             LD1 = predictionmodel$x)
-  centroids <- functionalAt %>%
-    group_by(Study) %>%
-    summarise(centroid1 = mean(LD1))
+    if (model=='temperate') load(file="data_model.rda")
+    if(model=='temperate') discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model, CV = TRUE)
+    if(model=='temperate') model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model)
 
-  plot(2:5, type='n', xlim = xlims, ylim=c(0,0.2),axes=F, xlab = "", ylab="")
-  points(swarmy(centroids$centroid1*-1, rep(0.15,2)), col= col1, pch=pch1, cex=1.2)
-  points(swarmy())
-  points(swarmy(x*-1, rep(0.05, nrow(df)), side=1,compact=compact, priority = priority), col= col3, pch=pch3)
-  axis(1, ticks)
+    if(model=='arid')load (file="data_model_arid.rda")
+    if(model=='arid') discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN,data.model, CV = TRUE)
+    if(model=='arid') model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN,data.model)
+    predictionmodel <- predict(model_lda,data.model)
+    functionalAt <- data.frame(Study = as.factor(data.model$Study),
+                               Classification= predictionmodel$class,
+                               LD1 = predictionmodel$x,
+                               husbandry= data.model$husbandry)
+    centroids <- functionalAt %>%
+      group_by(Study) %>%
+      summarise(centroid1 = mean(LD1))
+    x.value<-unlist(x*-1)
+    m.value<-unlist(predictionmodel$x*-1)
+    xmin<-min(x.value)
+    xmax<-max(x.value)
+    mmin<-min(m.value)
+    mmax<-max(m.value)
+
+    dlim<-extendrange(x.value)
+    mlim<-extendrange(m.value)
+    if (is.null(xlims)){
+      if(xmin > mmin){
+        min<-mmim
+      }
+      else {min<-xmin
+      }
+      if(xmax> mmax){
+        max<-xmax
+      }else {
+        max<-mmax
+      }
+      xlims<-c(min-1,max+1)
+    }
+    if(is.null(ticks)){
+      ticks<-round(min-1):round(max+1)
+    }
+    evvia<-functionalAt[functionalAt$husbandry=="Evvia group 2"| functionalAt$husbandry=="Evvia group 1",]
+    evvia$husbandry[evvia$husbandry=="Evvia group 1"]<-2
+    evvia$husbandry[evvia$husbandry=="Evvia group 2"]<-17
+    AsturiasPro<-functionalAt[functionalAt$husbandry=="Asturias"| functionalAt$husbandry=="Provence",]
+    AsturiasPro$husbandry[AsturiasPro$husbandry=="Asturias"]<-15
+    AsturiasPro$husbandry[AsturiasPro$husbandry=="Provence"]<-0
+    Morocco<-functionalAt[functionalAt$husbandry== "Morocco oases" | functionalAt$husbandry=="Morocco rain-fed terraces",]
+    Morocco$husbandry[Morocco$husbandry== "Morocco oases"]<-16
+    Morocco$husbandry[Morocco$husbandry== "Morocco rain-fed terraces"]<-1
+
+    par(mar=c(4,2,0,2), xpd=TRUE)
+    plot(2:5, type='n', xlim = xlims, ylim=c(0,0.17),axes=F, xlab = "", ylab="")
+    points(swarmy(centroids$centroid1*-1, rep(0.15,2)), col= col1, pch=c(pch1+15, pch1), cex=1.75)
+    points(swarmy(evvia$LD1*-1, rep(0.12,2), side=1, compact=compact, priority = priority),col=col2, pch=as.numeric(evvia$husbandry),cex=1.2)
+    points(swarmy(AsturiasPro$LD1*-1, rep(0.09,2), side=1, compact=compact, priority = priority),col=col2, pch=as.numeric(AsturiasPro$husbandry),cex=1.2)
+    points(swarmy(Morocco$LD1*-1, rep(0.06,2), side=1, compact=compact, priority = priority),col=col2, pch=as.numeric(Morocco$husbandry),cex=1.2)
+
+    points(swarmy(x*-1, rep(0.03, 2), side=1,compact=compact, priority=priority), col= col3, pch=pch3,cex=1.2)
+    axis(1, ticks, cex=1.5)
+    segments(min(centroids$centroid1*-1), 0.148,min(centroids$centroid1*-1),-0.007 )
+    segments(max(centroids$centroid1*-1), 0.148,max(centroids$centroid1*-1),-0.007 )
+    legend(max-2,0.14,  c( "Evvia feilds", "Evvia gardens"), pch=c(2,17), col=col2, cex=0.95, bty="n")
+    legend(max-2,0.12,  c( "Asturias", "Haute \nProvence"), pch=c(0,15), col=col2, cex=0.95, bty="n")
+    legend(max-2,0.09,  c( "Morocco oases","Morocco \nrain-fed terraces"), pch=c(1,16), col=col2, cex=0.95, bty="n")
+    legend(max-2,0.16,  c("Group \ncentroids"), pch=c(pch1), col= c(col1), cex=0.95, bty="n")
+    legend(max-2,0.05,  legend =site, pch=c( pch3), col= c(col3), cex=0.95, bty="n")
+
 }
+
