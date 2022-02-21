@@ -10,7 +10,25 @@
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-plot3(model, x, xlims, ticks, col1, col2, col3, pch1, pch2, pch3, compact, priority)
+plot3(model, x, ...)
+
+
+plot3(model, x, xlims = NULLL, ticks =NULL, col1 = NULL, col2=NULL, col3 =NULL, pch1 =NULL, pch2= NULL, pch3=NULL, compact=NULL, priority=NULL, lines=F)
+## Defaults
+plot3 (model,
+        x,
+        xlims= NULL,
+        ticks=NULL,
+        col1 = "black",
+        col2= "black",
+        col3= "black",
+        pch1 = 1,
+        pch2= 2,
+        pch3= 0,
+        compact = c (TRUE, FALSE)
+        priority = c( "ascending","descending", "density", "random", "none"),
+        lines=c (TRUE, FALSE))
+
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -35,7 +53,7 @@ plot3(model, x, xlims, ticks, col1, col2, col3, pch1, pch2, pch3, compact, prior
   \item{col3}{the colour of the archaeolohical datapoints
 %%     ~~Describe \code{col3} here~~
 }
-  \item{pch1}{the symbol of the modern model's centroids
+  \item{pch1}{the symbol of the modern model's centroids- must be between 0 and 2
 %%     ~~Describe \code{pch1} here~~
 }
   \item{pch2}{the symbol of the modern model's datapoints- must be between 0 and 2
@@ -48,6 +66,9 @@ plot3(model, x, xlims, ticks, col1, col2, col3, pch1, pch2, pch3, compact, prior
 %%     ~~Describe \code{compact} here~~
 }
   \item{priority}{ follows swarmy {beeswarm} priority regarding the method of point layout
+%%     ~~Describe \code{priority} here~~
+}
+ \item{lines}{ adds lines from group centroid to x-axis
 %%     ~~Describe \code{priority} here~~
 }
 }
@@ -64,7 +85,7 @@ plot3(model, x, xlims, ticks, col1, col2, col3, pch1, pch2, pch3, compact, prior
 \references{
 %% ~put references to the literature/web site here ~
 }
-\author{
+\author{ Elizabeth Stroud
 %%  ~~who you are~~
 }
 \note{
@@ -73,7 +94,7 @@ plot3(model, x, xlims, ticks, col1, col2, col3, pch1, pch2, pch3, compact, prior
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{
+\seealso{ model.LDA, plot4, plot5
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
@@ -85,10 +106,10 @@ data<-data.frame(LD1)
 plot3("temperate", data$LD1)
 
 ##If using the temperate model:
-plot3("temperate",data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=17, pch2=18, pch3=19, compact =F, priority = "ascending")
+plot3("temperate",data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=17, pch2=18, pch3=19, compact =F, priority = "ascending", lines=T)
 
 ## arid model
-plot3("arid",data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green",  col2="red",col3="purple", pch1=17, pch2=18,pch3=19, compact =F, priority = "ascending")
+plot3("arid",data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green",  col2="red",col3="purple", pch1=17, pch2=18,pch3=19, compact =F, priority = "ascending", lines=T)
 
 ##Different  prioriy options using "ascending", "descending", "density", "random","none"
 par(mfrow=c(3,2),
