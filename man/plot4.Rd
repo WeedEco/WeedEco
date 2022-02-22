@@ -27,7 +27,7 @@ plot3 (model,
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{model}{ either 'temperate' or 'arid'
+  \item{model}{ either 'model1' or 'model2' - following model.LDA
 %%     ~~Describe \code{model} here~~
 }
   \item{x}{the LD1 column from df
@@ -58,6 +58,9 @@ plot3 (model,
 %%     ~~Describe \code{priority} here~~
 }
 \item{lines}{ adds lines from group centroid to x-axis
+%%     ~~Describe \code{priority} here~~
+}
+\item{site}{ name of the archaeological data to appear on legend
 %%     ~~Describe \code{priority} here~~
 }
 }
@@ -93,40 +96,40 @@ data<-data.frame(LD1)
 
 #If using defaults
 
-plot4('temperate', data$LD1)
+plot4( "model1", data$LD1)
+plot4( 1, data$LD1)
+## Use of model1 -  modern data from Asturias, Spain and Haute Provence, France - see Boggard et al 2016
+plot4("model1",data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green",col3="purple", pch1=17,  pch3=19, compact =F, priority = "ascending", lines=T)
 
-##If using the temperate model:
-plot4("temperate",data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green",col3="purple", pch1=17,  pch3=19, compact =F, priority = "ascending", lines=T)
-
-## arid model
-plot4("arid",data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col3="purple", pch1=17, pch3=19, compact =F, priority = "ascending", lines=T)
+##Use of model2 - modern data from Evvia, Greece; Asturias, Spain; Haute Provence, France; and oases and rain fed terraces in Morocco - see Bogaard et al 2018
+plot4("model2",data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col3="purple", pch1=17, pch3=19, compact =F, priority = "ascending", lines=T)
 
 ##Different  prioriy options using "ascending", "descending", "density", "random","none"
 par(mfrow=c(3,2),
     oma=c(2,0,0,0),
     mar=c(0,0,0,0))
-plot4("temperate",data$LD1, compact =F, priority = "ascending")
+plot4(1,data$LD1, compact =F, priority = "ascending")
 mtext("ascending", 3,-2)
-plot4("temperate",data$LD1, compact =F, priority = "descending")
+plot4(1,data$LD1, compact =F, priority = "descending")
 mtext("decending", 3, -2)
-plot4("temperate",data$LD1,compact =F, priority = "density")
+plot4(1,data$LD1,compact =F, priority = "density")
 mtext("density",3, -2)
-plot4("temperate",data$LD1, compact =F, priority = "random")
+plot4(1,data$LD1, compact =F, priority = "random")
 mtext("random",3,-2)
-plot4("temperate",data$LD1, compact =F, priority = "none")
+plot4(1,data$LD1, compact =F, priority = "none")
 mtext("none",3, -2)
 
 ## options with compact T and F using ascending and decending priority
 par(mfrow=c(2,2),
     oma=c(2,0,0,0),
     mar=c(0,0,0,0))
-plot4("temperate",data$LD1, compact =F, priority = "ascending")
+plot4(1,data$LD1, compact =F, priority = "ascending")
 mtext("ascending, TRUE", 3,-3)
-plot4("temperate",data$LD1, compact =T, priority = "ascending")
+plot4(1,data$LD1, compact =T, priority = "ascending")
 mtext("ascending, FALSE", 3,-3)
-plot4("temperate",data$LD1,compact =F, priority = "descending")
+plot4(1,data$LD1,compact =F, priority = "descending")
 mtext("descending, TRUE", 3,-3)
-plot4("temperate",data$LD1, compact =T, priority = "descending")
+plot4(1,data$LD1, compact =T, priority = "descending")
 mtext("descending, FALSE", 3,-3)
 
 }

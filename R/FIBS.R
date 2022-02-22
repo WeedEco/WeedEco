@@ -4,19 +4,19 @@
 
 #model.LDA() will take the functional attribute scores of archeaobotanical samples and compared them to a linear discriminant analysis
 #of known crop husbandry regimes and classify the archaeobotanical samples in to either low intensity/extensive or high intensity/intensive
-#cultivation. Currently two model types are available - the "temperate" model is suitable for temperate locations, while the "arid" model is
+#cultivation. Currently two model types are available - model1 is ast/prov data, while the model2 is evvia, ast/prov and morocco
 #suitable for semi-arid locations
 model.LDA<-function(model,x){
   library(dplyr)
   library(haven)
   library(MASS)
-  if (model=='temperate') load(file="data_model.rda")
-  if(model=='temperate') discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model, CV = TRUE)
-  if(model=='temperate') model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model)
+  if (model=='model1'|model== 1) load(file="data_model.rda")
+  if(model=='model1'|model== 1) discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model, CV = TRUE)
+  if(model=='model1'|model== 1) model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model)
 
-  if(model=='arid')load (file="data_model_arid.rda")
-  if(model=='arid') discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN,data.model, CV = TRUE)
-  if(model=='arid') model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN,data.model)
+  if(model=='model2'|model== 2)load (file="data_model_arid.rda")
+  if(model=='model2'|model== 2) discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN,data.model, CV = TRUE)
+  if(model=='model2'|model== 2) model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN,data.model)
 
   predictionmodel <- predict(model_lda,data.model)
   functionalAt <- data.frame(Study = as.factor(data.model$Study),
@@ -26,6 +26,7 @@ model.LDA<-function(model,x){
     group_by(Study) %>%
     summarise(centroid1 = mean(LD1))
   model <- cbind(as.data.frame(predict(model_lda,x)),x)
+  model$LD1<-model$LD1*-1
   print(model)
 }
 
@@ -106,13 +107,14 @@ plot3<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
   library(haven)
   library(MASS)
 
-  if (model=='temperate') load(file="data_model.rda")
-  if(model=='temperate') discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model, CV = TRUE)
-  if(model=='temperate') model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model)
+  if (model=='model1'|model== 1) load(file="data_model.rda")
+  if(model=='model1'|model== 1) discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model, CV = TRUE)
+  if(model=='model1'|model== 1) model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model)
 
-  if(model=='arid')load (file="data_model_arid.rda")
-  if(model=='arid') discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN,data.model, CV = TRUE)
-  if(model=='arid') model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN,data.model)
+  if(model=='model2'|model== 2)load (file="data_model_arid.rda")
+  if(model=='model2'|model== 2) discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN,data.model, CV = TRUE)
+  if(model=='model2'|model== 2) model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN,data.model)
+
   predictionmodel <- predict(model_lda,data.model)
   functionalAt <- data.frame(Study = as.factor(data.model$Study),
                              Classification= predictionmodel$class,
@@ -121,7 +123,7 @@ plot3<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
   centroids <- functionalAt %>%
     group_by(Study) %>%
     summarise(centroid1 = mean(LD1))
-  x.value<-unlist(x*-1)
+  x.value<-unlist(x)
   m.value<-unlist(predictionmodel$x*-1)
   xmin<-min(x.value)
   xmax<-max(x.value)
@@ -161,7 +163,7 @@ if(is.null(ticks)){
   plot(2:5, type='n', xlim = xlims, ylim=c(0,0.17),axes=F, xlab = "", ylab="")
   points(swarmy(centroids$centroid1*-1, rep(0.15,2)), col= col1, pch=c(pch1+15, pch1), cex=1.75)
   points(swarmy(functionalAt$LD1*-1, rep(0.1,2), side=1, compact=compact, priority = priority),col=col2, pch=as.numeric(functionalAt$pch),cex=1.2)
-  points(swarmy(x*-1, rep(0.03, 2), side=1,compact=compact, priority=priority), col= col3, pch=pch3,cex=1.2)
+  points(swarmy(x, rep(0.03, 2), side=1,compact=compact, priority=priority), col= col3, pch=pch3,cex=1.2)
   axis(1, ticks, cex=1.5)
   if (lines== T) segments(min(centroids$centroid1*-1), 0.148,min(centroids$centroid1*-1),-0.007 )
   if (lines== T) segments(max(centroids$centroid1*-1), 0.148,max(centroids$centroid1*-1),-0.007 )
@@ -173,19 +175,20 @@ if(is.null(ticks)){
 #col 1 and pch 1 = centroids, col3 and pch3 is the color and symbol of the archaeological data
 
 
-plot4<-function(model, x, xlims= NULL, ylims = NULL, ticks =NULL, col1="black",col3="black", pch1=1, pch3=0, compact= F, priority= "density", lines=F){
+plot4<-function(model, x, xlims= NULL, ylims = NULL, ticks =NULL, col1="black",col3="black", pch1=1, pch3=0, compact= F, priority= "density", lines=F, site){
   library(beeswarm)
   library(dplyr)
   library(haven)
   library(MASS)
 
-  if (model=='temperate') load(file="data_model.rda")
-  if(model=='temperate') discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model, CV = TRUE)
-  if(model=='temperate') model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model)
+  if (model=='model1'|model== 1) load(file="data_model.rda")
+  if(model=='model1'|model== 1) discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model, CV = TRUE)
+  if(model=='model1'|model== 1) model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model)
 
-  if(model=='arid')load (file="data_model_arid.rda")
-  if(model=='arid') discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN,data.model, CV = TRUE)
-  if(model=='arid') model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN,data.model)
+  if(model=='model2'|model== 2)load (file="data_model_arid.rda")
+  if(model=='model2'|model== 2) discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN,data.model, CV = TRUE)
+  if(model=='model2'|model== 2) model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN,data.model)
+
   predictionmodel <- predict(model_lda,data.model)
   functionalAt <- data.frame(Study = as.factor(data.model$Study),
                              Classification= predictionmodel$class,
@@ -194,7 +197,7 @@ plot4<-function(model, x, xlims= NULL, ylims = NULL, ticks =NULL, col1="black",c
   centroids <- functionalAt %>%
     group_by(Study) %>%
     summarise(centroid1 = mean(LD1))
-  x.value<-unlist(x*-1)
+  x.value<-unlist(x)
   m.value<-unlist(predictionmodel$x*-1)
   xmin<-min(x.value)
   xmax<-max(x.value)
@@ -227,23 +230,24 @@ plot4<-function(model, x, xlims= NULL, ylims = NULL, ticks =NULL, col1="black",c
     ylims<-c(0,1)
   }
 
-  par(mar = c(6,2,6,2))
-  plot(2:3, type='n', xlim = xlims, ylim=ylims,axes=T, xlab = "", ylab="")
-  points(swarmy(centroids$centroid1*-1, rep(0.2,2)), col= col1, pch=c(pch1+15, pch1), cex=1.75)
-  points(swarmy(x*-1, rep(0.08, 2), side=1,compact=compact, priority = priority), col= col3, pch=pch3)
+  par(mar = c(6,2,6,3))
+  plot(2:3, type='n', xlim = xlims, ylim=ylims,axes=F, xlab = "", ylab="")
+  points(swarmy(centroids$centroid1*-1, rep(0.4,2)), col= col1, pch=c(pch1+15, pch1), cex=1.75)
+  points(swarmy(x, rep(0.1, 2), side=1,compact=compact, priority = priority), col= col3, pch=pch3)
   axis(1, ticks)
-  if (lines== T) segments(min(centroids$centroid1*-1), 0.189,min(centroids$centroid1*-1),-0.05 )
-  if (lines== T) segments(max(centroids$centroid1*-1), 0.189,max(centroids$centroid1*-1),-0.05 )
-  legend("topright", inset=c(-0.05,0.05), c("Group \ncentroids", "Model","Archaeological \nsamples"), pch=c(pch1,pch3), col= c(col1,col3), cex=0.95, bty="n")
+  if (lines== T) segments(min(centroids$centroid1*-1), 0.389,min(centroids$centroid1*-1),-0.04 )
+  if (lines== T) segments(max(centroids$centroid1*-1), 0.389,max(centroids$centroid1*-1),-0.04 )
+  legend( max-1,0.5, c("Group \ncentroids"), pch=c(pch1), col= c(col1), cex=0.95, bty="n")
+  legend( max-1,0.3, site, pch=c(pch3), col= c(col1), cex=0.95, bty="n")
+
 }
 
-plot5<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",col3="black", pch1=1, pch2=15, pch3=0, compact= F, priority= "descending", site= "Archaeological samples", lines=F){
+plot5<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",col3="black", pch1=1, pch2=15, pch3=0, compact= F, priority= "descending", site= "Archaeological samples", lines=F, legend=F){
     library(beeswarm)
     library(dplyr)
     library(haven)
     library(MASS)
-
-    if (model=='temperate') {load(file="data_model.rda")
+  if (model=='model1'|model== 1){load(file="data_model.rda")
   discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model, CV = TRUE)
      model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model)
 
@@ -292,7 +296,7 @@ plot5<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
     points(swarmy(centroids$centroid1*-1, rep(0.15,2)), col= col1, pch=c(pch1+15, pch1), cex=1.75)
     points(swarmy(AsturiasPro$LD1*-1, rep(0.09,2), side=1, compact=compact, priority = priority),col=col2, pch=as.numeric(AsturiasPro$husbandry),cex=1.2)
 
-    points(swarmy(x*-1, rep(0.03, 2), side=1,compact=compact, priority=priority), col= col3, pch=pch3,cex=1.2)
+    points(swarmy(x, rep(0.03, 2), side=1,compact=compact, priority=priority), col= col3, pch=pch3,cex=1.2)
     axis(1, ticks, cex=1.5)
     if (lines== T) segments(min(centroids$centroid1*-1), 0.148,min(centroids$centroid1*-1),-0.007 )
     if (lines== T)  segments(max(centroids$centroid1*-1), 0.148,max(centroids$centroid1*-1),-0.007 )
@@ -302,7 +306,7 @@ plot5<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
     }
 
 
-    if(model=='arid'){load (file="data_model_arid.rda")
+  if (model=='model2'|model== 2){load (file="data_model_arid.rda")
      discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN,data.model, CV = TRUE)
      model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN,data.model)
       predictionmodel <- predict(model_lda,data.model)
@@ -314,7 +318,7 @@ plot5<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
       centroids <- functionalAt %>%
       group_by(Study) %>%
       summarise(centroid1 = mean(LD1))
-      x.value<-unlist(x*-1)
+      x.value<-unlist(x)
      m.value<-unlist(predictionmodel$x*-1)
       xmin<-min(x.value)
       xmax<-max(x.value)
@@ -334,7 +338,7 @@ plot5<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
       }else {
         max<-mmax
       }
-      xlims<-c(min-1,max+1)
+      xlims<-c(min-1.5,max+1.5)
       }
       if(is.null(ticks)){
       ticks<-round(min-1):round(max+1)
@@ -349,21 +353,22 @@ plot5<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
     Morocco$husbandry[Morocco$husbandry== "Morocco oases"]<-16
     Morocco$husbandry[Morocco$husbandry== "Morocco rain-fed terraces"]<-1
 
-    par(mar=c(4,2,0,2), xpd=TRUE)
+    par(mar=c(4,2,0,3), xpd=TRUE)
     plot(2:5, type='n', xlim = xlims, ylim=c(0,0.17),axes=F, xlab = "", ylab="")
     points(swarmy(centroids$centroid1*-1, rep(0.15,2)), col= col1, pch=c(pch1+15, pch1), cex=1.75)
     points(swarmy(evvia$LD1*-1, rep(0.12,2), side=1, compact=compact, priority = priority),col=col2, pch=as.numeric(evvia$husbandry),cex=1.2)
     points(swarmy(AsturiasPro$LD1*-1, rep(0.09,2), side=1, compact=compact, priority = priority),col=col2, pch=as.numeric(AsturiasPro$husbandry),cex=1.2)
     points(swarmy(Morocco$LD1*-1, rep(0.06,2), side=1, compact=compact, priority = priority),col=col2, pch=as.numeric(Morocco$husbandry),cex=1.2)
 
-    points(swarmy(x*-1, rep(0.03, 2), side=1,compact=compact, priority=priority), col= col3, pch=pch3,cex=1.2)
+    points(swarmy(x, rep(0.03, 2), side=1,compact=compact, priority=priority), col= col3, pch=pch3,cex=1.2)
     axis(1, ticks, cex=1.5)
     if (lines== T) segments(min(centroids$centroid1*-1), 0.148,min(centroids$centroid1*-1),-0.007 )
     if (lines== T) segments(max(centroids$centroid1*-1), 0.148,max(centroids$centroid1*-1),-0.007 )
-    legend(max-2,0.14,  c( "Evvia feilds", "Evvia gardens"), pch=c(2,17), col=col2, cex=0.95, bty="n")
-    legend(max-2,0.12,  c( "Asturias", "Haute \nProvence"), pch=c(0,15), col=col2, cex=0.95, bty="n")
-    legend(max-2,0.09,  c( "Morocco oases","Morocco \nrain-fed terraces"), pch=c(1,16), col=col2, cex=0.95, bty="n")
-    legend(max-2,0.16,  c("Group \ncentroids"), pch=c(pch1), col= c(col1), cex=0.95, bty="n")
-    legend(max-2,0.05,  legend =site, pch=c( pch3), col= c(col3), cex=0.95, bty="n")
+
+    if(legend==T){legend(max-1,0.14,  c( "Evvia feilds", "Evvia gardens"), pch=c(2,17), col=col2, cex=0.95, bty="n")
+    legend(max-1,0.12,  c( "Asturias", "Haute \nProvence"), pch=c(0,15), col=col2, cex=0.95, bty="n")
+    legend(max-1,0.09,  c( "Morocco oases","Morocco \nrain-fed terraces"), pch=c(1,16), col=col2, cex=0.95, bty="n")
+    legend(max-1,0.16,  c("Group \ncentroids"), pch=c(pch1), col= c(col1), cex=0.95, bty="n")
+    legend(max-1,0.05,  legend =site, pch=c( pch3), col= c(col3), cex=0.95, bty="n")}
 }
 }
