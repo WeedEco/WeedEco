@@ -43,7 +43,7 @@ model.LDA(model,x)
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{model.LDA ('model1', data)
-##Create random dataset
+##Create random dataset for medel 1
 SLA<-runif(40, min=20, max=30)
 ARNODE<-runif(40, min=3000, max=22000)
 LOGCAHN<-runif(40, min=5.5, max=6.5)
@@ -51,6 +51,19 @@ LOGCADN<-runif(40, min=5.5, max=7)
 FLOWPER<-runif(40, min=3.5, max=7)
 Study<-seq(1,40)
 data<-as.data.frame(cbind(SLA,ARNODE,LOGCAHN,LOGCADN,FLOWPER,Study))
+##Create random dataset for model 2
+SLA<-runif(40, min=20, max=30)
+ARNODE<-runif(40, min=3000, max=22000)
+LOGCAHN<-runif(40, min=5.5, max=6.5)
+LOGCADN<-runif(40, min=5.5, max=7)
+FLOWPER<-runif(40, min=3.5, max=7)
+Study<-seq(1,40)
+data<-as.data.frame(cbind(SLA,ARNODE,LOGCAHN,LOGCADN,FLOWPER,Study))
+##Create random dataset for model 3
+FLOWPER<-runif(40, min=3, max=6)
+VEGPROP<-runif(40, min=0.15, max=0.8)
+Study<-seq(1,40)
+data<-as.data.frame(cbind(FLOWPER,VEGPROP,Study))
 
 ## Use of model1 -  modern data from Asturias, Spain and Haute Provence, France - see Boggard et al 2016
 model<-model.LDA('model1',data)

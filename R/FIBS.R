@@ -18,6 +18,11 @@ model.LDA<-function(model,x){
   if(model=='model2'|model== 2) discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN,data.model, CV = TRUE)
   if(model=='model2'|model== 2) model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN,data.model)
 
+  if(model=='model3'|model== 3)load (file="model3.rda")
+  if(model=='model3'|model== 3) discrim_cv <- lda(Study ~ FLOWPER+VEGPROP,data.model, CV = TRUE)
+  if(model=='model3'|model== 3) model_lda <- lda(Study ~FLOWPER+VEGPROP,data.model)
+
+
   predictionmodel <- predict(model_lda,data.model)
   functionalAt <- data.frame(Study = as.factor(data.model$Study),
                              Classification= predictionmodel$class,
@@ -111,9 +116,14 @@ plot3<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
   if(model=='model1'|model== 1) discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model, CV = TRUE)
   if(model=='model1'|model== 1) model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model)
 
-  if(model=='model2'|model== 2)load (file="data_model_arid.rda")
+  if(model=='model2'|model== 2) load(file="data_model_arid.rda")
   if(model=='model2'|model== 2) discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN,data.model, CV = TRUE)
   if(model=='model2'|model== 2) model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN,data.model)
+
+  if(model=='model3'|model== 3) load(file="model3.rda")
+  if(model=='model3'|model== 3) discrim_cv <- lda(Study ~ FLOWPER+VEGPROP,data.model, CV = TRUE)
+  if(model=='model3'|model== 3) model_lda <- lda(Study ~FLOWPER+VEGPROP,data.model)
+
 
   predictionmodel <- predict(model_lda,data.model)
   functionalAt <- data.frame(Study = as.factor(data.model$Study),
@@ -141,17 +151,23 @@ plot3<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
   }
   if (is.null(xlims)){
     if(xmin > mmin){
-      min<-mmim
-    }
-    else {min<-xmin
+      min<-mmin
+    }else {
+      min<-xmin
     }
     if(xmax> mmax){
-      max<-xmax
-    }else {
-      max<-mmax
+        max<-xmax
+      }else {
+        max<-mmax }
+
+    xlim<-c(min-0.5,max+0.5)
+  }
+  else {
+      xlim<-xlims
     }
-    xlims<-c(min-0.5,max+0.5)
-}
+
+
+
 if(is.null(ticks)){
   ticks<-round(min-0.5):round(max+0.5)
 }
@@ -160,7 +176,7 @@ if(is.null(ticks)){
   functionalAt$pch[functionalAt$pch=="2"]<-pch2
 
   par(mar=c(4,2,0,2), xpd=TRUE)
-  plot(2:5, type='n', xlim = xlims, ylim=c(0,0.17),axes=F, xlab = "", ylab="")
+  plot(2:5, type='n', xlim = xlim, ylim=c(0,0.17),axes=F, xlab = "", ylab="")
   points(swarmy(centroids$centroid1*-1, rep(0.15,2)), col= col1, pch=c(pch1+15, pch1), cex=1.75)
   points(swarmy(functionalAt$LD1*-1, rep(0.1,2), side=1, compact=compact, priority = priority),col=col2, pch=as.numeric(functionalAt$pch),cex=1.2)
   points(swarmy(x, rep(0.03, 2), side=1,compact=compact, priority=priority), col= col3, pch=pch3,cex=1.2)
@@ -189,6 +205,11 @@ plot4<-function(model, x, xlims= NULL, ylims = NULL, ticks =NULL, col1="black",c
   if(model=='model2'|model== 2) discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN,data.model, CV = TRUE)
   if(model=='model2'|model== 2) model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN,data.model)
 
+  if(model=='model3'|model== 3) load(file="model3.rda")
+  if(model=='model3'|model== 3) discrim_cv <- lda(Study ~ FLOWPER+VEGPROP,data.model, CV = TRUE)
+  if(model=='model3'|model== 3) model_lda <- lda(Study ~FLOWPER+VEGPROP,data.model)
+
+
   predictionmodel <- predict(model_lda,data.model)
   functionalAt <- data.frame(Study = as.factor(data.model$Study),
                              Classification= predictionmodel$class,
@@ -212,7 +233,7 @@ plot4<-function(model, x, xlims= NULL, ylims = NULL, ticks =NULL, col1="black",c
   }
   if (is.null(xlims)){
     if(xmin > mmin){
-      min<-mmim
+      min<-mmin
     }
     else {min<-xmin
     }
@@ -270,17 +291,18 @@ plot5<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
 
     dlim<-extendrange(x.value)
     mlim<-extendrange(m.value)
+    if(xmin > mmin){
+      min<-mmin
+    }else {
+      min<-xmin
+    }
+    if(xmax > mmax){
+      max<-xmax
+    }else {
+      max<-mmax
+    }
+
     if (is.null(xlims)){
-      if(xmin > mmin){
-        min<-mmim
-      }
-      else {min<-xmin
-      }
-      if(xmax> mmax){
-        max<-xmax
-      }else {
-        max<-mmax
-      }
       xlims<-c(min-1,max+1)
     }
     if(is.null(ticks)){
@@ -300,36 +322,36 @@ plot5<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
     axis(1, ticks, cex=1.5)
     if (lines== T) segments(min(centroids$centroid1*-1), 0.148,min(centroids$centroid1*-1),-0.007 )
     if (lines== T)  segments(max(centroids$centroid1*-1), 0.148,max(centroids$centroid1*-1),-0.007 )
-    legend(max-2,0.12,  c( "Asturias", "Haute \nProvence"), pch=c(0,15), col=col2, cex=0.95, bty="n")
-    legend(max-2,0.16,  c("Group \ncentroids"), pch=c(pch1), col= c(col1), cex=0.95, bty="n")
-    legend(max-2,0.05,  legend =site, pch=c( pch3), col= c(col3), cex=0.95, bty="n")
-    }
+    # if(legend==T){legend(max-2,0.12,  c( "Asturias", "Haute \nProvence"), pch=c(0,15), col=col2, cex=0.95, bty="n")
+    # legend(max-2,0.16,  c("Group \ncentroids"), pch=c(pch1), col= c(col1), cex=0.95, bty="n")
+    # legend(max-2,0.05,  legend =site, pch=c( pch3), col= c(col3), cex=0.95, bty="n")}
 
-
-  if (model=='model2'|model== 2){load (file="data_model_arid.rda")
-     discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN,data.model, CV = TRUE)
-     model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN,data.model)
-      predictionmodel <- predict(model_lda,data.model)
-      functionalAt <- data.frame(Study = as.factor(data.model$Study),
+     }
+  if (model=='model2'|model== 2){
+    load (file="data_model_arid.rda")
+    discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN,data.model, CV = TRUE)
+    model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN,data.model)
+    predictionmodel <- predict(model_lda,data.model)
+    functionalAt <- data.frame(Study = as.factor(data.model$Study),
                                Classification= predictionmodel$class,
                                LD1 = predictionmodel$x,
                                husbandry= data.model$husbandry)
 
-      centroids <- functionalAt %>%
-      group_by(Study) %>%
-      summarise(centroid1 = mean(LD1))
-      x.value<-unlist(x)
-     m.value<-unlist(predictionmodel$x*-1)
-      xmin<-min(x.value)
-      xmax<-max(x.value)
-      mmin<-min(m.value)
-      mmax<-max(m.value)
+    centroids <- functionalAt %>%
+    group_by(Study) %>%
+    summarise(centroid1 = mean(LD1))
+    x.value<-unlist(x)
+    m.value<-unlist(predictionmodel$x*-1)
+    xmin<-min(x.value)
+    xmax<-max(x.value)
+    mmin<-min(m.value)
+    mmax<-max(m.value)
 
-      dlim<-extendrange(x.value)
-      mlim<-extendrange(m.value)
-      if (is.null(xlims)){
+    # dlim<-extendrange(x.value)
+    # mlim<-extendrange(m.value)
+    if (is.null(xlims)){
       if(xmin > mmin){
-        min<-mmim
+        min<-mmin
       }
       else {min<-xmin
       }
@@ -338,9 +360,9 @@ plot5<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
       }else {
         max<-mmax
       }
-      xlims<-c(min-1.5,max+1.5)
-      }
-      if(is.null(ticks)){
+      xlims<-c(min-1,max+1)
+    }
+    if(is.null(ticks)){
       ticks<-round(min-1):round(max+1)
       }
     evvia<-functionalAt[functionalAt$husbandry=="Evvia group 2"| functionalAt$husbandry=="Evvia group 1",]
@@ -370,5 +392,64 @@ plot5<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
     legend(max-1,0.09,  c( "Morocco oases","Morocco \nrain-fed terraces"), pch=c(1,16), col=col2, cex=0.95, bty="n")
     legend(max-1,0.16,  c("Group \ncentroids"), pch=c(pch1), col= c(col1), cex=0.95, bty="n")
     legend(max-1,0.05,  legend =site, pch=c( pch3), col= c(col3), cex=0.95, bty="n")}
+  }
+  if(model=='model3'|model== 3) {
+  load(file="model3.rda")
+   discrim_cv <- lda(Study ~ FLOWPER+VEGPROP,data.model, CV = TRUE)
+   model_lda <- lda(Study ~FLOWPER+VEGPROP,data.model)
+   predictionmodel <- predict(model_lda,data.model)
+   functionalAt <- data.frame(Study = as.factor(data.model$Study),
+                               Classification= predictionmodel$class,
+                               LD1 = predictionmodel$x,
+                               husbandry= data.model$Field)
+
+    centroids <- functionalAt %>%
+      group_by(Study) %>%
+      summarise(centroid1 = mean(LD1))
+    x.value<-unlist(x)
+    m.value<-unlist(predictionmodel$x*-1)
+    xmin<-min(x.value)
+    xmax<-max(x.value)
+    mmin<-min(m.value)
+    mmax<-max(m.value)
+    if (is.null(xlims)){
+      if(xmin > mmin){
+        min<-mmin
+      }else {
+        min<-xmin
+      }
+      if(xmax> mmax){
+        max<-xmax
+      }else {
+        max<-mmax
+      }
+      xlims<-c(min-0.5,max+0.5)
+    }
+    if(is.null(ticks)){
+      ticks<-round(min-0.5):round(max+0.5)
+    }
+
+    laxton<- functionalAt[functionalAt$Field=="LAX",]
+    laxton$husbandry<-laxton$Study
+    laxton$husbandry[laxton$husbandry=="1"]<-2
+    laxton$husbandry[laxton$husbandry=="2"]<-17
+    high<-functionalAt[functionalAt$Field== "HIGH" ,]
+    high$husbandry<-16
+
+    par(mar=c(4,2,0,3), xpd=TRUE)
+    plot(2:5, type='n', xlim = xlims, ylim=c(0,0.17),axes=F, xlab = "", ylab="")
+    points(swarmy(centroids$centroid1*-1, rep(0.15,2)), col= col1, pch=c(pch1+15, pch1), cex=1.75)
+    points(swarmy(laxton$LD1*-1, rep(0.12,2), side=1, compact=compact, priority = priority),col=col2, pch=as.numeric(evvia$husbandry),cex=1.2)
+    points(swarmy(high$LD1*-1, rep(0.09,2), side=1, compact=compact, priority = priority),col=col2, pch=as.numeric(AsturiasPro$husbandry),cex=1.2)
+
+    points(swarmy(x, rep(0.03, 2), side=1,compact=compact, priority=priority), col= col3, pch=pch3,cex=1.2)
+    axis(1, ticks, cex=1.5)
+    if (lines== T) segments(min(centroids$centroid1*-1), 0.148,min(centroids$centroid1*-1),-0.007 )
+    if (lines== T) segments(max(centroids$centroid1*-1), 0.148,max(centroids$centroid1*-1),-0.007 )
+    if(legend==T){legend(max-1,0.14,  c( "Laxton x", "laxton y"), pch=c(2,17), col=col2, cex=0.95, bty="n")
+      legend(max-1,0.12,  c( "Highgrove feilds"), pch=c(0,15), col=col2, cex=0.95, bty="n")
+      legend(max-1,0.16,  c("Group \ncentroids"), pch=c(pch1), col= c(col1), cex=0.95, bty="n")
+      legend(max-1,0.05,  legend =site, pch=c( pch3), col= c(col3), cex=0.95, bty="n")}
+    }
 }
-}
+
