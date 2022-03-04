@@ -87,11 +87,11 @@ plot5("model1", data$LD1)
 
 ## Use of model1 -  modern data from Asturias, Spain and Haute Provence, France - see Boggard et al 2016
 
-plot5("model1,data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=17, pch2=18, pch3=19, compact =F, priority = "ascending", lines=T)
+plot5("model1",data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=17, pch2=18, pch3=19, compact =F, priority = "ascending", lines=T)
 
 ##Use of model2 - modern data from Evvia, Greece; Asturias, Spain; Haute Provence, France; and oases and rain fed terraces in Morocco - see Bogaard et al 2018
 
-plot3("model2,data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green",  col2="red",col3="purple", pch1=17, pch2=18,pch3=19, compact =F, priority = "ascending", lines=T)
+plot3("model2",data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green",  col2="red",col3="purple", pch1=17, pch2=18,pch3=19, compact =F, priority = "ascending", lines=T)
 
 ##Different  prioriy options using "ascending", "descending", "density", "random","none"
 par(mfrow=c(3,2),

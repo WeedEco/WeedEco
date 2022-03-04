@@ -1,4 +1,4 @@
-plot5<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",col3="black", pch1=1, pch2=15, pch3=0, compact= F, priority= "descending", site= "Archaeological samples", lines=F, legend=F){
+plot5<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",col3="black", pch1=1,pch3=5, compact= F, priority= "descending", site= "Archaeological samples", lines=F, legend=F){
   library(beeswarm)
   library(dplyr)
   library(haven)
@@ -40,26 +40,31 @@ plot5<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
     }else {
       xlim<-c(min-1,max+1)}
 
-    if(is.null(ticks)){
-      ticks<-round(min-1):round(max+1)
+    if(length(ticks)){
+      ticks<-ticks
+    }else{
+      ticks<- round(min-2):round(max+1)
+    }
+
+    if(pch1>2){
+      stop('the parameter "pch1" must be 0,1 or 2')
     }
     AsturiasPro<-functionalAt[functionalAt$husbandry =="1"|functionalAt$husbandry =="2",]
     AsturiasPro$husbandry[AsturiasPro$husbandry=="1"]<-15
     AsturiasPro$husbandry[AsturiasPro$husbandry=="2"]<-0
 
 
-    par(mar=c(4,2,0,2), xpd=TRUE)
+    par(mar=c(4,2,4,2), xpd=TRUE)
     plot(2:5, type='n', xlim = xlim, ylim=c(0,0.17),axes=F, xlab = "", ylab="")
-    points(swarmy(centroids$centroid1*-1, rep(0.15,2)), col= col1, pch=c(pch1+15, pch1), cex=1.75)
-    points(swarmy(AsturiasPro$LD1*-1, rep(0.09,2), side=1, compact=compact, priority = priority),col=col2, pch=as.numeric(AsturiasPro$husbandry),cex=1.2)
-
-    points(swarmy(x, rep(0.03, 2), side=1,compact=compact, priority=priority), col= col3, pch=pch3,cex=1.2)
-    axis(1, ticks, cex=1.5)
-    if (lines== T) segments(min(centroids$centroid1*-1), 0.148,min(centroids$centroid1*-1),-0.007 )
-    if (lines== T)  segments(max(centroids$centroid1*-1), 0.148,max(centroids$centroid1*-1),-0.007 )
-    # if(legend==T){legend(max-2,0.12,  c( "Asturias", "Haute \nProvence"), pch=c(0,15), col=col2, cex=0.95, bty="n")
-    # legend(max-2,0.16,  c("Group \ncentroids"), pch=c(pch1), col= c(col1), cex=0.95, bty="n")
-    # legend(max-2,0.05,  legend =site, pch=c( pch3), col= c(col3), cex=0.95, bty="n")}
+    points(swarmy(centroids$centroid1*-1, rep(0.12,2)), col= col1, pch=c(pch1+15, pch1), cex=1.75)
+    points(swarmy(AsturiasPro$LD1*-1, rep(0.07,2), side=1, compact=compact, priority = priority),col=col2, pch=as.numeric(AsturiasPro$husbandry),cex=1.2)
+    points(swarmy(x, rep(0.02, 2), side=1,compact=compact, priority=priority), col= col3, pch=pch3,cex=1.2)
+    axis(1,ticks, cex=1.5)
+    if (lines== T) segments(min(centroids$centroid1*-1), 0.118,min(centroids$centroid1*-1),-0.007 )
+    if (lines== T)  segments(max(centroids$centroid1*-1), 0.118,max(centroids$centroid1*-1),-0.007 )
+    if(legend==T){legend(max-2,0.12,  c( "Asturias", "Haute \nProvence"), pch=c(0,15), col=col2, cex=0.95, bty="n")
+    legend(max-2,0.16,  c("Group \ncentroids"), pch=c(pch1), col= c(col1), cex=0.95, bty="n")
+    legend(max-2,0.05,  legend =site, pch=c( pch3), col= c(col3), cex=0.95, bty="n")}
 
   }
   if (model=='model2'|model== 2){
@@ -100,6 +105,10 @@ plot5<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
 
     if(is.null(ticks)){
       ticks<-round(min-1):round(max+1)
+    }
+
+    if(pch1>2){
+      stop('the parameter "pch1" must be 0,1 or 2')
     }
     evvia<-functionalAt[functionalAt$husbandry=="Evvia group 2"| functionalAt$husbandry=="Evvia group 1",]
     evvia$husbandry[evvia$husbandry=="Evvia group 1"]<-2
@@ -165,29 +174,35 @@ plot5<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
     }else {
       xlim<-c(min-1,max+1)}
 
-    if(is.null(ticks)){
-      ticks<-round(min-1):round(max+1)
+    if(length(ticks)){
+      ticks<-ticks
+    }else{
+      ticks<- round(min-1):round(max+1)
+    }
+
+    if(pch1>2){
+      stop('the parameter "pch1" must be 0,1 or 2')
     }
     laxton<- functionalAt[functionalAt$husbandry=="LAX",]
     laxton$husbandry<-as.character(laxton$Study)
-    laxton$husbandry[laxton$husbandry==2]<-17
-    laxton$husbandry[laxton$husbandry==1]<-2
+    laxton$husbandry[laxton$husbandry==1]<-17
+    laxton$husbandry[laxton$husbandry==2]<-2
     high<-functionalAt[functionalAt$husbandry== "HIGH" ,]
-    high$husbandry<-1
+    high$husbandry<-15
 
-    par(mar=c(4,2,0,3), xpd=TRUE)
-    plot(2:5, type='n', xlim = xlim, ylim=c(0,0.17),axes=F, xlab = "", ylab="")
-    points(swarmy(centroids$centroid1*-1, rep(0.15,2)), col= col1, pch=c(pch1+15, pch1), cex=1.75)
-    points(swarmy(laxton$LD1*-1, rep(0.12,2), side=1, compact=compact, priority = priority),col=col2, pch=as.numeric(laxton$husbandry),cex=1.2)
-    points(swarmy(high$LD1*-1, rep(0.09,2), side=1, compact=compact, priority = priority),col=col2, pch=as.numeric(high$husbandry),cex=1.2)
+    par(mar=c(4,2,4,3), xpd=TRUE)
+    plot(2:5, type='n', xlim = xlim, ylim=c(0,0.10),axes=F, xlab = "", ylab="")
+    points(swarmy(centroids$centroid1*-1, rep(0.07,2)), col= col1, pch=c(pch1+15, pch1), cex=1.75)
+    points(swarmy(laxton$LD1*-1, rep(0.05,2), side=1, compact=compact, priority = priority),col=col2, pch=as.numeric(laxton$husbandry),cex=1.2)
+    points(swarmy(high$LD1*-1, rep(0.03,2), side=1, compact=compact, priority = priority),col=col2, pch=as.numeric(high$husbandry),cex=1.2)
 
-    points(swarmy(x, rep(0.03, 2), side=1,compact=compact, priority=priority), col= col3, pch=pch3,cex=1.2)
+    points(swarmy(x, rep(0.01, 2), side=1,compact=compact, priority=priority), col= col3, pch=pch3,cex=1.2)
     axis(1, ticks, cex=1.5)
-    if (lines== T) segments(min(centroids$centroid1*-1), 0.148,min(centroids$centroid1*-1),-0.007 )
-    if (lines== T) segments(max(centroids$centroid1*-1), 0.148,max(centroids$centroid1*-1),-0.007 )
-    if(legend==T){legend(max-1,0.14,  c( "Laxton fields", "Laxton skyes"), pch=c(2,17), col=col2, cex=0.95, bty="n")
-      legend(max-1,0.1,  c( "Highgrove fields"), pch=c(1), col=col2, cex=0.95, bty="n")
-      legend(max-1,0.16,  c("Group \ncentroids"), pch=c(pch1), col= c(col1), cex=0.95, bty="n")
-      legend(max-1,0.05,  legend =site, pch=c( pch3), col= c(col3), cex=0.95, bty="n")}
+    if (lines== T) segments(min(centroids$centroid1*-1), 0.069,min(centroids$centroid1*-1),-0.0041 )
+    if (lines== T) segments(max(centroids$centroid1*-1), 0.069,max(centroids$centroid1*-1),-0.0041 )
+    if(legend==T){legend(max-1,0.065,  c( "Laxton fields", "Laxton skyes"), pch=c(17,2), col=col2, cex=0.95, bty="n")
+      legend(max-1,0.035,  c( "Highgrove fields"), pch=c(15), col=col2, cex=0.95, bty="n")
+      legend(max-1,0.075,  c("Group \ncentroids"), pch=c(pch1), col= c(col1), cex=0.95, bty="n")
+      legend(max-1,0.017,  legend =site, pch=c( pch3), col= c(col3), cex=0.95, bty="n")}
   }
 }
