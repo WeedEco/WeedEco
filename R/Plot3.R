@@ -5,7 +5,7 @@
 #col 1 and pch 1 = centroids, col3 and pch3 is the color and symbol of the archaeological data, col2 and pch2 are the model data
 # priority can be ascending,descending,density or random, compact can be True or false - this are from beeswarm swarmy and change the look of the graphs
 
-plot3<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",col3="black", pch1=1, pch2=2, pch3=0, compact= F, priority= "density", lines=F){
+plot3<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",col3="black", pch1=1, pch2=2, pch3=0, compact= F, priority= "density", lines=F, site="samples"){
   library(beeswarm)
   library(dplyr)
   library(haven)
@@ -66,9 +66,11 @@ plot3<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
   plot(2:5, type='n', xlim = xlim, ylim=c(0,0.17),axes=F, xlab = "", ylab="")
   points(swarmy(centroids$centroid1*-1, rep(0.15,2)), col= col1, pch=c(pch1+15, pch1), cex=1.75)
   points(swarmy(functionalAt$LD1*-1, rep(0.1,2), side=1, compact=compact, priority = priority),col=col2, pch=as.numeric(functionalAt$pch),cex=1.2)
-  points(swarmy(x, rep(0.03, 2), side=1,compact=compact, priority=priority), col= col3, pch=pch3,cex=1.2)
+  points(swarmy(x, rep(0.03, 2), side=1,compact=compact, priority=priority), col= col3, pch=as.numeric(pch3), cex=1.2)
   axis(1, ticks, cex=1.5)
   if (lines== T) segments(min(centroids$centroid1*-1), 0.148,min(centroids$centroid1*-1),-0.007 )
   if (lines== T) segments(max(centroids$centroid1*-1), 0.148,max(centroids$centroid1*-1),-0.007 )
-  legend("topright", inset=c(-0.05,0.05), c("Group \ncentroids", "Model","Archaeological \nsamples"), pch=c(pch1,pch2, pch3), col= c(col1,col2,col3), cex=0.95, bty="n")
+  lpch<-unique(pch3)
+  lcol<-unique(col3)
+  legend("topright", inset=c(-0.05,0.05), c("Group \ncentroids", "Model",site), pch=c(pch1,pch2, as.numeric(lpch)), col= c(col1,col2,lcol), cex=0.95, bty="n")
 }

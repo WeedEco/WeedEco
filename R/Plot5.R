@@ -62,9 +62,11 @@ plot5<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
     axis(1,ticks, cex=1.5)
     if (lines== T) segments(min(centroids$centroid1*-1), 0.118,min(centroids$centroid1*-1),-0.007 )
     if (lines== T)  segments(max(centroids$centroid1*-1), 0.118,max(centroids$centroid1*-1),-0.007 )
-    if(legend==T){legend(max-2,0.12,  c( "Asturias", "Haute \nProvence"), pch=c(0,15), col=col2, cex=0.95, bty="n")
-    legend(max-2,0.16,  c("Group \ncentroids"), pch=c(pch1), col= c(col1), cex=0.95, bty="n")
-    legend(max-2,0.05,  legend =site, pch=c( pch3), col= c(col3), cex=0.95, bty="n")}
+    if(legend==T){legend(max-1,0.12,  c( "Asturias", "Haute \nProvence"), pch=c(0,15), col=col2, cex=0.95, bty="n")
+    lpch<-unique(pch3)
+    lcol<-unique(col3)
+    legend(max-1,0.16,  c("Group \ncentroids", ""), pch=c(pch1, pch1+15), col= c(col1), cex=0.95, bty="n")
+    legend(max-1,0.05,  legend =site, pch=c(lpch), col= c(lcol), cex=0.95, bty="n")}
 
   }
   if (model=='model2'|model== 2){
@@ -127,7 +129,7 @@ plot5<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
     points(swarmy(AsturiasPro$LD1*-1, rep(0.09,2), side=1, compact=compact, priority = priority),col=col2, pch=as.numeric(AsturiasPro$husbandry),cex=1.2)
     points(swarmy(Morocco$LD1*-1, rep(0.06,2), side=1, compact=compact, priority = priority),col=col2, pch=as.numeric(Morocco$husbandry),cex=1.2)
 
-    points(swarmy(x, rep(0.03, 2), side=1,compact=compact, priority=priority), col= col3, pch=pch3,cex=1.2)
+    points(swarmy(x, rep(0.02, 2), side=1,compact=compact, priority=priority), col= col3, pch=pch3,cex=1.2)
     axis(1, ticks, cex=1.5)
     if (lines== T) segments(min(centroids$centroid1*-1), 0.148,min(centroids$centroid1*-1),-0.007 )
     if (lines== T) segments(max(centroids$centroid1*-1), 0.148,max(centroids$centroid1*-1),-0.007 )
@@ -135,8 +137,10 @@ plot5<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
     if(legend==T){legend(max-1,0.14,  c( "Evvia feilds", "Evvia gardens"), pch=c(2,17), col=col2, cex=0.95, bty="n")
       legend(max-1,0.12,  c( "Asturias", "Haute \nProvence"), pch=c(0,15), col=col2, cex=0.95, bty="n")
       legend(max-1,0.09,  c( "Morocco oases","Morocco \nrain-fed terraces"), pch=c(1,16), col=col2, cex=0.95, bty="n")
-      legend(max-1,0.16,  c("Group \ncentroids"), pch=c(pch1), col= c(col1), cex=0.95, bty="n")
-      legend(max-1,0.05,  legend =site, pch=c( pch3), col= c(col3), cex=0.95, bty="n")}
+      lpch<-unique(pch3)
+      lcol<-unique(col3)
+      legend(max-1,0.16,  c("Group \ncentroids", ""), pch=c(pch1, pch1+15), col= c(col1), cex=0.95, bty="n")
+      legend(max-1,0.05,  legend =site, pch=c(lpch), col= c(lcol), cex=0.95, bty="n")}
   }
   if (model=='model3'|model== 3) {
     load(file="model3.rda")
@@ -200,9 +204,11 @@ plot5<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
     axis(1, ticks, cex=1.5)
     if (lines== T) segments(min(centroids$centroid1*-1), 0.069,min(centroids$centroid1*-1),-0.0041 )
     if (lines== T) segments(max(centroids$centroid1*-1), 0.069,max(centroids$centroid1*-1),-0.0041 )
-    if(legend==T){legend(max-1,0.065,  c( "Laxton fields", "Laxton skyes"), pch=c(17,2), col=col2, cex=0.95, bty="n")
-      legend(max-1,0.035,  c( "Highgrove fields"), pch=c(15), col=col2, cex=0.95, bty="n")
-      legend(max-1,0.075,  c("Group \ncentroids"), pch=c(pch1), col= c(col1), cex=0.95, bty="n")
-      legend(max-1,0.017,  legend =site, pch=c( pch3), col= c(col3), cex=0.95, bty="n")}
+    if(legend==T){legend(max-1,0.06,  c( "Laxton fields", "Laxton skyes"), pch=c(17,2), col=col2, cex=0.95, bty="n")
+      legend(max-1,0.039,  c( "Highgrove fields"), pch=c(15), col=col2, cex=0.95, bty="n")
+      lpch<-unique(pch3)
+      lcol<-unique(col3)
+      legend(max-1,0.08,  c("Group \ncentroids", ""), pch=c(pch1, pch1+15), col= c(col1), cex=0.95, bty="n")
+      legend(max-1,0.03,  legend =site, pch=c(lpch), col= c(lcol), cex=0.95, bty="n")}
   }
 }

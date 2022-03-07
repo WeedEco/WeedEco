@@ -100,7 +100,8 @@ plot3 (model,
 \examples{
 ##example dataset
 LD1<-runif(40, min=-6.6, max=6)
-data<-data.frame(LD1)
+Study<-sample(1:3, 40, replace=T)
+data<-data.frame(Study,LD1)
 
 ##If using with defaults
 plot3("model1", data$LD1)
@@ -140,6 +141,10 @@ plot3(1,data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple"
 mtext("descending, TRUE", 3,-1.5)
 plot3(1,data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=17, pch2=18, pch3=19, compact =T, priority = "descending")
 mtext("descending, FALSE", 3,-1.5)
+
+## options with different col and pch for different archaeological sites
+plot3("model1", data$LD1, col3=data$Study,pch3=data$Study, site=("1","2","3"))
+
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

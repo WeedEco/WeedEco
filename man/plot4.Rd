@@ -92,7 +92,8 @@ plot3 (model,
 \examples{
 ##example dataset
 LD1<-runif(40, min=-6.6, max=6)
-data<-data.frame(LD1)
+Study<-sample(1:3, 40, replace=T)
+data<-data.frame(Study,LD1)
 
 #If using defaults
 

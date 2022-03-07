@@ -80,7 +80,8 @@ plot5(model, x, xlims, ticks, col1, col2, col3, pch1, pch2, pch3, compact, prior
 \examples{
 ##example dataset
 LD1<-runif(40, min=-6.6, max=6)
-data<-data.frame(LD1)
+Study<-sample(1:3, 40, replace=T)
+data<-data.frame(Study,LD1)
 
 ##If using with defaults
 plot5("model1", data$LD1)
