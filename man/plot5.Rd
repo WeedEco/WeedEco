@@ -1,21 +1,23 @@
 \name{plot5}
 \alias{plot5}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Plotting the model with seperate symbols for study sites.
+\title{Plotting function for displaying the ouput of \code{\link[FIBS]{model.LDA}}, ploting the archaeological samples discriminant scores, the chosen model's centroids, and the model's discriminant scores with seperate symbols for the different modern study sites.
 %%  ~~function to do ... ~~
 }
-\description{
+\description{A function which plots the archaeological samples discriminant scores from following \code{\link[FIBS]{model.LDA}} in comparation with the chosen modern model's centroids, and the model's discriminant scores seperated according to modern study sites
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-plot5(model, x, xlims, ticks, col1, col2, col3, pch1, pch2, pch3, compact, priority, lines)
+plot5(model, x)
+
+plot5(model, x, xlims = NULLL, ticks =NULL, col1 = NULL, col2=NULL, col3=NULL, pch1=NULL, pch2=NULL, pch3=NULL, compact=NULL, priority=NULL, lines=F, site= "Archaeological samples", legend=F)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{model}{the modern model to be plotted – either ‘model1’ or ‘model2’
+  \item{model}{the modern model to be plotted – either "model1", "model3" or "model3" following \code{\link[FIBS]{model.LDA}}
 %%     ~~Describe \code{model} here~~
 }
-  \item{x}{the column x from the data frame which contains the linear discriminant scores of the archaeological data
+  \item{x}{the LD1 column from the results dataframe of \code{\link[FIBS]{model.LDA}}. Can also use linear discriminant score from other scores.
 %%     ~~Describe \code{x} here~~
 }
   \item{xlims}{the limits of the x axis
@@ -30,7 +32,7 @@ plot5(model, x, xlims, ticks, col1, col2, col3, pch1, pch2, pch3, compact, prior
   \item{col2}{the colour of the modern model's datapoints
 %%     ~~Describe \code{col2} here~~
 }
-  \item{col3}{the colour of the archaeolohical datapoints
+  \item{col3}{the colour of the archaeological datapoints
 %%     ~~Describe \code{col3} here~~
 }
   \item{pch1}{the symbol of the modern model's centroids- must be between 0 and 2
@@ -45,10 +47,16 @@ plot5(model, x, xlims, ticks, col1, col2, col3, pch1, pch2, pch3, compact, prior
   \item{compact}{ follows swarmy {beeswarm} compact variable
 %%     ~~Describe \code{compact} here~~
 }
-  \item{priority}{ follows swarmy {beeswarm} priority regarding the method of point layout
+  \item{priority}{ follows \code{\link[beeswarm]{swarmy}} priority regarding the method of point layout
 %%     ~~Describe \code{priority} here~~
 }
  \item{lines}{ adds lines from group centroid to x-axis
+%%     ~~Describe \code{priority} here~~
+}
+\item{site}{adds name of archaeological data
+%%     ~~Describe \code{priority} here~~
+}
+\item{legend}{adds legend to the plot
 %%     ~~Describe \code{priority} here~~
 }
 }

@@ -1,19 +1,17 @@
 \name{plot3}
 \alias{plot3}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Plotting the model centroids, model and sample linear discriminant scores
+\title{Plotting function to display functional ecology model centroids, model and the archaeological samples' linear discriminant scores from {FIBS} model.LDA
 %%  ~~function to do ... ~~
 }
-\description{A which plots the discriminant scores of the modern model from model.LDA{FIBS}, its groups’ centroids and the archaeological data’s discriminant scores.
-
+\description{A function which plots the linear discriminant scores of the modern functional ecology models from model.LDA{FIBS}, their group centroids and the archaeological data’s discriminant scores.
 
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
 plot3(model, x, ...)
 
-
-plot3(model, x, xlims = NULLL, ticks =NULL, col1 = NULL, col2=NULL, col3 =NULL, pch1 =NULL, pch2= NULL, pch3=NULL, compact=NULL, priority=NULL, lines=F)
+plot3(model, x, xlims = NULLL, ticks =NULL, col1 = NULL, col2=NULL, col3 =NULL, pch1 =NULL, pch2= NULL, pch3=NULL, compact=NULL, priority=NULL, lines=F, site="samples")
 ## Defaults
 plot3 (model,
         x,
@@ -25,23 +23,24 @@ plot3 (model,
         pch1 = 1,
         pch2= 2,
         pch3= 0,
-        compact = c (TRUE, FALSE)
-        priority = c( "ascending","descending", "density", "random", "none"),
-        lines=c (TRUE, FALSE))
+        compact =  FALSE
+        priority = "density",
+        lines=FALSE,
+        site="samples")
 
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{model}{the modern model to be plotted – either ‘temperate’ or ‘arid’
+  \item{model}{the modern model to be plotted – either ‘model1’, ‘model2', or 'model3' - use the model against which the archaeological samples had a been classifed againsted using model.lda.
 %%     ~~Describe \code{model} here~~
 }
-  \item{x}{the column x from the data frame which contains the linear discriminant scores of the archaeological data
+  \item{x}{the column x from the data frame which contains the linear discriminant scores of the archaeological data - if using data from model.LDA, such column will be called LD1
 %%     ~~Describe \code{x} here~~
 }
   \item{xlims}{the limits of the x axis
 %%     ~~Describe \code{xlims} here~~
 }
-  \item{ticks}{ the location of the x axis labels
+  \item{ticks}{ the location of the x axis labels along the x axis
 %%     ~~Describe \code{ticks} here~~
 }
   \item{col1}{the colour of the modern model's centroids
@@ -50,7 +49,7 @@ plot3 (model,
   \item{col2}{the colour of the modern model's datapoints
 %%     ~~Describe \code{col2} here~~
 }
-  \item{col3}{the colour of the archaeolohical datapoints
+  \item{col3}{the colour of the archaeological datapoints
 %%     ~~Describe \code{col3} here~~
 }
   \item{pch1}{the symbol of the modern model's centroids- must be between 0 and 2
@@ -69,6 +68,9 @@ plot3 (model,
 %%     ~~Describe \code{priority} here~~
 }
  \item{lines}{ adds lines from group centroid to x-axis
+%%     ~~Describe \code{priority} here~~
+}
+\item{site}{add label to the archaeological data
 %%     ~~Describe \code{priority} here~~
 }
 }
@@ -108,11 +110,11 @@ plot3("model1", data$LD1)
 
 ## Use of model1 -  modern data from Asturias, Spain and Haute Provence, France - see Boggard et al 2016
 
-plot3("model1",data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=17, pch2=18, pch3=19, compact =F, priority = "ascending", lines=T)
+plot3("model1",data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=17, pch2=18, pch3=19, compact =F, priority = "ascending", lines=T, site="example")
 
 ##Use of model2 - modern data from Evvia, Greece; Asturias, Spain; Haute Provence, France; and oases and rain fed terraces in Morocco - see Bogaard et al 2018
 
-plot3("model2",data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green",  col2="red",col3="purple", pch1=17, pch2=18,pch3=19, compact =F, priority = "ascending", lines=T)
+plot3("model2",data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green",  col2="red",col3="purple", pch1=17, pch2=18,pch3=19, compact =F, priority = "ascending", lines=T, sites="example")
 
 ##Different  prioriy options using "ascending", "descending", "density", "random","none"
 par(mfrow=c(3,2),
