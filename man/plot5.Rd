@@ -1,16 +1,33 @@
 \name{plot5}
 \alias{plot5}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Plotting function for displaying the ouput of \code{\link[FIBS]{model.LDA}}, ploting the archaeological samples discriminant scores, the chosen model's centroids, and the model's discriminant scores with seperate symbols for the different modern study sites.
+\title{Plotting function for displaying the output of \code{\link[FIBS]{model.LDA}}, plotting the archaeological samples discriminant scores, the chosen model's centroids, and the model's discriminant scores with separate symbols for the different modern study sites.
 %%  ~~function to do ... ~~
 }
-\description{A function which plots the archaeological samples discriminant scores from following \code{\link[FIBS]{model.LDA}} in comparation with the chosen modern model's centroids, and the model's discriminant scores seperated according to modern study sites
+\description{A function which plots the archaeological samples discriminant scores from following \code{\link[FIBS]{model.LDA}} in comparation with the chosen modern model's centroids, and the model's discriminant scores separated according to modern study sites
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
 plot5(model, x)
 
-plot5(model, x, xlims = NULLL, ticks =NULL, col1 = NULL, col2=NULL, col3=NULL, pch1=NULL, pch2=NULL, pch3=NULL, compact=NULL, priority=NULL, lines=F, site= "Archaeological samples", legend=F)
+plot5(model, x, xlims = NULLL, ticks =NULL, col1 = NULL, col2=NULL, col3=NULL, pch1=NULL, pch3=NULL, compact=NULL, priority=NULL, lines=F, site= "Archaeological samples", legend=F)
+
+#defaults
+plot5(model,
+  x,
+  xlims= NULL,
+  ticks =NULL,
+  col1="black",
+  col2= "black",
+  col3="black",
+  pch1=1,
+  pch3=5,
+  compact= F,
+  priority= "descending",
+  site= "Archaeological samples",
+  lines=F,
+  legend=F)
+
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -38,26 +55,23 @@ plot5(model, x, xlims = NULLL, ticks =NULL, col1 = NULL, col2=NULL, col3=NULL, p
   \item{pch1}{the symbol of the modern model's centroids- must be between 0 and 2
 %%     ~~Describe \code{pch1} here~~
 }
-  \item{pch2}{the symbol of the modern model's datapoints- must be between 0 and 2
-%%     ~~Describe \code{pch2} here~~
-}
   \item{pch3}{the symbol of the archaeological datapoints
 %%     ~~Describe \code{pch3} here~~
 }
-  \item{compact}{ follows swarmy {beeswarm} compact variable
+  \item{compact}{ follows the beeswarm package's \code{\link[beeswarm]{swarmy}} compact variable
 %%     ~~Describe \code{compact} here~~
 }
   \item{priority}{ follows \code{\link[beeswarm]{swarmy}} priority regarding the method of point layout
 %%     ~~Describe \code{priority} here~~
 }
  \item{lines}{ adds lines from group centroid to x-axis
-%%     ~~Describe \code{priority} here~~
+%%     ~~Describe \code{lines} here~~
 }
 \item{site}{adds name of archaeological data
-%%     ~~Describe \code{priority} here~~
+%%     ~~Describe \code{site} here~~
 }
 \item{legend}{adds legend to the plot
-%%     ~~Describe \code{priority} here~~
+%%     ~~Describe \code{legend} here~~
 }
 }
 \details{
@@ -70,7 +84,11 @@ plot5(model, x, xlims = NULLL, ticks =NULL, col1 = NULL, col2=NULL, col3=NULL, p
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 }
-\references{
+\references{model 1 - see Bogaard \emph{et al.} 2016 "Combining functional weed ecology and crop stable isotope ratios to identify cultivation intensity: a comparison of cereal production regimes in Haute Provence, France and Asturias, Spain" \emph{Vegetation History and Archaeobotany} 25, 57-73
+
+model 2 - see Bogaard \emph{et al.} 2018 "From traditional Farming in Morocco to Early Urban Agroecology in Northern Mesopotamia: Combining Present-day Arable Weed Surveys and crop isotope analysis to reconstruct past Agrosystems in (Semi-)arid Regions" \emph{Environmental Archaeology} 23, 303-322
+
+model 3 - see Bogaard et al 2022 "????"
 %% ~put references to the literature/web site here ~
 }
 \author{Elizabeth Stroud
@@ -82,7 +100,7 @@ plot5(model, x, xlims = NULLL, ticks =NULL, col1 = NULL, col2=NULL, col3=NULL, p
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{
+\seealso{\code{\link[FIBS]{model.LDA}}, \code{\link[FIBS]{plot3}}, \code{\link[FIBS]{plot4}}
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
@@ -93,42 +111,53 @@ data<-data.frame(Study,LD1)
 
 ##If using with defaults
 plot5("model1", data$LD1)
+plot5("model2", data$LD1)
+plot5("model3", data$LD1)
 
-## Use of model1 -  modern data from Asturias, Spain and Haute Provence, France - see Boggard et al 2016
+##Use of model 1 -  modern data from Asturias, Spain and Haute Provence, France - see Bogaard et al 2016
 
-plot5("model1",data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=17, pch2=18, pch3=19, compact =F, priority = "ascending", lines=T)
+plot5("model1",data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1, pch3=19, compact =F, priority = "ascending", lines=T,site="example")
 
-##Use of model2 - modern data from Evvia, Greece; Asturias, Spain; Haute Provence, France; and oases and rain fed terraces in Morocco - see Bogaard et al 2018
+##Use of model 2 - modern data from Evvia, Greece; Asturias, Spain; Haute Provence, France; and oases and rain fed terraces in Morocco - see Bogaard et al 2018
 
-plot3("model2",data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green",  col2="red",col3="purple", pch1=17, pch2=18,pch3=19, compact =F, priority = "ascending", lines=T)
+plot5("model2",data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green",  col2="red",col3="purple", pch1=1,pch3=19, compact =F, priority = "ascending", lines=T,site="example")
 
-##Different  prioriy options using "ascending", "descending", "density", "random","none"
+##Use of model 3 - modern data from Highgrove and Laxton, UK- see Bogaard et al 2022
+
+plot5("model3", data$LD1, xlims=c(-7,7),ticks=-7:7, col1="green",  col2="red",col3="purple", pch1=1, pch3=19, compact =F, priority = "ascending", lines=T, site="example")
+
+
+##Different priority options using "ascending", "descending", "density", "random", "none"
 par(mfrow=c(3,2),
     oma=c(0,0,0,0),
     mar=c(0,0,0,0))
-plot3(1,data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=17, pch2=18, pch3=19, compact =F, priority = "ascending")
+plot5(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,  pch3=19, compact =F, priority = "ascending")
 mtext("ascending", 3,-1.5)
-plot3(1,data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=17, pch2=18, pch3=19, compact =F, priority = "descending")
-mtext("decending", 3, -1.5)
-plot3(1,data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=17, pch2=18, pch3=19, compact =F, priority = "density")
+plot5(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,  pch3=19, compact =F, priority = "descending")
+mtext("descending", 3, -1.5)
+plot5(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1, pch3=19, compact =F, priority = "density")
 mtext("density",3, -1.5)
-plot3(1,data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=17, pch2=18, pch3=19, compact =F, priority = "random")
+plot5(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,  pch3=19, compact =F, priority = "random")
 mtext("random",3,-1.5)
-plot3(1,data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=17, pch2=18, pch3=19, compact =F, priority = "none")
+plot5(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,  pch3=19, compact =F, priority = "none")
 mtext("none",3, -1.5)
 
-## options with compact T and F using ascending and decending priority
+## options with compact T and F using ascending and descending priority
 par(mfrow=c(2,2),
     oma=c(0,0,0,0),
     mar=c(0,0,0,0))
-plot3(1,data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=17, pch2=18, pch3=19, compact =F, priority = "ascending")
+plot5(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1, pch3=19, compact =F, priority = "ascending")
 mtext("ascending, TRUE", 3,-1.5)
-plot3(1,data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=17, pch2=18, pch3=19, compact =T, priority = "ascending")
+plot5(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1, pch3=19, compact =T, priority = "ascending")
 mtext("ascending, FALSE", 3,-1.5)
-plot3(1,data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=17, pch2=18, pch3=19, compact =F, priority = "descending")
+plot5(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1, pch3=19, compact =F, priority = "descending")
 mtext("descending, TRUE", 3,-1.5)
-plot3(1,data$LD1,xlim=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=17, pch2=18, pch3=19, compact =T, priority = "descending")
+plot5(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1, pch3=19, compact =T, priority = "descending")
 mtext("descending, FALSE", 3,-1.5)
+
+## options with different col and pch for different archaeological sites or different phases
+plot5("model2", data$LD1, col3=data$Study,pch3=data$Study, legend=T, site=c("Site 1","Site 2","Site 3"))
+
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

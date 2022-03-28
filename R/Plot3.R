@@ -1,4 +1,3 @@
-
 #this function uses beeswarm's swarmy function to plot the same variables as plot 2
 # x is the column of data frame which as the LD1 results
 #xlim is the limits of the x axis, while ticks is the location of the x axis labels
@@ -11,7 +10,7 @@ plot3<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
   library(haven)
   library(MASS)
 
-  if (model=='model1'|model== 1) load(file="data_model.rda")
+  if(model=='model1'|model== 1) load(file="data_model.rda")
   if(model=='model1'|model== 1) discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model, CV = TRUE)
   if(model=='model1'|model== 1) model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model)
 
@@ -22,7 +21,6 @@ plot3<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
   if(model=='model3'|model== 3) load(file="model3.rda")
   if(model=='model3'|model== 3) discrim_cv <- lda(Study ~ FLOWPER+VEGPROP,data.model, CV = TRUE)
   if(model=='model3'|model== 3) model_lda <- lda(Study ~FLOWPER+VEGPROP,data.model)
-
 
   predictionmodel <- predict(model_lda,data.model)
   functionalAt <- data.frame(Study = as.factor(data.model$Study),
