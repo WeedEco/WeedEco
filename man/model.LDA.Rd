@@ -56,7 +56,7 @@ FLOWPER<-runif(40, min=3.5, max=7)
 VEGPROP<-runif(40, min=0.15, max=0.8)
 Study<-sample(1:3, 40, replace=T)
 data<-as.data.frame(cbind(SLA,ARNODE,LOGCAHN,LOGCADN,FLOWPER,VEGPROP,Study))
-## Use of model 1 -  modern data from Asturias, Spain and Haute Provence, France - see Boggard et al 2016
+## Use of model 1 -  modern data from Asturias, Spain and Haute Provence, France - see Bogaard et al 2016
 model<-model.LDA("model1",data)
 model<-model.LDA(1,data)
 

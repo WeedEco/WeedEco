@@ -4,7 +4,7 @@
 #col 1 and pch 1 = centroids, col3 and pch3 is the color and symbol of the archaeological data, col2 and pch2 are the model data
 # priority can be ascending,descending,density or random, compact can be True or false - this are from beeswarm swarmy and change the look of the graphs
 
-plot3<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",col3="black", pch1=1, pch2=2, pch3=0, compact= F, priority= "density", lines=F, site="samples"){
+plot3<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",col3="black", pch1=1, pch2=2, pch3=0, compact= F, priority= "density", lines=F, site="samples", legend=F){
   library(beeswarm)
   library(dplyr)
   library(haven)
@@ -30,7 +30,7 @@ plot3<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
   centroids <- functionalAt %>%
     group_by(Study) %>%
     summarise(centroid1 = mean(LD1))
-  x.value<-unlist(x)
+  x.value<-unlist(x*-1)
   m.value<-unlist(predictionmodel$x*-1)
   xmin<-min(x.value)
   xmax<-max(x.value)
@@ -53,9 +53,20 @@ plot3<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
   }else {
     xlim<-c(min-1,max+1)}
 
-  if(is.null(ticks)){
-    ticks<-round(min-0.5):round(max+0.5)
+  if(length(ticks)){
+    ticks<-ticks
+  }else{
+    ticks<- round(min-0.5):round(max+0.5)
   }
+
+  if(pch1>2){
+    stop('the parameter "pch1" must be 0,1 or 2')
+  }
+
+  if(pch2>2){
+    stop('the parameter "pch1" must be 0,1 or 2')
+  }
+
 
   functionalAt$pch[functionalAt$pch=="1"]<-pch2+15
   functionalAt$pch[functionalAt$pch=="2"]<-pch2
@@ -63,12 +74,17 @@ plot3<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
   par(mar=c(4,2,0,2), xpd=TRUE)
   plot(2:5, type='n', xlim = xlim, ylim=c(0,0.17),axes=F, xlab = "", ylab="")
   points(swarmy(centroids$centroid1*-1, rep(0.15,2)), col= col1, pch=c(pch1+15, pch1), cex=1.75)
-  points(swarmy(functionalAt$LD1*-1, rep(0.1,2), side=1, compact=compact, priority = priority),col=col2, pch=as.numeric(functionalAt$pch),cex=1.2)
+  points(swarmy(functionalAt$LD1*-1, rep(0.09,2), side=1, compact=compact, priority = priority),col=col2, pch=as.numeric(functionalAt$pch),cex=1.2)
   points(swarmy(x, rep(0.03, 2), side=1,compact=compact, priority=priority), col= col3, pch=as.numeric(pch3), cex=1.2)
   axis(1, ticks, cex=1.5)
   if (lines== T) segments(min(centroids$centroid1*-1), 0.148,min(centroids$centroid1*-1),-0.007 )
   if (lines== T) segments(max(centroids$centroid1*-1), 0.148,max(centroids$centroid1*-1),-0.007 )
   lpch<-unique(pch3)
   lcol<-unique(col3)
-  legend("topright", inset=c(-0.05,0.05), c("Group \ncentroids", "Model",site), pch=c(pch1,pch2, as.numeric(lpch)), col= c(col1,col2,lcol), cex=0.95, bty="n")
+  if (legend =="right") legend("topright", inset=c(0.05,0.05), c("Group", "centroids", "Low", "High", site), pch=c(pch1, pch1+15 ,pch2,pch2+15, as.numeric(lpch)), col= c(col1,col2,lcol), cex=0.95, bty="n")
+  if (legend =="left") legend("topleft", inset=c(0.05,0.05), c("Group", "centroids", "Low", "High",site), pch=c(pch1, pch1+15,pch2, pch2+15, as.numeric(lpch)), col= c(col1,col2,lcol), cex=0.95, bty="n")
+  if (legend =="split") {legend(max-1,0.16,  c("Group ", "centroids"), pch=c(pch1, pch1+15), col= c(col1), cex=0.95, bty="n")
+    legend(max-1,0.05,  legend =site, pch=c(lpch), col= c(lcol), cex=0.95, bty="n")
+    legend(max-1,0.12, c("Low", "High"), pch=c(pch2, pch2+15), col= c(col1), cex=0.95, bty="n")}
+
 }

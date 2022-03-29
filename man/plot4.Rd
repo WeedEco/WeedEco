@@ -22,7 +22,8 @@ plot4 (model,
         compact = FALSE,
         priority = "density",
         lines=FALSE,
-        site = "samples")
+        site = "samples",
+        legend=F)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -57,6 +58,9 @@ plot4 (model,
 %%     ~~Describe \code{priority} here~~
 }
 \item{lines}{adds lines from group centroid to x-axis
+%%     ~~Describe \code{priority} here~~
+}
+\item{legend}{a legend showing the group centroids and archaeology samples, options about "right" (located on the right- hand side), "left" (located on the left-hand side if the graph), and split (located on the righ-thand side, with labels aligning with the graphed data)
 %%     ~~Describe \code{priority} here~~
 }
 \item{site}{name of the archaeological data to appear on legend
@@ -138,6 +142,13 @@ plot4(1,data$LD1,compact =F, priority = "descending")
 mtext("descending, TRUE", 3,-3)
 plot4(1,data$LD1, compact =T, priority = "descending")
 mtext("descending, FALSE", 3,-3)
+
+## different legend options
+plot4(1,data$LD1, legend = "right")
+
+plot4(1,data$LD1, legend="left")
+
+plot4(1,data$LD1,legend="split")
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

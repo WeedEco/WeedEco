@@ -4,7 +4,7 @@
 #col 1 and pch 1 = centroids, col3 and pch3 is the color and symbol of the archaeological data
 
 
-plot4<-function(model, x, xlims= NULL, ylims = NULL, ticks =NULL, col1="black",col3="black", pch1=1, pch3=0, compact= F, priority= "density", lines=F, site= "samples"){
+plot4<-function(model, x, xlims= NULL, ylims = NULL, ticks =NULL, col1="black",col3="black", pch1=1, pch3=0, compact= F, priority= "density", lines=F, site= "samples", legend=F){
   library(beeswarm)
   library(dplyr)
   library(haven)
@@ -72,11 +72,13 @@ plot4<-function(model, x, xlims= NULL, ylims = NULL, ticks =NULL, col1="black",c
   axis(1, ticks)
   if (lines== T) segments(min(centroids$centroid1*-1), 0.389,min(centroids$centroid1*-1),-0.04 )
   if (lines== T) segments(max(centroids$centroid1*-1), 0.389,max(centroids$centroid1*-1),-0.04 )
-  legend( max-1,0.5, c("Group \ncentroids", ""), pch=c(pch1,pch1+15), col= c(col1), cex=0.95, bty="n")
+
   lpch<-unique(pch3)
   lcol<-unique(col3)
-  legend( max-1,0.3, site, pch=c(lpch), col= c(lcol), cex=0.95, bty="n")
-
+  if (legend =="right") legend("right", inset=c(0.05,0.05), c("Group", "centroids", site), pch=c(pch1, pch1+15 ,as.numeric(lpch)), col= c(col1,lcol), cex=0.95, bty="n")
+  if (legend =="left") legend("left", inset=c(0.05,0.05), c("Group", "centroids",site), pch=c(pch1, pch1+15, as.numeric(lpch)), col= c(col1,lcol), cex=0.95, bty="n")
+  if (legend =="split") {legend(max(xlim)-1,max(ylims)-0.5, c("Group","centroids"), pch=c(pch1,pch1+15), col= c(col1), cex=0.95, bty="n")
+    legend(max(xlim)-1,max(ylims)-0.7, site, pch=c(lpch), col= c(lcol), cex=0.95, bty="n")}
 }
 
 
