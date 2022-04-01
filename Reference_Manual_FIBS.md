@@ -29,7 +29,7 @@ model.LDA(model,x)
 ##Arguments
 
 | Argument | Description                                                                                                                                                               |
-|----------------|--------------------------------------------------------|
+|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `model`  | Either "model1", "model2" or "model3" (also 1,2 or 3). This argument allows the choice between three modern models against which the archaeological dataset is classified |
 | `x`      | The archaeological data that will be compared against the model. Note data must be labelled with specific headers                                                         |
 
@@ -131,7 +131,7 @@ plot3 (model,
 ## Arguments
 
 | Argument   | Description                                                                                                                                                                                                                                                                                       |
-|-----------------|-------------------------------------------------------|
+|------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `model`    | the modern model to be plotted -- either 'model1', 'model2', or 'model3' - use the model against which the archaeological samples have a been classified against, using [`model.LDA`](#model.lda) .                                                                                               |
 | `x`        | the column x from the data frame which contains the linear discriminant scores of the archaeological data - if using data from [`model.LDA`](#model.lda) , such column will be called LD1                                                                                                         |
 | `xlims`    | the limits of the x axis                                                                                                                                                                                                                                                                          |
@@ -263,7 +263,7 @@ plot4 (model,
 ## Arguments
 
 | Argument   | Description                                                                                                                                                                                                                                                                                   |
-|-----------------|-------------------------------------------------------|
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `model`    | either "model1", "model2" or "model3" - following [`model.LDA`](#model.lda)                                                                                                                                                                                                                   |
 | `x`        | the LD1 column from the results dataframe of [`model.LDA`](#model.lda)                                                                                                                                                                                                                        |
 | `xlims`    | the x limits                                                                                                                                                                                                                                                                                  |
@@ -397,7 +397,7 @@ plot5(model,
 ## Arguments
 
 | Argument   | Description                                                                                                                         |
-|------------------|------------------------------------------------------|
+|------------|-------------------------------------------------------------------------------------------------------------------------------------|
 | `model`    | the modern model to be plotted -- either "model1", "model3" or "model3" following [`model.LDA`](#model.lda)                         |
 | `x`        | the LD1 column from the results dataframe of [`model.LDA`](#model.lda) . Can also use linear discriminant score from other sources. |
 | `xlims`    | the limits of the x axis                                                                                                            |
@@ -493,4 +493,3 @@ mtext("descending, FALSE", 3,-1.5)
 ## options with different col and pch for different archaeological sites or different phases
 plot5("model2", data$LD1, col3=data$Study,pch3=data$Study, legend=T, site=c("Site 1","Site 2","Site 3"))
 ```
-
