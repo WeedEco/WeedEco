@@ -22,8 +22,8 @@ plot4 (model,
         compact = FALSE,
         priority = "density",
         lines=FALSE,
-        site = "samples",
-        legend=F)
+        legend=FALSE,
+        site = "samples")
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
