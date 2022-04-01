@@ -11,27 +11,28 @@
 \usage{
 plot3(model, x, ...)
 
-plot3(model, x, xlims = NULLL, ticks =NULL, col1 = NULL, col2=NULL, col3 =NULL, pch1 =NULL, pch2= NULL, pch3=NULL, compact=NULL, priority=NULL, lines=F, site="samples")
+plot3(model, x, xlims = NULLL, ticks =NULL, col1 = NULL, col2=NULL, col3 =NULL, pch1 =NULL, pch2= NULL, pch3=NULL, compact=NULL, priority=NULL, lines=F,legend =F, site="samples")
 ## Defaults
 plot3 (model,
         x,
-        xlims= NULL,
-        ticks=NULL,
+        xlim s= NULL,
+        ticks = NULL,
         col1 = "black",
-        col2= "black",
-        col3= "black",
+        col2 = "black",
+        col3 = "black",
         pch1 = 1,
-        pch2= 2,
-        pch3= 0,
+        pch2 = 2,
+        pch3 = 0,
         compact =  FALSE
         priority = "density",
-        lines=FALSE,
-        site="samples")
+        lines = FALSE,
+        legend = FALSE,
+        site = "samples")
 
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{model}{the modern model to be plotted – either ‘model1’, ‘model2', or 'model3' - use the model against which the archaeological samples had a been classified against, using \code{\link[FIBS]{model.LDA}}.
+  \item{model}{the modern model to be plotted – either ‘model1’, ‘model2', or 'model3' - use the model against which the archaeological samples have a been classified against, using \code{\link[FIBS]{model.LDA}}.
 %%     ~~Describe \code{model} here~~
 }
   \item{x}{the column x from the data frame which contains the linear discriminant scores of the archaeological data - if using data from \code{\link[FIBS]{model.LDA}}, such column will be called LD1
@@ -52,10 +53,10 @@ plot3 (model,
   \item{col3}{the colour of the archaeological datapoints
 %%     ~~Describe \code{col3} here~~
 }
-  \item{pch1}{the symbol of the modern model's centroids- must be between 0 and 2
+  \item{pch1}{the symbol of the modern model's centroids - must be between 0 and 2
 %%     ~~Describe \code{pch1} here~~
 }
-  \item{pch2}{the symbol of the modern model's datapoints- must be between 0 and 2
+  \item{pch2}{the symbol of the modern model's datapoints - must be between 0 and 2
 %%     ~~Describe \code{pch2} here~~
 }
   \item{pch3}{the symbol of the archaeological datapoints
@@ -68,6 +69,9 @@ plot3 (model,
 %%     ~~Describe \code{priority} here~~
 }
  \item{lines}{add lines from group centroid to x-axis
+%%     ~~Describe \code{priority} here~~
+}
+\item{legend}{adds a legend showing the symbols used to denote group centroids and archaeological samples. Options are "right" (located on the right- hand side), "left" (located on the left-hand side of the graph), and "split" (located on the right-hand side, with labels aligning with the graphed data)
 %%     ~~Describe \code{priority} here~~
 }
 \item{site}{add labels to the archaeological data

@@ -4,7 +4,7 @@
 \title{Plotting function for displaying the output of \code{\link[FIBS]{model.LDA}}, plotting the archaeological samples discriminant scores, the chosen model's centroids, and the model's discriminant scores with separate symbols for the different modern study sites.
 %%  ~~function to do ... ~~
 }
-\description{A function which plots the archaeological samples discriminant scores from following \code{\link[FIBS]{model.LDA}} in comparation with the chosen modern model's centroids, and the model's discriminant scores separated according to modern study sites
+\description{A function which plots the archaeological samples discriminant scores from following \code{\link[FIBS]{model.LDA}} compared to with the chosen modern model's centroids, and the model's discriminant scores separated according to modern study sites
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
@@ -34,7 +34,7 @@ plot5(model,
   \item{model}{the modern model to be plotted – either "model1", "model3" or "model3" following \code{\link[FIBS]{model.LDA}}
 %%     ~~Describe \code{model} here~~
 }
-  \item{x}{the LD1 column from the results dataframe of \code{\link[FIBS]{model.LDA}}. Can also use linear discriminant score from other scores.
+  \item{x}{the LD1 column from the results dataframe of \code{\link[FIBS]{model.LDA}}. Can also use linear discriminant score from other sources.
 %%     ~~Describe \code{x} here~~
 }
   \item{xlims}{the limits of the x axis

@@ -4,7 +4,7 @@
 \title{Plotting function to plot the archaeological samples' discriminant scores and model's centroids
 %%  ~~function to do ... ~~
 }
-\description{ A function which plots the archaeological samples discriminant scores from \code{\link[FIBS]{model.LDA}} in comparation with the chosen modern model's centroids
+\description{ A function which plots the archaeological samples discriminant scores from \code{\link[FIBS]{model.LDA}}compared to the chosen modern model's centroids
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
@@ -60,7 +60,7 @@ plot4 (model,
 \item{lines}{adds lines from group centroid to x-axis
 %%     ~~Describe \code{priority} here~~
 }
-\item{legend}{a legend showing the group centroids and archaeology samples, options about "right" (located on the right- hand side), "left" (located on the left-hand side if the graph), and split (located on the righ-thand side, with labels aligning with the graphed data)
+\item{legend}{adds a legend showing the symbols used to denote group centroids and archaeology sample. Options are "right" (located on the right- hand side), "left" (located on the left-hand side of the graph), and "split" (located on the right-hand side, with labels aligning with the graphed data)
 %%     ~~Describe \code{priority} here~~
 }
 \item{site}{name of the archaeological data to appear on legend
