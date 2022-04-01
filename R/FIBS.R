@@ -10,7 +10,7 @@ model.LDA<-function(model,x){
   library(dplyr)
   library(haven)
   library(MASS)
-  if (model=='model1'|model== 1) load(file="data_model.rda")
+  if (model=='model1'|model== 1) load(file="model1.RData")
   if(model=='model1'|model== 1) discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model, CV = TRUE)
   if(model=='model1'|model== 1) model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model)
 
