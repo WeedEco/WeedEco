@@ -26,7 +26,7 @@ plot4<-function(model, x, xlims= NULL, ylims = NULL, ticks =NULL, col1="black",c
   functionalAt <- data.frame(Study = as.factor(data.model$Study),
                              Classification= predictionmodel$class,
                              LD1 = predictionmodel$x,
-                             pch= data$Study)
+                             pch= data.model$Study)
   centroids <- functionalAt %>%
     group_by(Study) %>%
     summarise(centroid1 = mean(LD1))
