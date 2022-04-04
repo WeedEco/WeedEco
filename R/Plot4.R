@@ -22,7 +22,7 @@ plot4<-function(model, x, xlims= NULL, ylims = NULL, ticks =NULL, col1="black",c
   if(model=='model3'|model== 3) discrim_cv <- lda(Study ~ FLOWPER+VEGPROP,data.model, CV = TRUE)
   if(model=='model3'|model== 3) model_lda <- lda(Study ~FLOWPER+VEGPROP,data.model)
 
-  predictionmodel <- predict(model_lda,data)
+  predictionmodel <- predict(model_lda,data.model)
   functionalAt <- data.frame(Study = as.factor(data.model$Study),
                              Classification= predictionmodel$class,
                              LD1 = predictionmodel$x,

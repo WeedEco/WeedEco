@@ -22,7 +22,7 @@ plot3<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
   if(model=='model3'|model== 3) discrim_cv <- lda(Study ~ FLOWPER+VEGPROP,data.model, CV = TRUE)
   if(model=='model3'|model== 3) model_lda <- lda(Study ~FLOWPER+VEGPROP,data.model)
 
-  predictionmodel <- predict(model_lda,data)
+  predictionmodel <- predict(model_lda,data.model)
   functionalAt <- data.frame(Study = as.factor(data.model$Study),
                              Classification= predictionmodel$class,
                              LD1 = predictionmodel$x,
@@ -30,7 +30,7 @@ plot3<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
   centroids <- functionalAt %>%
     group_by(Study) %>%
     summarise(centroid1 = mean(LD1))
-  x.value<-unlist(x*-1)
+  x.value<-unlist((x)*-1)
   m.value<-unlist(predictionmodel$x*-1)
   xmin<-min(x.value)
   xmax<-max(x.value)
