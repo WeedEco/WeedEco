@@ -3,7 +3,8 @@ plot5<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
   library(dplyr)
   library(haven)
   library(MASS)
-  if (model=='model1'|model== 1){load(file="data_model.rda")
+  if(model=='model1'|model== 1) {
+    data.model<-data.frame(model1)
     discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model, CV = TRUE)
     model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model)
 
@@ -69,8 +70,8 @@ plot5<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
     legend(max-1,0.05,  legend =site, pch=c(lpch), col= c(lcol), cex=0.95, bty="n")}
 
   }
-  if (model=='model2'|model== 2){
-    load (file="data_model_arid.rda")
+ if(model=='model2'|model== 2) {
+  data.model<-data.frame(model2)
     discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN,data.model, CV = TRUE)
     model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN,data.model)
     predictionmodel <- predict(model_lda,data.model)
@@ -143,7 +144,7 @@ plot5<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
       legend(max-1,0.05,  legend =site, pch=c(lpch), col= c(lcol), cex=0.95, bty="n")}
   }
   if (model=='model3'|model== 3) {
-    load(file="model3.rda")
+    data.model<-data.frame(model3)
     discrim_cv <- lda(Study ~ FLOWPER+VEGPROP,data.model, CV = TRUE)
     model_lda <- lda(Study ~FLOWPER+VEGPROP,data.model)
     predictionmodel <- predict(model_lda,data.model)
