@@ -24,7 +24,7 @@ model.LDA<-function(model,x){
 
 
   predictionmodel <- predict(model_lda,data)
-  functionalAt <- data.frame(Study = as.factor(data.model$Study),
+  functionalAt <- data.frame(Study = as.factor(data$Study),
                              Classification= predictionmodel$class,
                              LD1 = predictionmodel$x)
   centroids <- functionalAt %>%
