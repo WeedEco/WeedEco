@@ -10,21 +10,20 @@ plot3<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
   library(haven)
   library(MASS)
 
-  if(model=='model1'|model== 1) load(file="data_model.rda")
-  if(model=='model1'|model== 1) discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data, CV = TRUE)
-  if(model=='model1'|model== 1) model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data)
+  if(model=='model1'|model== 1) data.model<-data.frame(model1)
+  if(model=='model1'|model== 1) discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model, CV = TRUE)
+  if(model=='model1'|model== 1) model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model)
 
-  if(model=='model2'|model== 2) load(file="data_model_arid.rda")
-  if(model=='model2'|model== 2) discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN,data, CV = TRUE)
-  if(model=='model2'|model== 2) model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN,data)
+  if(model=='model2'|model== 2)data.model<-data.frame(model2)
+  if(model=='model2'|model== 2) discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN,data.model, CV = TRUE)
+  if(model=='model2'|model== 2) model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN,data.model)
 
-  if(model=='model3'|model== 3) load(file="model3.rda")
-  if(model=='model3'|model== 3) discrim_cv <- lda(Study ~ FLOWPER+VEGPROP,data, CV = TRUE)
-  if(model=='model3'|model== 3) model_lda <- lda(Study ~FLOWPER+VEGPROP,data)
+  if(model=='model3'|model== 3) data.model<-data.frame(model3)
+  if(model=='model3'|model== 3) discrim_cv <- lda(Study ~ FLOWPER+VEGPROP,data.model, CV = TRUE)
+  if(model=='model3'|model== 3) model_lda <- lda(Study ~FLOWPER+VEGPROP,data.model)
 
   predictionmodel <- predict(model_lda,data)
-  functionalAt <- data.frame(Study = as.factor(data$Study),
-
+  functionalAt <- data.frame(Study = as.factor(data.model$Study),
                              Classification= predictionmodel$class,
                              LD1 = predictionmodel$x,
                              pch= data$Study)
