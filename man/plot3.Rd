@@ -1,10 +1,10 @@
 \name{plot3}
 \alias{plot3}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Plotting function to display functional ecology model centroids, model and the archaeological samples' linear discriminant scores from \code{\link[FIBS]{model.LDA}}
+\title{Plotting function to display functional ecological model centroids, the model's linear discriminant scores and the archaeological samples' linear discriminant scores from \code{\link[FIBS]{model.LDA}}
 %%  ~~function to do ... ~~
 }
-\description{A function which plots the linear discriminant scores of the modern functional ecology models from \code{\link[FIBS]{model.LDA}}, their group centroids and the archaeological data’s discriminant scores.
+\description{A function which plots the linear discriminant scores of the modern models based on arable fields from \code{\link[FIBS]{model.LDA}}, their group centroids and the archaeobotanical data’s discriminant scores.
 
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
@@ -32,10 +32,10 @@ plot3 (model,
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{model}{the modern model to be plotted – either ‘model1’, ‘model2', or 'model3' - use the model against which the archaeological samples have a been classified against, using \code{\link[FIBS]{model.LDA}}.
+  \item{model}{the modern model to be plotted – either ‘model1’, ‘model2', or 'model3' - use the model against which the archaeobotanical samples have a been classified against, using \code{\link[FIBS]{model.LDA}}.
 %%     ~~Describe \code{model} here~~
 }
-  \item{x}{the column x from the data frame which contains the linear discriminant scores of the archaeological data - if using data from \code{\link[FIBS]{model.LDA}}, such column will be called LD1
+  \item{x}{the column x from the data frame which contains the linear discriminant scores of the archaeobotanical data - if using data from \code{\link[FIBS]{model.LDA}}, such column will be called LD1
 %%     ~~Describe \code{x} here~~
 }
   \item{xlims}{the limits of the x axis
@@ -50,7 +50,7 @@ plot3 (model,
   \item{col2}{the colour of the modern model's datapoints
 %%     ~~Describe \code{col2} here~~
 }
-  \item{col3}{the colour of the archaeological datapoints
+  \item{col3}{the colour of the archaeobotanical datapoints
 %%     ~~Describe \code{col3} here~~
 }
   \item{pch1}{the symbol of the modern model's centroids - must be between 0 and 2
@@ -59,7 +59,7 @@ plot3 (model,
   \item{pch2}{the symbol of the modern model's datapoints - must be between 0 and 2
 %%     ~~Describe \code{pch2} here~~
 }
-  \item{pch3}{the symbol of the archaeological datapoints
+  \item{pch3}{the symbol of the archaeobotanical datapoints
 %%     ~~Describe \code{pch3} here~~
 }
   \item{compact}{follows \code{\link[beeswarm]{swarmy}} from the beeswarm package
@@ -71,10 +71,10 @@ plot3 (model,
  \item{lines}{add lines from group centroid to x-axis
 %%     ~~Describe \code{priority} here~~
 }
-\item{legend}{adds a legend showing the symbols used to denote group centroids and archaeological samples. Options are "right" (located on the right- hand side), "left" (located on the left-hand side of the graph), and "split" (located on the right-hand side, with labels aligning with the graphed data)
+\item{legend}{adds a legend showing the symbols used to denote group centroids and archaeobotanical samples. Options are "right" (located on the right- hand side), "left" (located on the left-hand side of the graph), and "split" (located on the right-hand side, with labels aligning with the graphed data)
 %%     ~~Describe \code{priority} here~~
 }
-\item{site}{add labels to the archaeological data
+\item{site}{add labels to the archaeobotanical data
 %%     ~~Describe \code{priority} here~~
 }
 }
@@ -88,11 +88,11 @@ plot3 (model,
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 }
-\references{model 1 - see Bogaard et al 2016 "Combining functional weed ecology and crop stable isotope ratios to identify cultivation intensity: a comparison of cereal production regimes in Haute Provence, France and Asturias, Spain" \emph{Vegetation History and Archaeobotany} 25, 57-73
+\references{model 1 - see Bogaard, A., Hodgson, J., Nitsch, E., Jones, G., Styring, A., Diffey, C., Pouncett, J., Herbig, C., Charles, M., Ertuğ, F., Tugay, O. Filipović, D. and Fraser, R. (2016) 'Combining functional weed ecology and crop stable isotope ratios to identify cultivation intensity: a comparison of cereal production regimes in Haute Provence, France and Asturias, Spain' \emph{Vegetation History and Archaeobotany} 25, 57-73
 
-model 2 - see Bogaard et al 2018 "From traditional Farming in Morocco to Early Urban Agroecology in Northern Mesopotamia: Combining Present-day Arable Weed Surveys and crop isotope analysis to reconstruct past Agrosystems in (Semi-)arid Regions" \emph{Environmental Archaeology} 23, 303-322
+model 2 - see Bogaard, A., Styring, A., Ater, M., Hmimsa, Y., Green, L., Stroud, E., Whitlam, J., Diffey, C., Nitsch, E., Charles, M., Jones, G. and Hodgson, J.2018 'From traditional farming in Morocco to Early Urban Agroecology in northern Mesopotamia: combining Present-day Arable Weed Surveys and crop isotope analysis to reconstruct past Agrosystems in (Semi-)arid Regions' \emph{Environmental Archaeology} 23, 303-322
 
-model 3 - see Bogaard et al 2022 " ????"
+model 3 - see Bogaard, A., Hodgson, J., Kropp, C., McKerracher, M. and Stroud, E. (in press 2022). ‘Lessons from Laxton, Highgrove and Lorsch: Building arable weed-based models for the investigation of early medieval agriculture in England’, in M. McKerracher and H. Hamerow (eds) \emph{New Perspectives on the Medieval ‘Agricultural Revolution’: Crop, Stock and Furrow} (Liverpool: Liverpool University Press).
 %% ~put references to the literature/web site here ~
 }
 \author{ Elizabeth Stroud

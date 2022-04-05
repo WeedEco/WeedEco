@@ -1,16 +1,16 @@
 \name{plot5}
 \alias{plot5}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Plotting function for displaying the output of \code{\link[FIBS]{model.LDA}}, plotting the archaeological samples discriminant scores, the chosen model's centroids, and the model's discriminant scores with separate symbols for the different modern study sites.
+\title{Plotting function for displaying the output of \code{\link[FIBS]{model.LDA}}, plotting the archaeobotanical samples linear discriminant scores, the chosen model's centroids, and the model's discriminant scores with separate symbols for the different modern study's arable fields.
 %%  ~~function to do ... ~~
 }
-\description{A function which plots the archaeological samples discriminant scores from following \code{\link[FIBS]{model.LDA}} compared to with the chosen modern model's centroids, and the model's discriminant scores separated according to modern study sites
+\description{A function which plots the archaeobotanical samples linear discriminant scores from following \code{\link[FIBS]{model.LDA}} compared to with the chosen modern model's centroids, and the model's discriminant scores separated according to modern study location
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
 plot5(model, x)
 
-plot5(model, x, xlims = NULLL, ticks =NULL, col1 = NULL, col2=NULL, col3=NULL, pch1=NULL, pch3=NULL, compact=NULL, priority=NULL, lines=F, site= "Archaeological samples", legend=F)
+plot5(model, x, xlims = NULLL, ticks =NULL, col1 = NULL, col2=NULL, col3=NULL, pch1=NULL, pch3=NULL, compact=NULL, priority=NULL, lines=F, site= "samples", legend=F)
 
 #defaults
 plot5(model,
@@ -24,7 +24,7 @@ plot5(model,
   pch3=5,
   compact= F,
   priority= "descending",
-  site= "Archaeological samples",
+  site= "samples",
   lines=F,
   legend=F)
 
@@ -49,13 +49,13 @@ plot5(model,
   \item{col2}{the colour of the modern model's datapoints
 %%     ~~Describe \code{col2} here~~
 }
-  \item{col3}{the colour of the archaeological datapoints
+  \item{col3}{the colour of the archaeobotanical datapoints
 %%     ~~Describe \code{col3} here~~
 }
   \item{pch1}{the symbol of the modern model's centroids- must be between 0 and 2
 %%     ~~Describe \code{pch1} here~~
 }
-  \item{pch3}{the symbol of the archaeological datapoints
+  \item{pch3}{the symbol of the archaeobotanical datapoints
 %%     ~~Describe \code{pch3} here~~
 }
   \item{compact}{ follows the beeswarm package's \code{\link[beeswarm]{swarmy}} compact variable
@@ -67,7 +67,7 @@ plot5(model,
  \item{lines}{ adds lines from group centroid to x-axis
 %%     ~~Describe \code{lines} here~~
 }
-\item{site}{adds name of archaeological data
+\item{site}{adds name of archaeobotanical data
 %%     ~~Describe \code{site} here~~
 }
 \item{legend}{adds legend to the plot
@@ -84,11 +84,11 @@ plot5(model,
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 }
-\references{model 1 - see Bogaard \emph{et al.} 2016 "Combining functional weed ecology and crop stable isotope ratios to identify cultivation intensity: a comparison of cereal production regimes in Haute Provence, France and Asturias, Spain" \emph{Vegetation History and Archaeobotany} 25, 57-73
+\references{model 1 - see Bogaard, A., Hodgson, J., Nitsch, E., Jones, G., Styring, A., Diffey, C., Pouncett, J., Herbig, C., Charles, M., Ertuğ, F., Tugay, O. Filipović, D. and Fraser, R. (2016) 'Combining functional weed ecology and crop stable isotope ratios to identify cultivation intensity: a comparison of cereal production regimes in Haute Provence, France and Asturias, Spain' \emph{Vegetation History and Archaeobotany} 25, 57-73
 
-model 2 - see Bogaard \emph{et al.} 2018 "From traditional Farming in Morocco to Early Urban Agroecology in Northern Mesopotamia: Combining Present-day Arable Weed Surveys and crop isotope analysis to reconstruct past Agrosystems in (Semi-)arid Regions" \emph{Environmental Archaeology} 23, 303-322
+model 2 - see Bogaard, A., Styring, A., Ater, M., Hmimsa, Y., Green, L., Stroud, E., Whitlam, J., Diffey, C., Nitsch, E., Charles, M., Jones, G. and Hodgson, J.2018 'From traditional farming in Morocco to Early Urban Agroecology in northern Mesopotamia: combining Present-day Arable Weed Surveys and crop isotope analysis to reconstruct past Agrosystems in (Semi-)arid Regions' \emph{Environmental Archaeology} 23, 303-322
 
-model 3 - see Bogaard et al 2022 "????"
+model 3 - see Bogaard, A., Hodgson, J., Kropp, C., McKerracher, M. and Stroud, E. (in press 2022). ‘Lessons from Laxton, Highgrove and Lorsch: Building arable weed-based models for the investigation of early medieval agriculture in England’, in M. McKerracher and H. Hamerow (eds) \emph{New Perspectives on the Medieval ‘Agricultural Revolution’: Crop, Stock and Furrow} (Liverpool: Liverpool University Press).
 %% ~put references to the literature/web site here ~
 }
 \author{Elizabeth Stroud
@@ -155,7 +155,7 @@ mtext("descending, TRUE", 3,-1.5)
 plot5(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1, pch3=19, compact =T, priority = "descending")
 mtext("descending, FALSE", 3,-1.5)
 
-## options with different col and pch for different archaeological sites or different phases
+## options with different col and pch for different archaeobotanical sites or different phases
 plot5("model2", data$LD1, col3=data$Study,pch3=data$Study, legend=T, site=c("Site 1","Site 2","Site 3"))
 
 

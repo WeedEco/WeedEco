@@ -11,10 +11,10 @@
 \format{
   A data frame with 36 observations on the following 4 variables.
   \describe{
-    \item{\code{Field}}{a character vector}
-    \item{\code{FLOWPER}}{a numeric vector}
-    \item{\code{VEGPROP}}{a numeric vector}
-    \item{\code{Study}}{a numeric vector}
+    \item{\code{Field}}{Location of the modern arable field}
+    \item{\code{FLOWPER}}{Length of flowering period}
+    \item{\code{VEGPROP}}{Vegetative proporgatin}
+    \item{\code{Study}}{high or low}
   }
 }
 \details{
@@ -24,6 +24,7 @@
 %%  ~~ reference to a publication or URL from which the data were obtained ~~
 }
 \references{
+model 3 - see Bogaard, A., Hodgson, J., Kropp, C., McKerracher, M. and Stroud, E. (in press 2022). ‘Lessons from Laxton, Highgrove and Lorsch: Building arable weed-based models for the investigation of early medieval agriculture in England’, in M. McKerracher and H. Hamerow (eds) \emph{New Perspectives on the Medieval ‘Agricultural Revolution’: Crop, Stock and Furrow} (Liverpool: Liverpool University Press).
 %%  ~~ possibly secondary sources and usages ~~
 }
 \examples{
