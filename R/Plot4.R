@@ -7,7 +7,6 @@
 plot4<-function(model, x, xlims= NULL, ylims = NULL, ticks =NULL, col1="black",col3="black", pch1=1, pch3=0, compact= F, priority= "density", lines=F, site= "samples", legend=F){
   library(beeswarm)
   library(dplyr)
-  library(haven)
   library(MASS)
 
   if(model=='model1'|model== 1) data.model<-data.frame(model1)
