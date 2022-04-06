@@ -7,8 +7,7 @@
 #cultivation. Currently two model types are available - model1 is ast/prov data, while the model2 is evvia, ast/prov and morocco
 #suitable for semi-arid locations
 model.LDA<-function(model,x){
-  library(dplyr)#summerise, group_by
-  library(MASS) #lda
+
   if(model=='model1'|model== 1) data.model<-data.frame(model1)
   if(model=='model1'|model== 1) discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model, CV = TRUE)
   if(model=='model1'|model== 1) model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model)

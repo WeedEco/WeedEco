@@ -1,0 +1,11 @@
+test_that("returns a printout", {
+  SLA<-runif(40, min=20, max=30)
+  ARNODE<-runif(40, min=3000, max=22000)
+  LOGCAHN<-runif(40, min=5.5, max=6.5)
+  LOGCADN<-runif(40, min=5.5, max=7)
+  FLOWPER<-runif(40, min=3.5, max=7)
+  VEGPROP<-runif(40, min=0.15, max=0.8)
+  Study<-sample(1:3, 40, replace=T)
+  data<-as.data.frame(cbind(SLA,ARNODE,LOGCAHN,LOGCADN,FLOWPER,VEGPROP,Study))
+  expect_output(model.LDA("model1", data))
+})
