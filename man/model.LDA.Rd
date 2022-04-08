@@ -12,15 +12,15 @@ model.LDA(model,x)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{model}{ Either "model1", "model2" or "model3" (also 1,2 or 3). This argument allows the choice between three modern models against which the archaeobotanical dataset is classified}
+  \item{model}{ Either "model1", "model2" or "model3" (also 1, 2 or 3). This argument allows the choice between three modern models against which the archaeobotanical dataset is classified}
    \item{x}{The archaeobotanical data that will be compared against the model. Note data must be labelled with specific headers - see below.
 %%     ~~Describe \code{x} here~~
 }
 }
-\details{ model.LDA requires the input dataset to have specific column names. The columns providing the values for the functional ecological attributes must be spelled as follows: SLA, ARNODE, LOGCAHN, LOGCADN, FLOWPER, VEGPROP.
+\details{ model.LDA requires the input dataset to have specific column names. The columns providing the values of the functional ecological attributes must be spelled as follows: SLA, ARNODE, LOGCAHN, LOGCADN, FLOWPER, VEGPROP.
 %%  ~~ If necessary, more details than the description above ~~
 }
-\value{ A table containing the samples classification, the posterior.1 and posterior.2 value (the posterior probabilities of the two linear discriminant function classifications as per Venables and Ripley 2003 and the MASS package), the linear discriminant function score (LD1), and the input functional ecological attributes of data x.
+\value{ A table containing the samples classification, the posterior.1 and posterior.2 value (the posterior probabilities of the two linear discriminant function classifications as per Venables and Ripley (2003) and the MASS package), the linear discriminant function score (LD1), and the input functional ecological attributes of data x.
 %%  ~Describe the value returned
 %%  If it is a LIST, use
 %%  \item{comp1 }{Description of 'comp1'}

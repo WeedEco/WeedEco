@@ -12,9 +12,9 @@
   A data frame with 121 observations on the following 6 variables.
   \describe{
     \item{\code{SLA}}{Mean specific leaf area}
-    \item{\code{ARNODE}}{Leaf area per node/leaf thickness}
-    \item{\code{LOGCAHN}}{Log of maxiumn canopy height}
-    \item{\code{LOGCADN}}{Log of maximum canopy diameter}
+    \item{\code{ARNODE}}{Leaf area per node to fresh leaf thickness}
+    \item{\code{LOGCAHN}}{Maxiumn canopy height converted to a log scale}
+    \item{\code{LOGCADN}}{Maximum canopy diameter converted to a log scale}
     \item{\code{FLOWPER}}{Length of flowering period}
     \item{\code{Study}}{Study location 1 (Asturias, Spain) and study location 2 ( Haute Provence, France)}
   }
@@ -30,6 +30,6 @@
 }
 \examples{
 data(model1)
-## maybe str(model1) ; plot(model1) ...
+
 }
 \keyword{datasets}

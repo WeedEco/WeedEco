@@ -32,7 +32,7 @@ plot3 (model,
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{model}{the modern model to be plotted – either ‘model1’, ‘model2', or 'model3' - use the model against which the archaeobotanical samples have a been classified against, using \code{\link[FIBS]{model.LDA}}.
+  \item{model}{the modern model to be plotted – either "model1", "model2", or "model3" - use the model against which the archaeobotanical samples have a been classified against, using \code{\link[FIBS]{model.LDA}}.
 %%     ~~Describe \code{model} here~~
 }
   \item{x}{the column x from the data frame which contains the linear discriminant scores of the archaeobotanical data - if using data from \code{\link[FIBS]{model.LDA}}, such column will be called LD1

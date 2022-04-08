@@ -21,8 +21,8 @@ plot4 (model,
         pch3= 0,
         compact = FALSE,
         priority = "density",
-        lines=FALSE,
-        legend=FALSE,
+        lines=TRUE,
+        legend="split",
         site = "samples")
 }
 %- maybe also 'usage' for other objects documented here.

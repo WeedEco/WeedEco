@@ -4,7 +4,7 @@
 #col 1 and pch 1 = centroids, col3 and pch3 is the color and symbol of the archaeological data
 
 
-plot4<-function(model, x, xlims= NULL, ylims = NULL, ticks =NULL, col1="black",col3="black", pch1=1, pch3=0, compact= F, priority= "density", lines=F, site= "samples", legend=F){
+plot4<-function(model, x, xlims= NULL, ylims = NULL, ticks =NULL, col1="black",col3="black", pch1=1, pch3=0, compact= F, priority= "density", lines=TRUE, site= "samples", legend="split"){
   if(model=='model1'|model== 1) data.model<-data.frame(model1)
   if(model=='model1'|model== 1) discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model, CV = TRUE)
   if(model=='model1'|model== 1) model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model)

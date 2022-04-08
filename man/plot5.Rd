@@ -10,23 +10,21 @@
 \usage{
 plot5(model, x)
 
-plot5(model, x, xlims = NULLL, ticks =NULL, col1 = NULL, col2=NULL, col3=NULL, pch1=NULL, pch3=NULL, compact=NULL, priority=NULL, lines=F, site= "samples", legend=F)
-
 #defaults
 plot5(model,
   x,
   xlims= NULL,
-  ticks =NULL,
-  col1="black",
+  ticks= NULL,
+  col1= "black",
   col2= "black",
-  col3="black",
-  pch1=1,
-  pch3=5,
+  col3= "black",
+  pch1= 1,
+  pch3= 5,
   compact= F,
   priority= "descending",
   site= "samples",
-  lines=F,
-  legend=F)
+  lines= F,
+  legend= F)
 
 }
 %- maybe also 'usage' for other objects documented here.
