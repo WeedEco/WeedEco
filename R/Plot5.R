@@ -15,7 +15,7 @@ plot5<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
     centroids <- functionalAt %>%
       group_by(Study) %>%
       summarise(centroid1 = mean(LD1))
-    x.value<-unlist(x*-1)
+    x.value<-unlist(x)
     m.value<-unlist(predictionmodel$x*-1)
     xmin<-min(x.value)
     xmax<-max(x.value)
