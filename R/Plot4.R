@@ -69,10 +69,12 @@ plot4<-function(model, x, xlims= NULL, ylims = NULL, ticks =NULL, col1="black",c
 
   lpch<-unique(pch3)
   lcol<-unique(col3)
-  if (legend =="right") legend("right", inset=c(0.05,0.05), c("Group", "centroids", site), pch=c(pch1, pch1+15 ,as.numeric(lpch)), col= c(col1,lcol), cex=0.95, bty="n")
-  if (legend =="left") legend("left", inset=c(0.05,0.05), c("Group", "centroids",site), pch=c(pch1, pch1+15, as.numeric(lpch)), col= c(col1,lcol), cex=0.95, bty="n")
-  if (legend =="split") {legend(max(xlim)-1,max(ylims)-0.5, c("Group","centroids"), pch=c(pch1,pch1+15), col= c(col1), cex=0.95, bty="n")
+  if (legend =="right") legend("right", inset=c(0.05,0.05), c("Group \ncentroids", site), pch=c( pch1+15 ,as.numeric(lpch)), col= c(col1,lcol), cex=0.95, bty="n")
+  if (legend =="left") legend("left", inset=c(0.05,0.05), c("Group \ncentroids",site), pch=c(pch1+15, as.numeric(lpch)), col= c(col1,lcol), cex=0.95, bty="n")
+  if (legend =="split") {legend(max(xlim)-1,max(ylims)-0.5, c("Group \ncentroids"), pch=c(pch1+15), col= c(col1), cex=0.95, bty="n")
     legend(max(xlim)-1,max(ylims)-0.7, site, pch=c(lpch), col= c(lcol), cex=0.95, bty="n")}
-}
+
+
+  }
 
 

@@ -8,22 +8,10 @@
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-plot4(model, x,...)
+plot4(model, x)
 
 ## Defaults
-plot4 (model,
-        x,
-        xlims= NULL,
-        ticks=NULL,
-        col1 = "black",
-        col3= "black",
-        pch1 = 1,
-        pch3= 0,
-        compact = FALSE,
-        priority = "density",
-        lines=TRUE,
-        legend="split",
-        site = "samples")
+plot4(model,x, xlims= NULL,ticks=NULL, col1 = "black",col3= "black", pch1 = 1, pch3= 0,compact = FALSE, priority = "density", lines=TRUE, legend="split",site = "samples")
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -106,16 +94,22 @@ data<-data.frame(Study,LD1)
 plot4( "model1", data$LD1)
 plot4( 1, data$LD1)
 
-## Use of model1 -  modern data from Asturias, Spain and Haute Provence, France - see Boggard et al. 2016
-plot4("model1",data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green",col3="purple", pch1=1,  pch3=19, compact =F, priority = "ascending", lines=T, site="example")
+## Use of model1 -  modern data from Asturias, Spain and Haute Provence,
+France (Boggard et al. 2016)
+plot4("model1",data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green",col3="purple",
+pch1=1,  pch3=19, compact =F, priority = "ascending", lines=T, site="example")
 
-##Use of model2 - modern data from Evvia, Greece; Asturias, Spain; Haute Provence, France; and oases and rain fed terraces in Morocco - see Bogaard et al. 2018
-plot4("model2",data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col3="purple", pch1=1, pch3=19, compact =F, priority = "ascending", lines=T, site= "example")
+##Use of model2 - modern data from Evvia, Greece; Asturias, Spain; HauteProvence,
+France; and oases and rain fed terraces in Morocco (Bogaard et al. 2018)
+plot4("model2",data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col3="purple",
+pch1=1,pch3=19, compact =F, priority = "ascending", lines=T, site= "example")
 
-##Use of model3 - modern data from Highgrove and Laxton, UK- see Bogaard et al. 2022
-plot4("model3", data$LD1, xlims=c(-7,7),ticks=-7:7, col1="green",  col3="purple", pch1=1, pch3=19, compact =F, priority = "ascending", lines=T, site="example")
+##Use of model3 - modern data from Highgrove and Laxton, UK- (Bogaard et al.2022)
+plot4("model3", data$LD1, xlims=c(-7,7),ticks=-7:7, col1="green",  col3="purple",
+pch1=1,pch3=19, compact =F, priority = "ascending", lines=T, site="example")
 
-##Different  priority options using "ascending", "descending", "density", "random","none"
+##Different  priority options using "ascending", "descending", "density",
+"random","none"
 par(mfrow=c(3,2),
     oma=c(2,0,0,0),
     mar=c(0,0,0,0))

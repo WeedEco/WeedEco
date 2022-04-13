@@ -9,25 +9,10 @@
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-plot3(model, x, ...)
+plot3(model, x)
 
-plot3(model, x, xlims = NULLL, ticks =NULL, col1 = NULL, col2=NULL, col3 =NULL, pch1 =NULL, pch2= NULL, pch3=NULL, compact=NULL, priority=NULL, lines=F,legend =F, site="samples")
 ## Defaults
-plot3 (model,
-        x,
-        xlim s= NULL,
-        ticks = NULL,
-        col1 = "black",
-        col2 = "black",
-        col3 = "black",
-        pch1 = 1,
-        pch2 = 2,
-        pch3 = 0,
-        compact =  FALSE
-        priority = "density",
-        lines = FALSE,
-        legend = FALSE,
-        site = "samples")
+plot3 (model, x, xlims= NULL,ticks = NULL,col1 = "black",col2 = "black",col3 = "black",pch1 = 1,pch2 = 2,pch3 = 0,compact =  FALSE, priority = "density",lines = TRUE,legend = "split", site = "samples")
 
 }
 %- maybe also 'usage' for other objects documented here.
@@ -118,45 +103,59 @@ plot3("model1", data$LD1)
 plot3("model2", data$LD1)
 plot3("model3", data$LD1)
 
-## Use of model 1 - modern data from Asturias, Spain and Haute Provence, France - see Bogaard \emph{et al.} 2016
+## Use of model 1 - modern data from Asturias, Spain and Haute Provence,
+France (Bogaard \emph{et al.} 2016)
 
-plot3("model1",data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1, pch2=2, pch3=19, compact =F, priority = "ascending", lines=T, site="example")
+plot3("model1",data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple",
+pch1=1, pch2=2, pch3=19, compact =F, priority = "ascending", lines=T, site="example")
 
-##Use of model2 - modern data from Evvia, Greece; Asturias, Spain; Haute Provence, France; and oases and rain fed terraces in Morocco - see Bogaard \emph{et al.} 2018
+##Use of model2 - modern data from Evvia, Greece; Asturias, Spain; Haute Provence, France;
+and oases and rainfed terraces in Morocco (Bogaard \emph{et al.} 2018)
 
-plot3("model2", data$LD1, xlims=c(-7,7),ticks=-7:7, col1="green",  col2="red",col3="purple", pch1=1, pch2=2,pch3=19, compact =F, priority = "ascending", lines=T, site="example")
+plot3("model2", data$LD1, xlims=c(-7,7),ticks=-7:7, col1="green",  col2="red",col3="purple",
+pch1=1, pch2=2,pch3=19, compact =F, priority = "ascending", lines=T, site="example")
 
 ##Use of model3 - modern data from Highgrove and Laxton, UK- see Bogaard \emph{et al.} 2022
 
-plot3("model3", data$LD1, xlims=c(-7,7),ticks=-7:7, col1="green",  col2="red",col3="purple", pch1=1,pch2=2, pch3=19, compact =F, priority = "ascending", lines=T, site="example")
+plot3("model3", data$LD1, xlims=c(-7,7),ticks=-7:7, col1="green",  col2="red",col3="purple",
+pch1=1,pch2=2, pch3=19, compact =F,priority = "ascending", lines=T, site="example")
 
 
 ##Different priority options using "ascending", "descending", "density", "random","none"
 par(mfrow=c(3,2),
     oma=c(0,0,0,0),
     mar=c(0,0,0,0))
-plot3(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1, pch2=2, pch3=19, compact =F, priority = "ascending")
+plot3(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,
+pch2=2, pch3=19, compact =F, priority = "ascending")
 mtext("ascending", 3,-1.5)
-plot3(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1, pch2=2, pch3=19, compact =F, priority = "descending")
+plot3(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,
+pch2=2, pch3=19, compact =F, priority = "descending")
 mtext("descending", 3, -1.5)
-plot3(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1, pch2=2, pch3=19, compact =F, priority = "density")
+plot3(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,
+pch2=2, pch3=19, compact =F, priority = "density")
 mtext("density",3, -1.5)
-plot3(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1, pch2=2, pch3=19, compact =F, priority = "random")
+plot3(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,
+pch2=2, pch3=19, compact =F, priority = "random")
 mtext("random",3,-1.5)
-plot3(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1, pch2=2, pch3=19, compact =F, priority = "none")
+plot3(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,
+pch2=2, pch3=19, compact =F, priority = "none")
 mtext("none",3, -1.5)
 
 ## options with compact T and F using ascending and descending priority
 par(mfrow=c(2,2),
     oma=c(0,0,0,0),
     mar=c(0,0,0,0))
-plot3(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1, pch2=2, pch3=19, compact =F, priority = "ascending")
+plot3(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,
+pch2=2, pch3=19, compact =F, priority = "ascending")
 mtext("ascending, TRUE", 3,-1.5)
-plot3(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1, pch2=2, pch3=19, compact =T, priority = "ascending")
+plot3(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,
+pch2=2, pch3=19, compact =T, priority = "ascending")
 mtext("ascending, FALSE", 3,-1.5)
-plot3(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1, pch2=2, pch3=19, compact =F, priority = "descending")
+plot3(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,
+pch2=2, pch3=19, compact =F, priority = "descending")
 mtext("descending, TRUE", 3,-1.5)
-plot3(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1, pch2=2, pch3=19, compact =T, priority = "descending")
+plot3(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,
+pch2=2, pch3=19, compact =T, priority = "descending")
 mtext("descending, FALSE", 3,-1.5)
 
 ## options with different colours and symbols for different archaeological sites

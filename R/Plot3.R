@@ -4,7 +4,7 @@
 #col 1 and pch 1 = centroids, col3 and pch3 is the color and symbol of the archaeological data, col2 and pch2 are the model data
 # priority can be ascending,descending,density or random, compact can be True or false - this are from beeswarm swarmy and change the look of the graphs
 
-plot3<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",col3="black", pch1=1, pch2=2, pch3=0, compact= FALSE, priority= "density", lines=FALSE, site="samples", legend=FALSE){
+plot3<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",col3="black", pch1=1, pch2=2, pch3=0, compact= FALSE, priority= "density", lines=TRUE, site="samples", legend="split"){
 
   if(model=='model1'|model== 1) data.model<-data.frame(model1)
   if(model=='model1'|model== 1) discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model, CV = TRUE)
@@ -77,10 +77,11 @@ plot3<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
   if (lines== T) segments(max(centroids$centroid1*-1), 0.148,max(centroids$centroid1*-1),-0.007 )
   lpch<-unique(pch3)
   lcol<-unique(col3)
-  if (legend =="right") legend("topright", inset=c(0.05,0.05), c("Group", "centroids", "Low", "High", site), pch=c(pch1, pch1+15 ,pch2,pch2+15, as.numeric(lpch)), col= c(col1,col2,lcol), cex=0.95, bty="n")
-  if (legend =="left") legend("topleft", inset=c(0.05,0.05), c("Group", "centroids", "Low", "High",site), pch=c(pch1, pch1+15,pch2, pch2+15, as.numeric(lpch)), col= c(col1,col2,lcol), cex=0.95, bty="n")
+  if (legend =="right") legend("topright", inset=c(0.05,0.05), c("Group \ncentroids", "Group 1", "Group 2", site), pch=c(pch1 ,pch2,pch2+15, as.numeric(lpch)), col= c(col1,col2,col2,lcol), cex=0.95, bty="n")
+  if (legend =="left") legend("topleft", inset=c(0.05,0.05), c("Group \ncentroids", "Group 1", "Group 2",site), pch=c(pch1 ,pch2, pch2+15, as.numeric(lpch)), col= c(col1,col2,col2,lcol), cex=0.95, bty="n")
   if (legend =="split") {legend(max-1,0.16,  c("Group ", "centroids"), pch=c(pch1, pch1+15), col= c(col1), cex=0.95, bty="n")
     legend(max-1,0.05,  legend =site, pch=c(lpch), col= c(lcol), cex=0.95, bty="n")
-    legend(max-1,0.12, c("Low", "High"), pch=c(pch2, pch2+15), col= c(col1), cex=0.95, bty="n")}
+    legend(max-1,0.12, c("Group 1", "Group 2"), pch=c(pch2, pch2+15), col= c(col2), cex=0.95, bty="n")}
+
 
 }
