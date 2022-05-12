@@ -1,38 +1,37 @@
 \name{data_org}
 \alias{data_org}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Function for manipulating archabotanical scoresheets and obtaining FIBS data for LDA
+\title{Function for manipulating archaeobotanical scoresheets and obtaining FIBS data for LDA
 %%  ~~function to do ... ~~
 }
-\description{Changes archaebotanical data into presence absences data and extracts the functional data for the listed species, and calcuates the SLA, ARNODE,etc for each sample (average).
+\description{Changes archaeobotanical data into presence/absence data and extracts the functional data for the listed species, and calculates the average of the functional attributes for each sample.
 }
 \usage{
-data_org(abotdata,samples=6, codes=3, x)
+data_org(abotdata,samples, codes, model, x)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
-  \item{abotdata}{input archaebotanical data set which is set out with each sample as a column, and the species as rows. One column needs to contain the FIBS codes of the taxa (see X for list a taxa and codes).
-%%     ~~Describe \code{x} here~~
+  \item{abotdata}{the archaeobotanical data set. Data should be arranged with each sample as a column and each species as rows. One column needs to contain the species codes of the taxa (see X for list a taxa and codes).
+
 }
-\item{samples}{The column in which the sample data starts
-%%     ~~Describe \code{x} here~~
+\item{samples}{The column which the sample data starts
+
 }
-\item{codes}{ The column which contains the FIBS codes
-%%     ~~Describe \code{x} here~~
+\item{codes}{The column which contains the species codes
+
 }
-\item{x}{the flowering time data for the species (need to be set up as column of fibscodes and column labeled FLOWPER whcih contains the flowering period of the taxa)
-%%     ~~Describe \code{x} here~~
+\item{model}{The model being used; 1,2 or 3 - this will determine which functional attribute are used
+
+}
+\item{x}{The flowering period data for the species (needs to be set up as as two columns: one of species codes and one of flowering data labeled FLOWPER)
+
 }
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+
 }
 \references{
 }
