@@ -26,7 +26,9 @@ model.LDA<-function(model,x){
   centroids <- functionalAt %>%
     group_by(Study) %>%
     summarise(centroid1 = mean(LD1))
-  model <- cbind(as.data.frame(predict(model_lda,x)),x)
+  groupmean<-(model_lda$prior%*%model_lda$means)
+  constant<-(groupmean%*%model_lda$scaling)
+  model <- cbind(as.data.frame(predict(model_lda,x, prior = c(0.5,0.5))),x)
   model$LD1<-model$LD1*-1
   print(model)
 
