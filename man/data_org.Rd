@@ -23,7 +23,7 @@ data_org(abotdata,samples, codes, model, x)
 \item{model}{The model being used; 1,2 or 3 - this will determine which functional attribute are used
 
 }
-\item{x}{The flowering period data for the species (needs to be set up as as two columns: one of species codes and one of flowering data labeled FLOWPER)
+\item{x}{The flowering period data for the species (needs to be set up as two columns: one of species codes and one of flowering data labelled FLOWPER)
 
 }
 }

@@ -1,24 +1,25 @@
-\name{FIBS-package}
-\alias{FIBS-package}
+\name{Weedmodels}
+\alias{weedmodels}
 \alias{FIBS}
+\alias{weedmodels}
 \docType{package}
-\title{FIBS package
-\packageTitle{FIBS}
+\title{Weedmodels
+\packageTitle{Weedmodels}
 }
 \description{
-\packageDescription{FIBS}
+\packageDescription{Weedmodels}
 }
 \details{
 
 The DESCRIPTION file:
-\packageDESCRIPTION{FIBS}
-\packageIndices{FIBS}
+\packageDESCRIPTION{Weedmodels}
+\packageIndices{Weedmodels}
 ~~ An overview of how to use the package, including the most important functions ~~
 }
 \author{
-\packageAuthor{FIBS}
+\packageAuthor{Weedmodels}
 
-Maintainer: \packageMaintainer{FIBS}
+Maintainer: \packageMaintainer{Weedmodels}
 }
 \references{
 ~~ Literature or other references for background information ~~

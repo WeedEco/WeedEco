@@ -1,26 +1,26 @@
-\name{plot3}
-\alias{plot3}
+\name{wplot_basic}
+\alias{wplot_basic}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Plotting function to display functional ecological model centroids, the model's linear discriminant scores and the archaeological samples' linear discriminant scores from \code{\link[FIBS]{model.LDA}}
+\title{Plotting function to display functional ecological model centroids, the model's linear discriminant scores and the archaeological samples' linear discriminant scores from \code{\link[Weedmodels]{wmodel.LDA}}
 %%  ~~function to do ... ~~
 }
-\description{A function which plots the linear discriminant scores of the modern models based on arable fields from \code{\link[FIBS]{model.LDA}}, their group centroids and the archaeobotanical data’s discriminant scores.
+\description{A function which plots the linear discriminant scores of the modern models based on arable fields from \code{\link[weedmodels]{wmodel.LDA}}, their group centroids and the archaeobotanical data’s discriminant scores.
 
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-plot3(model, x)
+wplot_basic(model, x)
 
 ## Defaults
-plot3 (model, x, xlims= NULL,ticks = NULL,col1 = "black",col2 = "black",col3 = "black",pch1 = 1,pch2 = 2,pch3 = 0,compact =  FALSE, priority = "density",lines = TRUE,legend = "split", site = "samples")
+wplot_basic (model, x, xlims= NULL,ticks = NULL,col1 = "black",col2 = "black",col3 = "black",pch1 = 1,pch2 = 2,pch3 = 0,compact =  FALSE, priority = "density",lines = TRUE,legend = "split", site = "samples")
 
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{model}{the modern model to be plotted – either "model1", "model2", or "model3" - use the model against which the archaeobotanical samples have a been classified against, using \code{\link[FIBS]{model.LDA}}.
+  \item{model}{the modern model to be plotted – either "model1", "model2", or "model3" - use the model against which the archaeobotanical samples have a been classified against, using \code{\link[Weedmodels]{wmodel.LDA}}.
 %%     ~~Describe \code{model} here~~
 }
-  \item{x}{the column x from the data frame which contains the linear discriminant scores of the archaeobotanical data - if using data from \code{\link[FIBS]{model.LDA}}, such column will be called LD1
+  \item{x}{the column x from the data frame which contains the linear discriminant scores of the archaeobotanical data - if using data from \code{\link[weedmodels]{wmodel.LDA}}, such column will be called LD1
 %%     ~~Describe \code{x} here~~
 }
   \item{xlims}{the limits of the x axis
@@ -89,7 +89,7 @@ model 3 - see Bogaard, A., Hodgson, J., Kropp, C., McKerracher, M. and Stroud, E
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{\code{\link[FIBS]{model.LDA}}, \code{\link[FIBS]{plot4}}, \code{\link[FIBS]{plot5}}
+\seealso{\code{\link[weedmodels]{wmodel.LDA}}, \code{\link[weedmodels]{wplot_arch}}, \code{\link[weedmodels]{wplot_geog}}
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
@@ -99,25 +99,25 @@ Study<-sample(1:3, 40, replace=T)
 data<-data.frame(Study,LD1)
 
 ##Usage with defaults
-plot3("model1", data$LD1)
-plot3("model2", data$LD1)
-plot3("model3", data$LD1)
+wplot_basic("model1", data$LD1)
+wplot_basic("model2", data$LD1)
+wplot_basic("model3", data$LD1)
 
 ## Use of model 1 - modern data from Asturias, Spain and Haute Provence,
 France (Bogaard \emph{et al.} 2016)
 
-plot3("model1",data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple",
+wplot_basic("model1",data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple",
 pch1=1, pch2=2, pch3=19, compact =F, priority = "ascending", lines=T, site="example")
 
 ##Use of model2 - modern data from Evvia, Greece; Asturias, Spain; Haute Provence, France;
 and oases and rainfed terraces in Morocco (Bogaard \emph{et al.} 2018)
 
-plot3("model2", data$LD1, xlims=c(-7,7),ticks=-7:7, col1="green",  col2="red",col3="purple",
+wplot_basic("model2", data$LD1, xlims=c(-7,7),ticks=-7:7, col1="green",  col2="red",col3="purple",
 pch1=1, pch2=2,pch3=19, compact =F, priority = "ascending", lines=T, site="example")
 
 ##Use of model3 - modern data from Highgrove and Laxton, UK- see Bogaard \emph{et al.} 2022
 
-plot3("model3", data$LD1, xlims=c(-7,7),ticks=-7:7, col1="green",  col2="red",col3="purple",
+wplot_basic("model3", data$LD1, xlims=c(-7,7),ticks=-7:7, col1="green",  col2="red",col3="purple",
 pch1=1,pch2=2, pch3=19, compact =F,priority = "ascending", lines=T, site="example")
 
 
@@ -125,19 +125,19 @@ pch1=1,pch2=2, pch3=19, compact =F,priority = "ascending", lines=T, site="exampl
 par(mfrow=c(3,2),
     oma=c(0,0,0,0),
     mar=c(0,0,0,0))
-plot3(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,
+wplot_basic(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,
 pch2=2, pch3=19, compact =F, priority = "ascending")
 mtext("ascending", 3,-1.5)
-plot3(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,
+wplot_basic(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,
 pch2=2, pch3=19, compact =F, priority = "descending")
 mtext("descending", 3, -1.5)
-plot3(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,
+wplot_basic(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,
 pch2=2, pch3=19, compact =F, priority = "density")
 mtext("density",3, -1.5)
-plot3(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,
+wplot_basic(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,
 pch2=2, pch3=19, compact =F, priority = "random")
 mtext("random",3,-1.5)
-plot3(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,
+wplot_basic(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,
 pch2=2, pch3=19, compact =F, priority = "none")
 mtext("none",3, -1.5)
 
@@ -145,21 +145,21 @@ mtext("none",3, -1.5)
 par(mfrow=c(2,2),
     oma=c(0,0,0,0),
     mar=c(0,0,0,0))
-plot3(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,
+wplot_basic(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,
 pch2=2, pch3=19, compact =F, priority = "ascending")
 mtext("ascending, TRUE", 3,-1.5)
-plot3(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,
+wplot_basic(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,
 pch2=2, pch3=19, compact =T, priority = "ascending")
 mtext("ascending, FALSE", 3,-1.5)
-plot3(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,
+wplot_basic(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,
 pch2=2, pch3=19, compact =F, priority = "descending")
 mtext("descending, TRUE", 3,-1.5)
-plot3(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,
+wplot_basic(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,
 pch2=2, pch3=19, compact =T, priority = "descending")
 mtext("descending, FALSE", 3,-1.5)
 
 ## options with different colours and symbols for different archaeological sites
-plot3("model1", data$LD1, col3=data$Study,pch3=data$Study, site=c("Site 1","Site 2","Site 3"))
+wplot_basic("model1", data$LD1, col3=data$Study,pch3=data$Study, site=c("Site 1","Site 2","Site 3"))
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

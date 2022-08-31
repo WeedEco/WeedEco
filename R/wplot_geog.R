@@ -1,9 +1,9 @@
-plot5<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",col3="black", pch1=1,pch3=5, compact= F, priority= "descending", site= "samples", lines=F, legend=F){
+wplot_geog<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",col3="black", pch1=1,pch3=5, compact= F, priority= "descending", site= "Samples", lines=T, legend=T){
 
   if(model=='model1'|model== 1) {
     data.model<-data.frame(model1)
-    discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model, CV = TRUE)
-    model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN+FLOWPER,data.model)
+    discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCANH+LOGCAND+FLOWPER,data.model, CV = TRUE)
+    model_lda <- lda(Study ~SLA+ARNODE+LOGCANH+LOGCAND+FLOWPER,data.model)
 
     predictionmodel <- predict(model_lda,data.model)
 
@@ -60,17 +60,17 @@ plot5<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
     axis(1,ticks, cex=1.5)
     if (lines== T) segments(min(centroids$centroid1*-1), 0.118,min(centroids$centroid1*-1),-0.007 )
     if (lines== T)  segments(max(centroids$centroid1*-1), 0.118,max(centroids$centroid1*-1),-0.007 )
-    if(legend==T){legend(max-1,0.12,  c( "Asturias", "Haute \nProvence"), pch=c(0,15), col=col2, cex=0.95, bty="n")
+    if(legend==T){legend(max(xlim)-1.5,0.12,  c( "Haute \nProvence", "Asturias" ), pch=c(0,15), col=col2, cex=0.95, bty="n")
     lpch<-unique(pch3)
     lcol<-unique(col3)
-    legend(max-1,0.16,  c("Group \ncentroids", ""), pch=c(pch1, pch1+15), col= c(col1), cex=0.95, bty="n")
-    legend(max-1,0.05,  legend =site, pch=c(lpch), col= c(lcol), cex=0.95, bty="n")}
+    legend(max(xlim)-1.5,0.16,  c("Group \ncentroids"), pch=c(pch1), col= c(col1), cex=0.95, bty="n")
+    legend(max(xlim)-1.5,0.05,  legend =site, pch=c(lpch), col= c(lcol), cex=0.95, bty="n")}
 
   }
  if(model=='model2'|model== 2) {
   data.model<-data.frame(model2)
-    discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCAHN+LOGCADN,data.model, CV = TRUE)
-    model_lda <- lda(Study ~SLA+ARNODE+LOGCAHN+LOGCADN,data.model)
+    discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCANH+LOGCAND,data.model, CV = TRUE)
+    model_lda <- lda(Study ~SLA+ARNODE+LOGCANH+LOGCAND,data.model)
     predictionmodel <- predict(model_lda,data.model)
     functionalAt <- data.frame(Study = as.factor(data.model$Study),
                                Classification= predictionmodel$class,
@@ -122,7 +122,7 @@ plot5<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
 
     par(mar=c(4,2,0,3), xpd=TRUE)
     plot(2:5, type='n', xlim = xlim, ylim=c(0,0.17),axes=F, xlab = "", ylab="")
-    points(swarmy(centroids$centroid1*-1, rep(0.15,2)), col= col1, pch=c(pch1+15, pch1), cex=1.75)
+    points(swarmy(centroids$centroid1*-1, rep(0.15,2)), col= col1, pch=c(pch1), cex=1.75)
     points(swarmy(evvia$LD1*-1, rep(0.12,2), side=1, compact=compact, priority = priority),col=col2, pch=as.numeric(evvia$husbandry),cex=1.2)
     points(swarmy(AsturiasPro$LD1*-1, rep(0.09,2), side=1, compact=compact, priority = priority),col=col2, pch=as.numeric(AsturiasPro$husbandry),cex=1.2)
     points(swarmy(Morocco$LD1*-1, rep(0.06,2), side=1, compact=compact, priority = priority),col=col2, pch=as.numeric(Morocco$husbandry),cex=1.2)
@@ -132,13 +132,13 @@ plot5<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
     if (lines== T) segments(min(centroids$centroid1*-1), 0.148,min(centroids$centroid1*-1),-0.007 )
     if (lines== T) segments(max(centroids$centroid1*-1), 0.148,max(centroids$centroid1*-1),-0.007 )
 
-    if(legend==T){legend(max-1,0.14,  c( "Evvia feilds", "Evvia gardens"), pch=c(2,17), col=col2, cex=0.95, bty="n")
-      legend(max-1,0.12,  c( "Asturias", "Haute \nProvence"), pch=c(0,15), col=col2, cex=0.95, bty="n")
-      legend(max-1,0.09,  c( "Morocco oases","Morocco \nrain-fed terraces"), pch=c(1,16), col=col2, cex=0.95, bty="n")
+    if(legend==T){legend(max(xlim)-1.2,0.14,  c( "Evvia fields", "Evvia gardens"), pch=c(2,17), col=col2, cex=0.95, bty="n")
+      legend(max(xlim)-1.2,0.12,  c( "Haute \nProvence", "Asturias" ), pch=c(0,15), col=col2, cex=0.95, bty="n")
+      legend(max(xlim)-1.2,0.09,  c( "Morocco oases","Morocco \nrain-fed terraces"), pch=c(1,16), col=col2, cex=0.95, bty="n")
       lpch<-unique(pch3)
       lcol<-unique(col3)
-      legend(max-1,0.16,  c("Group \ncentroids", ""), pch=c(pch1, pch1+15), col= c(col1), cex=0.95, bty="n")
-      legend(max-1,0.05,  legend =site, pch=c(lpch), col= c(lcol), cex=0.95, bty="n")}
+      legend(max(xlim)-1.2,0.16,  c("Group \ncentroids"), pch=c(pch1), col= c(col1), cex=0.95, bty="n")
+      legend(max(xlim)-1.2,0.05,  legend =site, pch=c(lpch), col= c(lcol), cex=0.95, bty="n")}
   }
   if (model=='model3'|model== 3) {
     data.model<-data.frame(model3)
@@ -202,11 +202,11 @@ plot5<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",co
     axis(1, ticks, cex=1.5)
     if (lines== T) segments(min(centroids$centroid1*-1), 0.069,min(centroids$centroid1*-1),-0.0041 )
     if (lines== T) segments(max(centroids$centroid1*-1), 0.069,max(centroids$centroid1*-1),-0.0041 )
-    if(legend==T){legend(max-1,0.06,  c( "Laxton fields", "Laxton skyes"), pch=c(17,2), col=col2, cex=0.95, bty="n")
-      legend(max-1,0.039,  c( "Highgrove fields"), pch=c(15), col=col2, cex=0.95, bty="n")
+    if(legend==T){legend(max(xlim)-1.5,0.07,  c( "Laxton fields", "Laxton sykes"), pch=c(17,2), col=col2, cex=0.95, bty="n")
+      legend(max(xlim)-1.5,0.039,  c( "Highgrove \nfields"), pch=c(15), col=col2, cex=0.95, bty="n")
       lpch<-unique(pch3)
       lcol<-unique(col3)
-      legend(max-1,0.08,  c("Group \ncentroids", ""), pch=c(pch1, pch1+15), col= c(col1), cex=0.95, bty="n")
-      legend(max-1,0.03,  legend =site, pch=c(lpch), col= c(lcol), cex=0.95, bty="n")}
+      legend(max(xlim)-1.5,0.02,  legend =site, pch=c(lpch), col= c(lcol), cex=0.95, bty="n")}
+
   }
 }

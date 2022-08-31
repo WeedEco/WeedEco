@@ -1,17 +1,17 @@
-\name{plot5}
-\alias{plot5}
+\name{wplot_geog}
+\alias{wplot_geog}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Plotting function for displaying the output of \code{\link[FIBS]{model.LDA}}, plotting the archaeobotanical samples linear discriminant scores, the chosen model's centroids, and the model's discriminant scores with separate symbols for the different modern study's arable fields.
+\title{Plotting function for displaying the output of \code{\link[weedmodels]{wmodel.LDA}}, plotting the archaeobotanical samples linear discriminant scores, the chosen model's centroids, and the model's discriminant scores with separate symbols for the different modern study's arable fields.
 %%  ~~function to do ... ~~
 }
-\description{A function which plots the archaeobotanical samples linear discriminant scores from following \code{\link[FIBS]{model.LDA}} compared to with the chosen modern model's centroids, and the model's discriminant scores separated according to modern study location
+\description{A function which plots the archaeobotanical samples linear discriminant scores from following \code{\link[weedmodels]{wmodel.LDA}} compared to with the chosen modern model's centroids, and the model's discriminant scores separated according to modern study location
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-plot5(model, x)
+wplot_geog(model, x)
 
 #defaults
-plot5(model,
+wplot_geog(model,
   x,
   xlims= NULL,
   ticks= NULL,
@@ -29,10 +29,10 @@ plot5(model,
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{model}{the modern model to be plotted – either "model1", "model3" or "model3" following \code{\link[FIBS]{model.LDA}}
+  \item{model}{the modern model to be plotted – either "model1", "model3" or "model3" following \code{\link[weedmodels]{wmodel.LDA}}
 %%     ~~Describe \code{model} here~~
 }
-  \item{x}{the LD1 column from the results dataframe of \code{\link[FIBS]{model.LDA}}. Can also use linear discriminant score from other sources.
+  \item{x}{the LD1 column from the results dataframe of \code{\link[weedmodels]{wmodel.LDA}}. Can also use linear discriminant score from other sources.
 %%     ~~Describe \code{x} here~~
 }
   \item{xlims}{the limits of the x axis
@@ -98,7 +98,7 @@ model 3 - see Bogaard, A., Hodgson, J., Kropp, C., McKerracher, M. and Stroud, E
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{\code{\link[FIBS]{model.LDA}}, \code{\link[FIBS]{plot3}}, \code{\link[FIBS]{plot4}}
+\seealso{\code{\link[weedmodels]{wmodel.LDA}}, \code{\link[weedmodels]{wplot_arch}}, \code{\link[weedmodels]{wplot_basic}}
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
@@ -108,53 +108,53 @@ Study<-sample(1:3, 40, replace=T)
 data<-data.frame(Study,LD1)
 
 ##If using with defaults
-plot5("model1", data$LD1)
-plot5("model2", data$LD1)
-plot5("model3", data$LD1)
+wplot_geog("model1", data$LD1)
+wplot_geog("model2", data$LD1)
+wplot_geog("model3", data$LD1)
 
 ##Use of model 1 -  modern data from Asturias, Spain and Haute Provence, France - see Bogaard et al 2016
 
-plot5("model1",data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1, pch3=19, compact =F, priority = "ascending", lines=T,site="example")
+wplot_geog("model1",data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1, pch3=19, compact =F, priority = "ascending", lines=T,site="example")
 
 ##Use of model 2 - modern data from Evvia, Greece; Asturias, Spain; Haute Provence, France; and oases and rain fed terraces in Morocco - see Bogaard et al 2018
 
-plot5("model2",data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green",  col2="red",col3="purple", pch1=1,pch3=19, compact =F, priority = "ascending", lines=T,site="example")
+wplot_geog("model2",data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green",  col2="red",col3="purple", pch1=1,pch3=19, compact =F, priority = "ascending", lines=T,site="example")
 
 ##Use of model 3 - modern data from Highgrove and Laxton, UK- see Bogaard et al 2022
 
-plot5("model3", data$LD1, xlims=c(-7,7),ticks=-7:7, col1="green",  col2="red",col3="purple", pch1=1, pch3=19, compact =F, priority = "ascending", lines=T, site="example")
+wplot_geog("model3", data$LD1, xlims=c(-7,7),ticks=-7:7, col1="green",  col2="red",col3="purple", pch1=1, pch3=19, compact =F, priority = "ascending", lines=T, site="example")
 
 
 ##Different priority options using "ascending", "descending", "density", "random", "none"
 par(mfrow=c(3,2),
     oma=c(0,0,0,0),
     mar=c(0,0,0,0))
-plot5(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,  pch3=19, compact =F, priority = "ascending")
+wplot_geog(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,  pch3=19, compact =F, priority = "ascending")
 mtext("ascending", 3,-1.5)
-plot5(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,  pch3=19, compact =F, priority = "descending")
+wplot_geog(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,  pch3=19, compact =F, priority = "descending")
 mtext("descending", 3, -1.5)
-plot5(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1, pch3=19, compact =F, priority = "density")
+wplot_geog(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1, pch3=19, compact =F, priority = "density")
 mtext("density",3, -1.5)
-plot5(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,  pch3=19, compact =F, priority = "random")
+wplot_geog(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,  pch3=19, compact =F, priority = "random")
 mtext("random",3,-1.5)
-plot5(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,  pch3=19, compact =F, priority = "none")
+wplot_geog(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,  pch3=19, compact =F, priority = "none")
 mtext("none",3, -1.5)
 
 ## options with compact T and F using ascending and descending priority
 par(mfrow=c(2,2),
     oma=c(0,0,0,0),
     mar=c(0,0,0,0))
-plot5(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1, pch3=19, compact =F, priority = "ascending")
+wplot_geog(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1, pch3=19, compact =F, priority = "ascending")
 mtext("ascending, TRUE", 3,-1.5)
-plot5(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1, pch3=19, compact =T, priority = "ascending")
+wplot_geog(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1, pch3=19, compact =T, priority = "ascending")
 mtext("ascending, FALSE", 3,-1.5)
-plot5(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1, pch3=19, compact =F, priority = "descending")
+wplot_geog(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1, pch3=19, compact =F, priority = "descending")
 mtext("descending, TRUE", 3,-1.5)
-plot5(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1, pch3=19, compact =T, priority = "descending")
+wplot_geog(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1, pch3=19, compact =T, priority = "descending")
 mtext("descending, FALSE", 3,-1.5)
 
 ## options with different col and pch for different archaeobotanical sites or different phases
-plot5("model2", data$LD1, col3=data$Study,pch3=data$Study, legend=T, site=c("Site 1","Site 2","Site 3"))
+wplot_geog("model2", data$LD1, col3=data$Study,pch3=data$Study, legend=T, site=c("Site 1","Site 2","Site 3"))
 
 
 }

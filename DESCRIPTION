@@ -1,10 +1,10 @@
-Package: FIBS
+Package:Weedmodels
 Type: Package
 Title: Classification of archaeobotanical data using linear discriminant analysis against modern models and plotting of the resultant discriminant scores
 Version: 0.1.0
 Author: Elizabeth Stroud
 Maintainer: Elizabeth Stroud <elizabeth.stroud@arch.ox.ac.uk>
-Description:  This package  has functions to conducts linear discriminant analysis classification using one of three modern models (i.e. sets of discriminated modern arable fields) to classify archaeobotanical samples on the basis of relevant functional ecological attributes of weed species.
+Description:  This package has functions which conduct linear discriminant analysis classification using one of three modern models (i.e. sets of discriminated modern arable fields) to classify archaeobotanical samples on the basis of relevant functional ecological attributes of weed species.
 License: MIT
 Depends:
   dplyr,

@@ -14,7 +14,7 @@
     \item{\code{Field}}{Location of the modern arable fields}
     \item{\code{FLOWPER}}{Length of flowering period}
     \item{\code{VEGPROP}}{Vegetative propagation}
-    \item{\code{Study}}{Grouping varible for type of farming regime (1 or 2)}
+    \item{\code{Study}}{Grouping variable for type of farming regime (1 or 2)}
   }
 }
 \details{
