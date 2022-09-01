@@ -12,7 +12,9 @@
 wplot_basic(model, x)
 
 ## Defaults
-wplot_basic (model, x, xlims= NULL,ticks = NULL,col1 = "black",col2 = "black",col3 = "black",pch1 = 1,pch2 = 2,pch3 = 0,compact =  FALSE, priority = "density",lines = TRUE,legend = "split", site = "samples")
+wplot_basic (model, x, xlims= NULL,ticks = NULL,col1 = "black",col2 = "black",
+col3 = "black", pch1 = 1,pch2 = 2,pch3 = 0,compact =  FALSE, priority = "density",
+lines = TRUE, legend = "split", site = "samples")
 
 }
 %- maybe also 'usage' for other objects documented here.
@@ -23,43 +25,43 @@ wplot_basic (model, x, xlims= NULL,ticks = NULL,col1 = "black",col2 = "black",co
   \item{x}{the column x from the data frame which contains the linear discriminant scores of the archaeobotanical data - if using data from \code{\link[weedmodels]{wmodel.LDA}}, such column will be called LD1
 %%     ~~Describe \code{x} here~~
 }
-  \item{xlims}{the limits of the x axis
+  \item{xlims}{The limits of the x axis
 %%     ~~Describe \code{xlims} here~~
 }
-  \item{ticks}{ the location of the x axis labels along the x axis
+  \item{ticks}{The location of the x axis labels along the x axis
 %%     ~~Describe \code{ticks} here~~
 }
-  \item{col1}{the colour of the modern model's centroids
+  \item{col1}{The colour of the modern model's centroids
 %%     ~~Describe \code{col1} here~~
 }
-  \item{col2}{the colour of the modern model's datapoints
+  \item{col2}{The colour of the modern model's datapoints
 %%     ~~Describe \code{col2} here~~
 }
-  \item{col3}{the colour of the archaeobotanical datapoints
+  \item{col3}{The colour of the archaeobotanical datapoints
 %%     ~~Describe \code{col3} here~~
 }
-  \item{pch1}{the symbol of the modern model's centroids - must be between 0 and 2
+  \item{pch1}{The symbol of the modern model's centroids - must be between 0 and 2
 %%     ~~Describe \code{pch1} here~~
 }
-  \item{pch2}{the symbol of the modern model's datapoints - must be between 0 and 2
+  \item{pch2}{The symbol of the modern model's datapoints - must be between 0 and 2
 %%     ~~Describe \code{pch2} here~~
 }
-  \item{pch3}{the symbol of the archaeobotanical datapoints
+  \item{pch3}{The symbol of the archaeobotanical datapoints
 %%     ~~Describe \code{pch3} here~~
 }
-  \item{compact}{follows \code{\link[beeswarm]{swarmy}} from the beeswarm package
+  \item{compact}{Follows \code{\link[beeswarm]{swarmy}} from the beeswarm package
 %%     ~~Describe \code{compact} here~~
 }
-  \item{priority}{follows the \code{\link[beeswarm]{swarmy}} function relating to the method of point layout
+  \item{priority}{Follows the \code{\link[beeswarm]{swarmy}} function relating to the method of point layout
 %%     ~~Describe \code{priority} here~~
 }
- \item{lines}{add lines from group centroid to x-axis
+ \item{lines}{Adds lines from group centroid to x-axis
 %%     ~~Describe \code{priority} here~~
 }
-\item{legend}{adds a legend showing the symbols used to denote group centroids and archaeobotanical samples. Options are "right" (located on the right- hand side), "left" (located on the left-hand side of the graph), and "split" (located on the right-hand side, with labels aligning with the graphed data)
+\item{legend}{Adds a legend showing the symbols used to denote group centroids and archaeobotanical samples. Options are "right" (located on the right- hand side), "left" (located on the left-hand side of the graph), and "split" (located on the right-hand side, with labels aligning with the graphed data)
 %%     ~~Describe \code{priority} here~~
 }
-\item{site}{add labels to the archaeobotanical data
+\item{site}{Add labels in the legend for the archaeobotanical data
 %%     ~~Describe \code{priority} here~~
 }
 }
@@ -80,7 +82,7 @@ model 2 - see Bogaard, A., Styring, A., Ater, M., Hmimsa, Y., Green, L., Stroud,
 model 3 - see Bogaard, A., Hodgson, J., Kropp, C., McKerracher, M. and Stroud, E. (in press 2022). ‘Lessons from Laxton, Highgrove and Lorsch: Building arable weed-based models for the investigation of early medieval agriculture in England’, in M. McKerracher and H. Hamerow (eds) \emph{New Perspectives on the Medieval ‘Agricultural Revolution’: Crop, Stock and Furrow} (Liverpool: Liverpool University Press).
 %% ~put references to the literature/web site here ~
 }
-\author{ Elizabeth Stroud
+\author{Elizabeth Stroud
 %%  ~~who you are~~
 }
 \note{
@@ -93,7 +95,7 @@ model 3 - see Bogaard, A., Hodgson, J., Kropp, C., McKerracher, M. and Stroud, E
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##example dataset
+##Example dataset
 LD1<-runif(40, min=-6.6, max=6)
 Study<-sample(1:3, 40, replace=T)
 data<-data.frame(Study,LD1)
@@ -103,8 +105,8 @@ wplot_basic("model1", data$LD1)
 wplot_basic("model2", data$LD1)
 wplot_basic("model3", data$LD1)
 
-## Use of model 1 - modern data from Asturias, Spain and Haute Provence,
-France (Bogaard \emph{et al.} 2016)
+## Use of model 1 - modern data from Asturias, Spain and Haute Provence, France
+(Bogaard \emph{et al.} 2016)
 
 wplot_basic("model1",data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple",
 pch1=1, pch2=2, pch3=19, compact =F, priority = "ascending", lines=T, site="example")
@@ -118,10 +120,12 @@ pch1=1, pch2=2,pch3=19, compact =F, priority = "ascending", lines=T, site="examp
 ##Use of model3 - modern data from Highgrove and Laxton, UK- see Bogaard \emph{et al.} 2022
 
 wplot_basic("model3", data$LD1, xlims=c(-7,7),ticks=-7:7, col1="green",  col2="red",col3="purple",
-pch1=1,pch2=2, pch3=19, compact =F,priority = "ascending", lines=T, site="example")
+pch1=1,pch2=2, pch3=19, compact =F, priority = "ascending", lines=T, site="example")
 
+## Options with different colours and symbols for different archaeological sites
+wplot_basic("model1", data$LD1, col3=data$Study,pch3=data$Study, site=c("Site 1","Site 2","Site 3"))
 
-##Different priority options using "ascending", "descending", "density", "random","none"
+##Different priority options using "ascending", "descending", "density", "random", "none"
 par(mfrow=c(3,2),
     oma=c(0,0,0,0),
     mar=c(0,0,0,0))
@@ -141,7 +145,7 @@ wplot_basic(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="
 pch2=2, pch3=19, compact =F, priority = "none")
 mtext("none",3, -1.5)
 
-## options with compact T and F using ascending and descending priority
+## Grpah options using compact TRUE and FALSE as well as ascending and descending priority
 par(mfrow=c(2,2),
     oma=c(0,0,0,0),
     mar=c(0,0,0,0))
@@ -157,9 +161,6 @@ mtext("descending, TRUE", 3,-1.5)
 wplot_basic(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple", pch1=1,
 pch2=2, pch3=19, compact =T, priority = "descending")
 mtext("descending, FALSE", 3,-1.5)
-
-## options with different colours and symbols for different archaeological sites
-wplot_basic("model1", data$LD1, col3=data$Study,pch3=data$Study, site=c("Site 1","Site 2","Site 3"))
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

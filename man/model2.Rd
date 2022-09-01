@@ -4,7 +4,7 @@
 \title{model2
 %%   ~~ data name/kind ... ~~
 }
-\description{ The values of the 4 functional ecological attributes of the quadrats of modern arable fields from Asturias, Haute Provence, Evvia and Morocco.
+\description{ The values of the four functional ecological attributes of the quadrats of modern arable fields from Asturias, Haute Provence, Evvia and Morocco.
 %%  ~~ A concise (1-5 lines) description of the dataset. ~~
 }
 \usage{data("model2")}
@@ -14,7 +14,7 @@
     \item{\code{Study}}{Grouping variable for type of farming regime (1 or 2)}
     \item{\code{SLA}}{Mean specific leaf area}
     \item{\code{ARNODE}}{Leaf area per node to fresh leaf thickness}
-    \item{\code{LOGCANH}}{Maximun canopy height converted to a log scale (base2)}
+    \item{\code{LOGCANH}}{Maximum canopy height converted to a log scale (base2)}
     \item{\code{LOGCAND}}{Maximum canopy diameter converted to a log scale (base2)}
     \item{\code{husbandry}}{Location of the modern arable fields}
   }
@@ -30,7 +30,7 @@
 %%  ~~ possibly secondary sources and usages ~~
 }
 \examples{
-data(model2)
+
 
 }
 \keyword{datasets}

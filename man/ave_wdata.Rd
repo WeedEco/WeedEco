@@ -8,39 +8,40 @@
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-ave_wdata(newname, species1, species2, species3 = NULL, species4 = NULL, species5 = NULL, species6 = NULL, species7 = NULL, species8 = NULL)
+ave_wdata(newname, species1, species2, species3 = NULL, species4 = NULL, species5 =
+NULL, species6 = NULL, species7 = NULL, species8 = NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{newname}{The code of the composite species to be created
 %%     ~~Describe \code{newname} here~~
 }
-  \item{species1}{the four-three code of the first species to be averaged
+  \item{species1}{The four-three code of the first species to be averaged
 %%     ~~Describe \code{species1} here~~
 }
-  \item{species2}{the four-three code of the second species to be averaged
+  \item{species2}{The four-three code of the second species to be averaged
 %%     ~~Describe \code{species2} here~~
 }
-  \item{species3}{the four-three code of the third species to be averaged
+  \item{species3}{The four-three code of the third species to be averaged
 %%     ~~Describe \code{species3} here~~
 }
-  \item{species4}{the four-three code of the fourth species to be averaged
+  \item{species4}{The four-three code of the fourth species to be averaged
 %%     ~~Describe \code{species4} here~~
 }
-  \item{species5}{the four-three code of the fifth species to be averaged
+  \item{species5}{The four-three code of the fifth species to be averaged
 %%     ~~Describe \code{species5} here~~
 }
-  \item{species6}{the four-three code of the sixth species to be averaged
+  \item{species6}{The four-three code of the sixth species to be averaged
 %%     ~~Describe \code{species6} here~~
 }
-  \item{species7}{the four-three code of the seventh species to be averaged
+  \item{species7}{The four-three code of the seventh species to be averaged
 %%     ~~Describe \code{species7} here~~
 }
-  \item{species8}{the four-three code of the eighth species to be averaged
+  \item{species8}{The four-three code of the eighth species to be averaged
 %%     ~~Describe \code{species8} here~~
 }
 }
-\details{It is highly recommended that species are only averaged if their functional attributes are similar.
+\details{It is highly recommended that species are only averaged if their functional attributes are similar. MORE
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{

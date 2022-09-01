@@ -4,7 +4,7 @@
 \title{ model3
 %%   ~~ data name/kind ... ~~
 }
-\description{
+\description{ The values of the two functional ecological attributes of the quadrats of modern arable fields from Highgrove and Laxton, UK.
 %%  ~~ A concise (1-5 lines) description of the dataset. ~~
 }
 \usage{data("model3")}
@@ -28,7 +28,7 @@ Bogaard, A., Hodgson, J., Kropp, C., McKerracher, M. and Stroud, E. (in press 20
 %%  ~~ possibly secondary sources and usages ~~
 }
 \examples{
-data(model3)
+
 
 }
 \keyword{datasets}

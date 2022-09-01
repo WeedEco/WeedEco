@@ -1,6 +1,6 @@
 
-data_org<-function(dataframe,samples, codes, model, x=NULL, sp_av){
-  data<-dataframe[,(samples+1):ncol(dataframe)]
+data_org<-function(dataframe,samples, codes, model, x=NULL, sp_av=NULL){
+  data<-dataframe[,samples:ncol(dataframe)]
   data[is.na(data)]<-0
   labels<-dataframe[, 1:samples]
   data[data >0]<-1
@@ -9,13 +9,14 @@ data_org<-function(dataframe,samples, codes, model, x=NULL, sp_av){
   fibscodes<-labels[,codes]
 
   data2<-cbind(fibscodes,data)
-  trait_data<-trait_data[,c(2,3,11,7,8,9)]
-  species_lookup <- rbind(trait_data,sp_av)
-
+  # trait_data<-trait_data[,c(2,3,11,7,8,9)]
+  trait_data<-trait_data
+  if(is.null(sp_av)==TRUE) {species_lookup <- trait_data
+  }else {species_lookup <- rbind(trait_data,sp_av)}
 if (model==1){
   #SLA
   names <- colnames(data2)
-  species_names <-  data2[,grepl("FIBS", names) | grepl("Codes", names) | grepl("Code", names)]#####
+  species_names <-  data2[,grepl("codes", names) | grepl("Codes", names) | grepl("Code", names)]#####
   matched_speciesSLA <- species_lookup[match(species_names, species_lookup$species.code), c("SLA")]
   matched_speciesSLA<-as.numeric(unlist(matched_speciesSLA))
   matched_speciesSLA<-as.data.frame(matched_speciesSLA)
@@ -53,6 +54,7 @@ if (model==1){
   # FLOWPER
   names <- colnames(data2)
   species_lookup<-x
+  colnames(species_lookup)<-c("species.code", "FLOWPER")
   matched_speciesFLOWPER <- species_lookup[match(species_names, species_lookup$species.code), c("FLOWPER")]
   matched_speciesFLOWPER <-as.numeric(unlist(matched_speciesFLOWPER))
   matched_speciesFLOWPER <-as.data.frame(matched_speciesFLOWPER)

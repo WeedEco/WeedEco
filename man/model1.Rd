@@ -4,7 +4,7 @@
 \title{ model1
 %%   ~~ data name/kind ... ~~
 }
-\description{ The values of the 5 functional ecological attributes of the quadrats of modern arable fields from Asturias (study 1) and Haute Provence (study 2).
+\description{ The values of the five functional ecological attributes of the quadrats of modern arable fields from Asturias (study 1) and Haute Provence (study 2).
 %%  ~~ A concise (1-5 lines) description of the dataset. ~~
 }
 \usage{data("model1")}
@@ -13,7 +13,7 @@
   \describe{
     \item{\code{SLA}}{Mean specific leaf area}
     \item{\code{ARNODE}}{Leaf area per node to fresh leaf thickness}
-    \item{\code{LOGCANH}}{Maximun canopy height converted to a log scale (base 2)}
+    \item{\code{LOGCANH}}{Maximum canopy height converted to a log scale (base 2)}
     \item{\code{LOGCANH}}{Maximum canopy diameter converted to a log scale (base 2)}
     \item{\code{FLOWPER}}{Length of flowering period}
     \item{\code{Study}}{Study location 1 (Asturias, Spain) and study location 2 (Haute Provence, France)}
@@ -29,7 +29,7 @@
 
 }
 \examples{
-data(model1)
+
 
 }
 \keyword{datasets}

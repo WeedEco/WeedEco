@@ -1,17 +1,17 @@
 \name{data_org}
 \alias{data_org}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Function for manipulating archaeobotanical scoresheets and obtaining FIBS data for LDA
+\title{Function for manipulating archaeobotanical scoresheets and obtaining functional trait data for \code{\link[WeedModels]{wmodel.LDA}}
 %%  ~~function to do ... ~~
 }
 \description{Changes archaeobotanical data into presence/absence data and extracts the functional data for the listed species, and calculates the average of the functional attributes for each sample.
 }
 \usage{
-data_org(abotdata,samples, codes, model, x)
+data_org(abotdata, samples, codes, model, x)
 }
 
 \arguments{
-  \item{abotdata}{the archaeobotanical data set. Data should be arranged with each sample as a column and each species as rows. One column needs to contain the species codes of the taxa (see X for list a taxa and codes).
+  \item{abotdata}{The archaeobotanical data set. Data should be arranged with each sample as a column and each species as rows. One column needs to contain the species codes of the taxa (see X for list a taxa and codes).
 
 }
 \item{samples}{The column which the sample data starts
@@ -44,6 +44,22 @@ data_org(abotdata,samples, codes, model, x)
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
+## Random data
+species<-c("Chenopodium album" , "Anthemis cotula", "Brassica rapa ssp campestris",
+"Raphanus raphanistrum", "Agrostemma githago" , "Poa annua" )
+code<-c("chenalb", "anthcot", "brasrap","raphrap","agrogit", "poa_ann")
+s.1246<-sample(1:3, 6, replace=T)
+s.46178<-sample(1:5, 6, replace=T)
+s.1<-sample(0:8, 6, replace=T)
+s.23<-sample(0:3, 6, replace=T)
+s.987<-sample(3:9, 6, replace=T)
+dataset<-data.frame(species,code,s.1246,s.46178,s.1,s.23,s.987)
+code<-c("chenalb", "anthcot", "brasrap","raphrap","agrogit", "poa_ann")
+FLOWPER<-sample(3:9, 6, replace=T)
+x<-data.frame(code,FLOWPER)
+
+## Use
+results<-data_org(dataset, samples=3, codes=2, model=1, x=x)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory (show via RShowDoc("KEYWORDS")):

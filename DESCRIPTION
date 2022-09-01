@@ -4,7 +4,7 @@ Title: Classification of archaeobotanical data using linear discriminant analysi
 Version: 0.1.0
 Author: Elizabeth Stroud
 Maintainer: Elizabeth Stroud <elizabeth.stroud@arch.ox.ac.uk>
-Description:  This package has functions which conduct linear discriminant analysis classification using one of three modern models (i.e. sets of discriminated modern arable fields) to classify archaeobotanical samples on the basis of relevant functional ecological attributes of weed species.
+Description: This package contains functions which conduct linear discriminant analysis classification using one of three modern models (i.e., sets of discriminated modern arable fields) to classify archaeobotanical samples on the basis of relevant functional ecological attributes of weed species. Other functions include a data organisation function, as well as functions for plotting the results of the LDA.
 License: MIT
 Depends:
   dplyr,

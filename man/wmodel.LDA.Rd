@@ -19,7 +19,7 @@ wmodel.LDA(model,x)
 \details{wmodel.LDA requires the input dataset to have specific column names. The columns providing the values of the functional ecological attributes must be spelled as follows: SLA, ARNODE, LOGCANH, LOGCAND, FLOWPER, VEGPROP.
 %%  ~~ If necessary, more details than the description above ~~
 }
-\value{ A table containing the samples classification, the posterior.1 and posterior.2 value (the posterior probabilities of the two linear discriminant function classifications as per Venables and Ripley (2003) and the MASS package), the linear discriminant function score (LD1), and the input functional ecological attributes of data x.
+\value{ The function prints an output table containing the samples classification, the posterior.1 and posterior.2 value (the posterior probabilities of the two linear discriminant function classifications as per Venables and Ripley (2003) and the MASS package), the linear discriminant function score (LD1), and the input functional ecological attributes of data x.
 %%  ~Describe the value returned
 %%  If it is a LIST, use
 %%  \item{comp1 }{Description of 'comp1'}
@@ -55,11 +55,13 @@ FLOWPER<-runif(40, min=3.5, max=7)
 VEGPROP<-runif(40, min=0.15, max=0.8)
 Study<-sample(1:3, 40, replace=T)
 data<-as.data.frame(cbind(SLA,ARNODE,LOGCANH,LOGCAND,FLOWPER,VEGPROP,Study))
-## Use of model 1 -  modern data from Asturias, Spain and Haute Provence, France - see Bogaard et al. 2016
+## Use of model 1 -  modern data from Asturias, Spain and Haute Provence, France
+- see Bogaard et al. 2016
 model<-wmodel.LDA("model1",data)
 model<-wmodel.LDA(1,data)
 
-##Use of model 2 - modern data from Evvia, Greece; Asturias, Spain; Haute Provence, France; and oases and rain fed terraces in Morocco - see Bogaard et al. 2018
+##Use of model 2 - modern data from Evvia, Greece; Asturias, Spain; Haute Provence,
+France; and oases and rain fed terraces in Morocco - see Bogaard et al. 2018
 model<-wmodel.LDA("model2",data)
 model<-wmodel.LDA(2,data)
 
