@@ -1,6 +1,6 @@
 Package:Weedmodels
 Type: Package
-Title: Classification of archaeobotanical data using linear discriminant analysis against modern models and plotting of the resultant discriminant scores
+Title: Classification of archaeobotanical data using linear discriminant analysis to understand crop husbandry
 Version: 0.1.0
 Author: Elizabeth Stroud
 Maintainer: Elizabeth Stroud <elizabeth.stroud@arch.ox.ac.uk>

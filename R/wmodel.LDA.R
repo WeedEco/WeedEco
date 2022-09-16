@@ -32,15 +32,59 @@ wmodel.LDA<-function(model,x){
   centroids <- functionalAt %>%
     group_by(Study) %>%
     summarise(centroid1 = mean(LD1))
+  centroids<-as.data.frame(centroids)
   centroids50 <- functionalAt50 %>%
     group_by(Study) %>%
     summarise(centroid1 = mean(LD1))
-  # groupmean<-(model_lda$prior%*%model_lda$means)
-  # constant<-(groupmean%*%model_lda$scaling)
-  # LDAhand<-scale(x,center=groupmean, scale=false)%*%model_lda$scaling
+  centroids50<-as.data.frame(centroids50)
+#   gc_proc_1 <- apply(data.model[which(data.model$Study == "1"), 2:5], 2, function(x) {x - mean (x)})
+#   gc_proc_2 <- apply(data.model[which(data.model$Study == "2"), 2:5],2, function(x) {x - mean (x)})
+#
+#   #Calculating an SSCP matrix (see: https://stats.stackexchange.com/a/22520) for each group
+#   SSCP_1_gc <- crossprod(gc_proc_1)
+#   SSCP_2_gc <- crossprod(gc_proc_2)
+#
+#   #Taking the sum of these to give Sw
+#   Sw <- SSCP_1_gc + SSCP_2_gc
+#   #Centering the iris data to calculate the total scatter matrix
+#   c_proc <- apply(data.model[,2:5], 2, FUN = function(x) {(x - mean(x))})
+#
+#   #Calculating the total scatter matrix
+#   St <- crossprod(c_proc)
+#
+#   #And the between group scatter matrix
+#   Sb <- St - Sw
+#
+#   #The cholesky root of Sw
+#   U <- chol(Sw)
+#
+#   #Calculation of the eigenvectors of the LDA
+#   LDA_V <- solve(U) %*% eigen(t(solve(U)) %*% Sb %*% solve(U))$vectors
+#
+#   #The eigenvectors
+#   LDA_V
+#
+#   # Standarized coefficients
+#   sqrt(diag(Sw)) * LDA_V[,1:3]
+#
+#   #this works and produces the structure matrix - slight different to spss
+#  st<- solve(sqrt(diag(diag(Sw)))) %*% Sw %*% LDA_V[,1:3]
+#  colnames(st)<-c("LD1", "LD2", "LD3")
+# row.names(st)<-c("SLA","ARNODE","LOGCANH","LOGCAND","FLOWPER")
+#   # groupmean<-(model_lda$prior%*%model_lda$means)
+#   # constant<-(groupmean%*%model_lda$scaling)
+#   # LDAhand<-scale(x,center=groupmean, scale=false)%*%model_lda$scaling
   model <- cbind(as.data.frame((predict(model_lda,x))), as.data.frame(predict(model_lda50,x)),x)
+# model<-model[,5,6,7,4,]
   model$LD1<-model$LD1*-1
+ cat("\nResults and linear discriminant scores:\n")
   print(model)
+  cat("\nCentroids:\n")
+  print(centroids)
+ cat("\nStandarised centroids:\n")
+  print(centroids50)
+  # cat("\nStructure matrix:\n")
+  # print(st)
+ results<-model
 }
-
 
