@@ -1,7 +1,7 @@
 \name{trait_data1}
 \alias{trait_data1}
 \docType{data}
-\title{ trait data 1 - this is the 2021 model species data and the 2022 other species data IGNORE THIS - THIS IS JUST FOR TESTING
+\title{ trait data 1 - this is the 2022 data with the 2021 ARNODE- have added lifehistroy and class
 %%   ~~ data name/kind ... ~~
 }
 \description{

@@ -1,5 +1,7 @@
-weed_data<-function(x){#### remember x$x
+weed_data<-function(x,trait="all"){#### remember x$x
   species_lookup <- data.frame(trait_data1)
+
+  if(trait=='all'|trait== "ALL") {
   SLA<- species_lookup[match(x, species_lookup$species.code), c("SLA")]
   SLA<-as.numeric(SLA)
   ARNODE<- species_lookup[match(x, species_lookup$species.code), c("ARNODE")]
@@ -8,7 +10,42 @@ weed_data<-function(x){#### remember x$x
   LOGCANH<-as.numeric(LOGCANH)
   LOGCAND<- species_lookup[match(x, species_lookup$species.code), c("LOGCAND")]
   LOGCAND<-as.numeric(LOGCAND)
-  VEGPRO<- species_lookup[match(x, species_lookup$species.code), c("VEGPRO")]
- # VEGPRO<-as.numeric(VEGPRO)
-  wdata<-data.frame(x,SLA,ARNODE,LOGCANH,LOGCAND,VEGPRO)
+  VEGPROP<- species_lookup[match(x, species_lookup$species.code), c("VEGPROP")]
+  LIFEHIST<-species_lookup[match(x, species_lookup$species.code), c("lifehist")]
+  wdata<-data.frame(x,SLA,ARNODE,LOGCANH,LOGCAND,VEGPROP, LIFEHIST)
+  names(wdata)<-c("species.code", "SLA", "ARNODE", "LOGCANH", "LOGCAND", "VEGPROP", "LIFEHIST")
+  }
+  if(trait=='vegprop'|trait== "VEGPROP") {
+    VEGPROP<- species_lookup[match(x, species_lookup$species.code), c("VEGPROP")]
+    LIFEHIST<-species_lookup[match(x, species_lookup$species.code), c("lifehist")]
+    wdata<-data.frame(x,VEGPROP, LIFEHIST)
+    names(wdata)<-c("species.code","VEGPROP","LIFEHIST")
+    }
+  if(trait=='sla'|trait== "SLA") {
+    SLA<- species_lookup[match(x, species_lookup$species.code), c("SLA")]
+    SLA<-as.numeric(SLA)
+    wdata<-data.frame(x,SLA)
+    names(wdata)<-c("species.code","SLA")
+    }
+  if(trait=='ARNODE'|trait== "arnode") {
+    ARNODE<- species_lookup[match(x, species_lookup$species.code), c("ARNODE")]
+    ARNODE<-as.numeric(ARNODE)
+    wdata<-data.frame(x,ARNODE)
+    names(wdata)<-c("species.code","ARNODE")
+    }
+  if(trait=='logcanh'|trait== "LOGCANH") {
+    LOGCANH<- species_lookup[match(x, species_lookup$species.code), c("LOGCANH")]
+    LOGCANH<-as.numeric(LOGCANH)
+    wdata<-data.frame(x,LOGCANH)
+    names(wdata)<-c("species.code","LOGCANH")
+    }
+  if(trait=='logcand'|trait== "LOGCAND") {
+    LOGCAND<- species_lookup[match(x, species_lookup$species.code), c("LOGCAND")]
+    LOGCAND<-as.numeric(LOGCAND)
+    wdata<-data.frame(x,LOGCAND)
+    names(wdata)<-c("species.code","LOGCAND")
+    }
+  print(wdata)
+  results<- wdata
+
 }

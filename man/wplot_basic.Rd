@@ -29,40 +29,32 @@ lines = TRUE, legend = "split", site = "samples")
 %%     ~~Describe \code{xlims} here~~
 }
   \item{ticks}{The location of the x axis labels along the x axis
-%%     ~~Describe \code{ticks} here~~
 }
   \item{col1}{The colour of the modern model's centroids
-%%     ~~Describe \code{col1} here~~
 }
   \item{col2}{The colour of the modern model's datapoints
-%%     ~~Describe \code{col2} here~~
 }
   \item{col3}{The colour of the archaeobotanical datapoints
-%%     ~~Describe \code{col3} here~~
 }
   \item{pch1}{The symbol of the modern model's centroids - must be between 0 and 2
-%%     ~~Describe \code{pch1} here~~
 }
   \item{pch2}{The symbol of the modern model's datapoints - must be between 0 and 2
-%%     ~~Describe \code{pch2} here~~
 }
   \item{pch3}{The symbol of the archaeobotanical datapoints
-%%     ~~Describe \code{pch3} here~~
 }
   \item{compact}{Follows \code{\link[beeswarm]{swarmy}} from the beeswarm package
-%%     ~~Describe \code{compact} here~~
 }
   \item{priority}{Follows the \code{\link[beeswarm]{swarmy}} function relating to the method of point layout
-%%     ~~Describe \code{priority} here~~
 }
  \item{lines}{Adds lines from group centroid to x-axis
-%%     ~~Describe \code{priority} here~~
 }
 \item{legend}{Adds a legend showing the symbols used to denote group centroids and archaeobotanical samples. Options are "right" (located on the right- hand side), "left" (located on the left-hand side of the graph), and "split" (located on the right-hand side, with labels aligning with the graphed data)
-%%     ~~Describe \code{priority} here~~
 }
 \item{site}{Add labels in the legend for the archaeobotanical data
-%%     ~~Describe \code{priority} here~~
+}
+\item{lcol}{ colour for archaeobotanical samples in legend - use if multiple colours are used in col3
+}
+\item{lpch}{symbol shape for archaeobotanical samples in legend - use if multiple symbols are used in pch3
 }
 }
 \details{
@@ -77,9 +69,9 @@ lines = TRUE, legend = "split", site = "samples")
 }
 \references{model 1 - see Bogaard, A., Hodgson, J., Nitsch, E., Jones, G., Styring, A., Diffey, C., Pouncett, J., Herbig, C., Charles, M., Ertuğ, F., Tugay, O. Filipović, D. and Fraser, R. (2016) 'Combining functional weed ecology and crop stable isotope ratios to identify cultivation intensity: a comparison of cereal production regimes in Haute Provence, France and Asturias, Spain' \emph{Vegetation History and Archaeobotany} 25, 57-73
 
-model 2 - see Bogaard, A., Styring, A., Ater, M., Hmimsa, Y., Green, L., Stroud, E., Whitlam, J., Diffey, C., Nitsch, E., Charles, M., Jones, G. and Hodgson, J.2018 'From traditional farming in Morocco to Early Urban Agroecology in northern Mesopotamia: combining Present-day Arable Weed Surveys and crop isotope analysis to reconstruct past Agrosystems in (Semi-)arid Regions' \emph{Environmental Archaeology} 23, 303-322
+model 2 - see Bogaard, A., Styring, A., Ater, M., Hmimsa, Y., Green, L., Stroud, E., Whitlam, J., Diffey, C., Nitsch, E., Charles, M., Jones, G. and Hodgson, J.2018 'From traditional farming in Morocco to early urban agroecology in northern Mesopotamia: combining present-day arable weed surveys and crop isotope analysis to reconstruct past agrosystems in (semi-)arid regions' \emph{Environmental Archaeology} 23, 303-322
 
-model 3 - see Bogaard, A., Hodgson, J., Kropp, C., McKerracher, M. and Stroud, E. (in press 2022). ‘Lessons from Laxton, Highgrove and Lorsch: Building arable weed-based models for the investigation of early medieval agriculture in England’, in M. McKerracher and H. Hamerow (eds) \emph{New Perspectives on the Medieval ‘Agricultural Revolution’: Crop, Stock and Furrow} (Liverpool: Liverpool University Press).
+model 3 - see Bogaard, A., Hodgson, J., Kropp, C., McKerracher, M. and Stroud, E. (2022). ‘Lessons from Laxton, Highgrove and Lorsch: Building arable weed-based models for the investigation of early medieval agriculture in England’, in M. McKerracher and H. Hamerow (eds) \emph{New Perspectives on the Medieval ‘Agricultural Revolution’: Crop, Stock and Furrow} (Liverpool: Liverpool University Press).
 %% ~put references to the literature/web site here ~
 }
 \author{Elizabeth Stroud

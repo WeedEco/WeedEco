@@ -31,12 +31,14 @@ wmodel.LDA<-function(model,x){
 
   centroids <- functionalAt %>%
     group_by(Study) %>%
-    summarise(centroid1 = mean(LD1))
+    summarise(Centroid1 = mean(LD1))
   centroids<-as.data.frame(centroids)
+  centroids$Centroid1<-centroids$Centroid1*-1
   centroids50 <- functionalAt50 %>%
     group_by(Study) %>%
-    summarise(centroid1 = mean(LD1))
+    summarise(Centroid1 = mean(LD1))
   centroids50<-as.data.frame(centroids50)
+  centroids50$Centroid1<-centroids50$Centroid1*-1
 #   gc_proc_1 <- apply(data.model[which(data.model$Study == "1"), 2:5], 2, function(x) {x - mean (x)})
 #   gc_proc_2 <- apply(data.model[which(data.model$Study == "2"), 2:5],2, function(x) {x - mean (x)})
 #
@@ -74,15 +76,22 @@ wmodel.LDA<-function(model,x){
 #   # groupmean<-(model_lda$prior%*%model_lda$means)
 #   # constant<-(groupmean%*%model_lda$scaling)
 #   # LDAhand<-scale(x,center=groupmean, scale=false)%*%model_lda$scaling
-  model <- cbind(as.data.frame((predict(model_lda,x))), as.data.frame(predict(model_lda50,x)),x)
-# model<-model[,5,6,7,4,]
-  model$LD1<-model$LD1*-1
- cat("\nResults and linear discriminant scores:\n")
-  print(model)
-  cat("\nCentroids:\n")
+  x<-na.omit(x)
+  models <- cbind(as.data.frame((predict(model_lda,x))), as.data.frame(predict(model_lda50,x)))
+  names(models)<-c("Class", "Prob.1", "Prob.2", "LD1", "CLASS_std", "Prob.1_std", "Prob.2_std", "Ld1_std")
+  models$LD1<-models$LD1*-1
+  models$Ld1_std<-models$Ld1_std*-1
+  models<-models%>% mutate(across(where(is.numeric), round, digits =3))
+  model<-cbind(models,x)
+  model_print<-models
+  names(model_print)<-c("Class", "Prob.1", "Prob.2", "LD1*^", "CLASS_std^", "Prob.1_std^", "Prob.2_std^", "Ld1_std")
+  model_print<-cbind(model_print)
+  cat("\nResults and linear discriminant scores:")
+  cat("\n(*indicates data used in graphing function and ^indicates results reflecting SPSS outputs)\n")
+  print(model_print)
+  cat("\nCentroids*:\n")
+  centroids<-centroids%>% mutate(across(where(is.numeric), round, digits =3))
   print(centroids)
- cat("\nStandarised centroids:\n")
-  print(centroids50)
   # cat("\nStructure matrix:\n")
   # print(st)
  results<-model

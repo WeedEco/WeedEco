@@ -55,6 +55,10 @@ pch3= 0,compact = FALSE, priority = "density", lines=TRUE, legend="split",site =
 \item{site}{Name of the archaeobotanical data to appear on legend
 %%     ~~Describe \code{priority} here~~
 }
+\item{lcol}{ colour for archaeobotanical samples in legend - use if multiple colours are used in col3
+}
+\item{lpch}{symbol shape for archaeobotanical samples in legend - use if multiple symbols are used in pch3
+}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
@@ -70,7 +74,7 @@ pch3= 0,compact = FALSE, priority = "density", lines=TRUE, legend="split",site =
 
 model 2 - see Bogaard, A., Styring, A., Ater, M., Hmimsa, Y., Green, L., Stroud, E., Whitlam, J., Diffey, C., Nitsch, E., Charles, M., Jones, G. and Hodgson, J.2018 'From traditional farming in Morocco to Early Urban Agroecology in northern Mesopotamia: combining Present-day Arable Weed Surveys and crop isotope analysis to reconstruct past Agrosystems in (Semi-)arid Regions' \emph{Environmental Archaeology} 23, 303-322
 
-model 3 - see Bogaard, A., Hodgson, J., Kropp, C., McKerracher, M. and Stroud, E. (in press 2022). ‘Lessons from Laxton, Highgrove and Lorsch: Building arable weed-based models for the investigation of early medieval agriculture in England’, in M. McKerracher and H. Hamerow (eds) \emph{New Perspectives on the Medieval ‘Agricultural Revolution’: Crop, Stock and Furrow} (Liverpool: Liverpool University Press).
+model 3 - see Bogaard, A., Hodgson, J., Kropp, C., McKerracher, M. and Stroud, E. (2022). ‘Lessons from Laxton, Highgrove and Lorsch: Building arable weed-based models for the investigation of early medieval agriculture in England’, in M. McKerracher and H. Hamerow (eds) \emph{New Perspectives on the Medieval ‘Agricultural Revolution’: Crop, Stock and Furrow} (Liverpool: Liverpool University Press).
 %% ~put references to the literature/web site here ~
 }
 \author{Elizabeth Stroud

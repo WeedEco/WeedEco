@@ -19,11 +19,16 @@ wmodel.LDA(model,x)
 \details{wmodel.LDA requires the input dataset to have specific column names. The columns providing the values of the functional ecological attributes must be spelled as follows: SLA, ARNODE, LOGCANH, LOGCAND, FLOWPER, VEGPROP.
 %%  ~~ If necessary, more details than the description above ~~
 }
-\value{ The function prints an output table containing the samples classification, the posterior.1 and posterior.2 value (the posterior probabilities of the two linear discriminant function classifications as per Venables and Ripley (2003) and the MASS package), the linear discriminant function score (LD1), and the input functional ecological attributes of data x.
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
+\value{ The function prints an output table containing the samples classification, the posterior probabilities of the two linear discriminant function classifications as per Venables and Ripley (2003) and the MASS package, the linear discriminant function score (LD1), and the input functional ecological attributes of data x.
+
+ \item{Class }{The unstandardised classification of the data as either a 1 or 2}
+ \item{Prob.1 }{The unstandarised posterior probability of being classed as 1 }
+ \item{Prob.2 }{The unstandarised posterior probability of being classed as 2 }
+ \item{LD1}{The unstandarised linear discriminant scores. This column is used in the graphing functions}
+ \item{CLASS_std }{The standarised classification of the data as either a 1 or 2. This column reflects the same results as achieved with SPSS}
+ \item{Prob.1_std }{The standarised posterior probability of being classed as 1 }
+ \item{Prob.2_std }{The standarised posterior probability of being classed as 2 }
+ \item{Ld1_std }{The standarised linear discriminant scores}
 %% ...
 }
 \references{model 1 - see Bogaard, A., Hodgson, J., Nitsch, E., Jones, G., Styring, A., Diffey, C., Pouncett, J., Herbig, C., Charles, M., Ertuğ, F., Tugay, O. Filipović, D. and Fraser, R. (2016) 'Combining functional weed ecology and crop stable isotope ratios to identify cultivation intensity: a comparison of cereal production regimes in Haute Provence, France and Asturias, Spain' \emph{Vegetation History and Archaeobotany} 25, 57-73
