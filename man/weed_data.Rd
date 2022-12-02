@@ -9,30 +9,38 @@
 }
 \usage{
 weed_data(x)
+
+## Defaults
+weed_data(x, trait="ALL")
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{The column of a dataframe containing the four-three species codes
+%%     ~~Describe \code{x} here~~
+}\item{trait}{The traits required. The default returns all traits, however indivaual traits can be returned by entering their names: SLA, ARNODE, LOGCAND,LOGCANH, VEGPROP
 %%     ~~Describe \code{x} here~~
 }
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
 }
-\value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-}
+\value{ \describe{
+    \item{\code{species.code}}{column containing the four-three species code}
+    \item{\code{SLA}}{mean specific leaf area}
+    \item{\code{ARNODE}}{leaf area:leaves per node}
+    \item{\code{LOGCANH}}{maximum canopy height converted to a log scale (base2)}
+    \item{\code{LOGCAND}}{maximum canopy diameter converted to a log scale (base2) }
+    \item{\code{VEGPRO}}{vegetative propagation - 1 = yes 0 = no}
+    \item{\code{lifehist}}{life history of the species - annual, biannual, perennial}
+    }
+    }
 \references{
 %% ~put references to the literature/web site here ~
 }
 \author{Elizabeth Stroud
 %%  ~~who you are~~
 }
-\note{The four-three codes should not have a space within them. Any species with a genus name less than four letters long (e.g. Poa) should be separated with a _. Full list of species and codes can be found at ?
+\note{
 %%  ~~further notes~~
 }
 
@@ -43,6 +51,7 @@ weed_data(x)
 }
 \examples{
 ## Example data
+
 species<-c("Chenopodium album" , "Anthemis cotula", "Brassica rapa ssp campestris",
 "Raphanus raphanistrum", "Agrostemma githago" , "Poa annua" )
 code<-c("chenalb", "anthcot", "brasrap","raphrap","agrogit", "poa_ann")

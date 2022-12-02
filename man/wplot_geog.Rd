@@ -20,6 +20,7 @@ wplot_geog(model,
   col3= "black",
   pch1= 1,
   pch3= 5,
+  xlab="Discriminant function",
   compact= F,
   priority= "descending",
   site= "samples",
@@ -54,6 +55,9 @@ wplot_geog(model,
 %%     ~~Describe \code{pch1} here~~
 }
   \item{pch3}{The symbol of the archaeobotanical datapoints
+%%     ~~Describe \code{pch3} here~~
+}
+ \item{xlab}{The label for the x axis
 %%     ~~Describe \code{pch3} here~~
 }
   \item{compact}{Follows the beeswarm package's \code{\link[beeswarm]{swarmy}} compact variable

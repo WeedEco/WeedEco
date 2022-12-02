@@ -13,7 +13,7 @@ wplot_basic(model, x)
 
 ## Defaults
 wplot_basic (model, x, xlims= NULL,ticks = NULL,col1 = "black",col2 = "black",
-col3 = "black", pch1 = 1,pch2 = 2,pch3 = 0,compact =  FALSE, priority = "density",
+col3 = "black", pch1 = 1,pch2 = 2,pch3 = 0, xlab="Discriminant function",compact =  FALSE, priority = "density",
 lines = TRUE, legend = "split", site = "samples")
 
 }
@@ -41,6 +41,8 @@ lines = TRUE, legend = "split", site = "samples")
   \item{pch2}{The symbol of the modern model's datapoints - must be between 0 and 2
 }
   \item{pch3}{The symbol of the archaeobotanical datapoints
+}
+\item{xlab}{label on the x axis
 }
   \item{compact}{Follows \code{\link[beeswarm]{swarmy}} from the beeswarm package
 }

@@ -28,18 +28,6 @@ NULL, species6 = NULL, species7 = NULL, species8 = NULL)
   \item{species4}{The four-three code of the fourth species to be averaged
 %%     ~~Describe \code{species4} here~~
 }
-  \item{species5}{The four-three code of the fifth species to be averaged
-%%     ~~Describe \code{species5} here~~
-}
-  \item{species6}{The four-three code of the sixth species to be averaged
-%%     ~~Describe \code{species6} here~~
-}
-  \item{species7}{The four-three code of the seventh species to be averaged
-%%     ~~Describe \code{species7} here~~
-}
-  \item{species8}{The four-three code of the eighth species to be averaged
-%%     ~~Describe \code{species8} here~~
-}
 }
 \details{It is highly recommended that species are only averaged if their functional attributes are similar. MORE
 %%  ~~ If necessary, more details than the description above ~~

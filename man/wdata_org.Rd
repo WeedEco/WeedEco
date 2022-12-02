@@ -7,7 +7,10 @@
 \description{Changes archaeobotanical data into presence/absence data and extracts the functional data for the listed species, and calculates the average of each functional attribute for each sample.
 }
 \usage{
-wdata_org(abotdata, samples, codes,codename, model, x, sp_ave)
+wdata_org(abotdata, samples, codes,codename, model, fl_pr, sp_av, vg_pr)
+## Defaults
+wdata_org(abotdata, samples, codes,codename, model, fl_pr=NULL, sp_av=NULL, vg_pr=NULL)
+
 }
 
 \arguments{
@@ -24,10 +27,12 @@ wdata_org(abotdata, samples, codes,codename, model, x, sp_ave)
 }
 \item{model}{The model being used; 1,2 or 3 - this will determine which functional attribute are used
 }
-\item{sp_ave}{The averaged species data of composite taxa
 
+\item{fl_pr}{The flowering period data for the species (needs to be set up as two columns: one of species codes and one of flowering data labelled FLOWPER). This is only required for model 1 and model 3
 }
-\item{x}{The flowering period data for the species (needs to be set up as two columns: one of species codes and one of flowering data labelled FLOWPER). This is only required for model 1 and model 3
+\item{sp_av}{The averaged species data of composite taxa
+}
+\item{vg_pr}{Modified vegetative proprogation values - all values VEGPROP values need to be re-entered if this argument is used
 
 }
 }
@@ -63,7 +68,7 @@ FLOWPER<-sample(3:9, 6, replace=T)
 x<-data.frame(code,FLOWPER)
 
 ## Use
-results<-wdata_org(dataset, samples=3, codes=2, codename="code", model=1, x=x)
+results<-wdata_org(dataset, samples=3, codes=2, codename="code", model=1, fl_pr=x)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory (show via RShowDoc("KEYWORDS")):

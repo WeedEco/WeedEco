@@ -4,7 +4,7 @@
 #col 1 and pch 1 = centroids, col3 and pch3 is the color and symbol of the archaeological data, col2 and pch2 are the model data
 # priority can be ascending,descending,density or random, compact can be True or false - this are from beeswarm swarmy and change the look of the graphs
 
-wplot_basic<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",col3="black", pch1=1, pch2=2, pch3=0, compact= FALSE, priority= "density", lines=TRUE, site="Samples", lcol=col3, lpch=pch3, legend="split"){
+wplot_basic<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",col3="black", pch1=1, pch2=2, pch3=0, xlab="Discriminant function",compact= FALSE, priority= "density", lines=TRUE, site="Samples", lcol=col3, lpch=pch3, legend="split"){
 
   if(model=='model1'|model== 1) data.model<-data.frame(model1)
   if(model=='model1'|model== 1) discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCANH+LOGCAND+FLOWPER,data.model, CV = TRUE)
@@ -73,8 +73,9 @@ wplot_basic<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "bla
   points(swarmy(functionalAt$LD1*-1, rep(0.09,2), side=1, compact = compact, priority = priority),col=col2, pch=as.numeric(functionalAt$pch),cex=1.2)
   points(swarmy(x, rep(0.03, 2), side=1,compact = compact, priority = priority), col= col3, pch=as.numeric(pch3), cex=1.2)
   axis(1, ticks, cex=1.5)
-  if (lines== T) segments(min(centroids$centroid1*-1), 0.147,min(centroids$centroid1*-1),-0.007 )
-  if (lines== T) segments(max(centroids$centroid1*-1), 0.147,max(centroids$centroid1*-1),-0.007 )
+  mtext(side =1, text = xlab, line=2, cex=0.7)
+  if (lines== T) segments(min(centroids$centroid1*-1), 0.148,min(centroids$centroid1*-1),-0.007 )
+  if (lines== T) segments(max(centroids$centroid1*-1), 0.148,max(centroids$centroid1*-1),-0.007 )
   if (lines== T)points(swarmy(centroids$centroid1*-1, rep(0.15,2)), col= col1, pch=c(pch1+15, pch1+20), cex=1.75, bg="white")
 
   lname<-unique(site)

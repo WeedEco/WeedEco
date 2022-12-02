@@ -1,11 +1,11 @@
 
-wdata_org<-function(dataframe,samples, codes, codename, model, x=NULL, sp_av=NULL){
+wdata_org<-function(dataframe,samples, codes, codename, model, fl_pr=NULL, sp_av=NULL, vg_pr=NULL){
   data<-dataframe[,samples:ncol(dataframe)]
   data[is.na(data)]<-0
   labels<-dataframe[, 1:samples]
   data[data >0]<-1
   samplenames<-row.names(t(data[1,]))
-  trait_dataN<- trait_data[,2:7]
+  trait_dataN<- trait_data[,c(2:7)]
   fibscodes<-labels[,codes]
   data2<-cbind(fibscodes,data)
   if(is.null(sp_av)==TRUE) {species_lookup <- trait_dataN
@@ -67,7 +67,7 @@ if (model==1){
   LOGCANDNOOCC<-colSums(LOGCANDpositive, na.rm=FALSE)
   # FLOWPER
   names <- colnames(data2)
-  species_lookup<-x
+  species_lookup<-fl_pr
   colnames(species_lookup)<-c("species.code", "FLOWPER")
   matched_speciesFLOWPER <- species_lookup[match(species_names, species_lookup$species.code), c("FLOWPER")]
   matched_speciesFLOWPER <-as.numeric(unlist(matched_speciesFLOWPER))
@@ -162,16 +162,22 @@ if (model==2){
 }
 
   if (model==3){
-    # VEGPRO
+    # VEGPROP
+    if(is.null(vg_pr)==TRUE) {species_lookup <- species_lookup
+    }else {
+      vg_prn<-vg_pr[!is.na(vg_pr$LIFEHIST),]
+      species_lookup<-rbind(vg_prn[,c(1:2)], sp_av[,c(1,6)])}
     names <- colnames(data2)
     species_names <-  data2[,grepl(codename, names) | grepl("Codes", names) | grepl("Code", names)]#####
     matched_speciesVEGPROP <- species_lookup[match(species_names, species_lookup$species.code), c("VEGPROP")]
-    matched_speciesVEGPROP[matched_speciesVEGPROP==0]<-"2"
-    matched_speciesVEGPROP[matched_speciesVEGPROP==1]<-"4"
-    VEGPROdata<-cbind(data2,matched_speciesVEGPROP)
     matched_speciesVEGPROP <-as.numeric(unlist(matched_speciesVEGPROP))
     matched_speciesVEGPROP <-as.data.frame(matched_speciesVEGPROP)
+    matched_speciesVEGPROP[matched_speciesVEGPROP==0]<-"2"
+    matched_speciesVEGPROP[matched_speciesVEGPROP==1]<-"4"
+    VEGPROPdata<-cbind(data2,matched_speciesVEGPROP)
     data3<-data2[,2:ncol(data2)]
+    matched_speciesVEGPROP <-as.numeric(unlist(matched_speciesVEGPROP))
+    matched_speciesVEGPROP <-as.data.frame(matched_speciesVEGPROP)
     matched_VEGPROP <- as.data.frame(sapply(data3,function(data3) data3*matched_speciesVEGPROP))
     matched_VEGPROPSUM<-matched_VEGPROP
     matched_VEGPROPSUM[matched_VEGPROPSUM==0]<-NA
@@ -184,10 +190,9 @@ if (model==2){
     VEGPROPpositiveNOOCC[VEGPROPpositiveNOOCC==2]<-1
     VEGPROPpositiveNOOCC[VEGPROPpositiveNOOCC==4]<-1
     VEGPROPNOOCC<-colSums(VEGPROPpositiveNOOCC, na.rm=TRUE)
-#need to check that this is correct and works for vegpro only taking the 2's
-  # FLOWPER
+    # FLOWPER
     names <- colnames(data2)
-    species_lookup<-x
+    species_lookup<-fl_pr
     colnames(species_lookup)<-c("species.code", "FLOWPER")
     matched_speciesFLOWPER <- species_lookup[match(species_names, species_lookup$species.code), c("FLOWPER")]
     matched_speciesFLOWPER <-as.numeric(unlist(matched_speciesFLOWPER))
@@ -201,9 +206,9 @@ if (model==2){
     FLOWPERpositive[FLOWPERpositive >0]<-1
     FLOWPERNOOCC<-colSums(FLOWPERpositive, na.rm=FALSE)
 
-   alldata<-(rbind(VEGPROsumsample,FLOWPERsumsample,VEGPRONOOCC, FLOWPERNOOCC))
+   alldata<-(rbind(VEGPROPsumsample,FLOWPERsumsample,VEGPROPNOOCC, FLOWPERNOOCC))
   df<-as.data.frame(t(alldata))
-  df$VEGPROP<-df$VEGPROsumsample/df$VEGPRONOOCC
+  df$VEGPROP<-df$VEGPROPsumsample/df$VEGPROPNOOCC
   df$FLOWPER<-df$FLOWPERsumsample/df$FLOWPERNOOCC
   row.names(df)<-samplenames
   finaldf<-df[,c("FLOWPER", "VEGPROP")]

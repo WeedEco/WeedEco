@@ -12,7 +12,7 @@ wplot_arch(model, x)
 
 ## Defaults
 wplot_arch(model,x, xlims= NULL,ticks=NULL, col1 = "black",col3= "black", pch1 = 1,
-pch3= 0,compact = FALSE, priority = "density", lines=TRUE, legend="split",site = "samples")
+pch3= 0,compact = FALSE, priority = "density", lines=TRUE, legend="split",site = "samples", ylims= NULL,lcol=col3, lpch=pch3,)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -58,6 +58,8 @@ pch3= 0,compact = FALSE, priority = "density", lines=TRUE, legend="split",site =
 \item{lcol}{ colour for archaeobotanical samples in legend - use if multiple colours are used in col3
 }
 \item{lpch}{symbol shape for archaeobotanical samples in legend - use if multiple symbols are used in pch3
+}
+\item{ylims}{limits of the y axis (THIS IS REVERSED _ SMALL NUMBERS = big axis range)
 }
 }
 \details{

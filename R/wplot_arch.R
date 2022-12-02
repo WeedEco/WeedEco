@@ -4,7 +4,7 @@
 #col 1 and pch 1 = centroids, col3 and pch3 is the color and symbol of the archaeological data
 
 
-wplot_arch<-function(model, x, xlims= NULL, ylims = NULL, ticks =NULL, col1="black",col3="black", pch1=1, pch3=0, compact= F, priority= "density", lines=TRUE, site= "samples",lcol=col3, lpch=pch3, legend="split"){
+wplot_arch<-function(model, x, xlims= NULL, ylims = NULL, ticks =NULL, col1="black",col3="black", pch1=1, pch3=0, xlab="Discriminant function",compact= F, priority= "density", lines=TRUE, site= "samples",lcol=col3, lpch=pch3, legend="split"){
   if(model=='model1'|model== 1) data.model<-data.frame(model1)
   if(model=='model1'|model== 1) discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCANH+LOGCAND+FLOWPER,data.model, CV = TRUE)
   if(model=='model1'|model== 1) model_lda <- lda(Study ~SLA+ARNODE+LOGCANH+LOGCAND+FLOWPER,data.model)
@@ -32,7 +32,6 @@ wplot_arch<-function(model, x, xlims= NULL, ylims = NULL, ticks =NULL, col1="bla
   mmin<-min(m.value)
   mmax<-max(m.value)
 
-
   if(pch1>2){
     stop('the parameter "pch1" must be 0,1 or 2')
   }
@@ -52,28 +51,29 @@ wplot_arch<-function(model, x, xlims= NULL, ylims = NULL, ticks =NULL, col1="bla
   }else {
     xlim<-c(min-1,max+1)}
 
-  if(is.null(ticks)){
-    ticks<-round(min-0.5):round(max+0.5)
+  if(length(ticks)){
+    ticks<-ticks
+  }else{
+    ticks<- round(min-0.5):round(max+0.5)
   }
   if (is.null(ylims)){
     ylims<-c(0,1)
   }
 
-  par(mar = c(6,2,6,3))
-  plot(2:3, type='n', xlim = c(min-1, max+3), ylim=ylims,axes=F, xlab = "", ylab="")
+  par(mar = c(6,2,6,6))
+  plot(2:3, type='n', xlim = xlim, ylim=ylims,axes=F, xlab = "", ylab="")
   points(swarmy(centroids$centroid1*-1, rep(0.4,2)), col= col1, pch=c(pch1+15, pch1), cex=1.75, bg="white")
   points(swarmy(x, rep(0.1, 2), side=1,compact=compact, priority = priority), col= col3, pch=pch3)
   axis(1, ticks)
+  mtext(side =1, text = xlab, line=2, cex=0.8)
   if (lines== T) segments(min(centroids$centroid1*-1), 0.389,min(centroids$centroid1*-1),-0.04 )
   if (lines== T) segments(max(centroids$centroid1*-1), 0.389,max(centroids$centroid1*-1),-0.04 )
   if (lines== T)points(swarmy(centroids$centroid1*-1, rep(0.4,2)), col= col1, pch=c(pch1+15, pch1+20), cex=1.75, bg="white")
   lname<-unique(site)
-  if (legend =="right") legend("right", inset=c(0.05,0.05), c("Group 1 centroid", "Group 2 centroid", site), pch=c(pch1, pch1+15 ,as.numeric(lpch)), col= c(col1,lcol), cex=0.85, bty="n")
-  if (legend =="left") legend("left", inset=c(0.05,0.05), c("Group 1 centroid", "Group 2 centroid", site), pch=c(pch1, pch1+15, as.numeric(lpch)), col= c(col1,lcol), cex=0.85, bty="n")
-  if (legend =="split") {legend(max(xlim)-1,max(ylims)-0.5, c("Group 1 centroid", "Group 2 centroid"), pch=c(pch1, pch1+15), col= c(col1), cex=0.85, bty="n")
-    legend(max(xlim)-1,max(ylims)-0.7, site, pch=c(lpch), col= c(lcol), cex=0.85, bty="n")}
-
-
+  if (legend =="right") legend("right", inset=c(0.05,0.05), c("Group 1centroid", "Group 2 centroid", site), pch=c(pch1, pch1+15 ,as.numeric(lpch)), col= c(col1,lcol), cex=0.85, bty="n")
+  if (legend =="left") legend("left", inset=c(0.05,0.05), c("Group 1centroid", "Group 2 centroid", site), pch=c(pch1, pch1+15, as.numeric(lpch)), col= c(col1,lcol), cex=0.85, bty="n")
+  if (legend =="split") {legend(max+0.5,0.4, c("Group 1 centroid", "Group 2 centroid"), pch=c(pch1, pch1+15), col= c(col1), cex=0.85, bty="n")
+    legend(max+0.5,0.2, site, pch=c(lpch), col= c(lcol), cex=0.85, bty="n")}
   }
 
 
