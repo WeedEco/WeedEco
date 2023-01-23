@@ -25,6 +25,7 @@ wplot_arch<-function(model, x, xlims= NULL, ylims = NULL, ticks =NULL, col1="bla
   centroids <- functionalAt %>%
     group_by(Study) %>%
     summarise(centroid1 = mean(LD1))
+
   x.value<-unlist(x)
   m.value<-unlist(predictionmodel$x*-1)
   xmin<-min(x.value)

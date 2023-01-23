@@ -1,6 +1,6 @@
 
 wplot_phase<-function(model, x, site= c("phase 1", "phase 2", "phase 3", "phase 4", "phase 5"), g1=NULL, g2= NULL, g3=NULL, g4=NULL, g5=NULL, gcol=c("black","black","black","black", "black"),
-                           gpch=c(22,23,24,8,4), gbg=c("grey","grey","grey","grey", "grey"),pcolumn, compact= F, priority= "density", xlims= NULL, ylims = NULL, ticks =NULL, xlab="Discriminant function", lines=TRUE){
+                           gpch=c(22,23,24,8,4), gbg=c("grey","grey","grey","grey", "grey"),pcolumn, compact= F, priority= "density", xlims= NULL, ylims = NULL, ticks =NULL, xlab="Discriminant function", lines=TRUE, centroidlab = Y){
   if(model=='model1'|model== 1) data.model<-data.frame(model1)
   if(model=='model1'|model== 1) discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCANH+LOGCAND+FLOWPER,data.model, CV = TRUE)
   if(model=='model1'|model== 1) model_lda <- lda(Study ~SLA+ARNODE+LOGCANH+LOGCAND+FLOWPER,data.model)
@@ -21,6 +21,9 @@ wplot_phase<-function(model, x, site= c("phase 1", "phase 2", "phase 3", "phase 
   centroids <- functionalAt %>%
     group_by(Study) %>%
     summarise(centroid1 = mean(LD1))
+  x<-x%>%
+    rename("LD1"="LD1.")
+
   y<-x$LD1
   x.value<-unlist(y)
   m.value<-unlist(predictionmodel$x*-1)
@@ -83,7 +86,8 @@ wplot_phase<-function(model, x, site= c("phase 1", "phase 2", "phase 3", "phase 
     segments(max(centroids$centroid1*-1), 0.589,max(centroids$centroid1*-1),-0.04 )
     points(beeswarm::swarmy(centroids$centroid1*-1, rep(0.6,2)),col= c("black", "black"), pch=c(21, 21), cex=1.75, bg=c( "black","white"))
     legend("right", inset=c(0.05,0.05), site[2], col=gcol[2], pch=gpch[2],pt.bg=gbg[2], cex=0.85, bty="n")
-    }
+  }
+
     else if(is.null(g4)){
       group1<-x[pcolumn==g1,]
       group2<-x[pcolumn==g2,]

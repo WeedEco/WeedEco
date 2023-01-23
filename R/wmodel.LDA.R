@@ -77,19 +77,17 @@ wmodel.LDA<-function(model,x){
 #   # constant<-(groupmean%*%model_lda$scaling)
 #   # LDAhand<-scale(x,center=groupmean, scale=false)%*%model_lda$scaling
   x<-na.omit(x)
-  models <- cbind(as.data.frame((predict(model_lda,x))), as.data.frame(predict(model_lda50,x)))
-  names(models)<-c("Class", "Prob.1", "Prob.2", "LD1", "CLASS_std", "Prob.1_std", "Prob.2_std", "Ld1_std")
-  models$LD1<-models$LD1*-1
-  models$Ld1_std<-models$Ld1_std*-1
+  models <- cbind( as.data.frame(predict(model_lda50,x)),as.data.frame((predict(model_lda,x))))
+  names(models)<-c("CLASS_std*", "Prob.1_std*", "Prob.2_std*", "Ld1_std","Class", "Prob.1", "Prob.2", "LD1*")
+  models$`LD1*`<-models$LD1*-1
   models<-models%>% mutate(across(where(is.numeric), round, digits =3))
   model<-cbind(models,x)
-  model_print<-models
-  names(model_print)<-c("Class", "Prob.1", "Prob.2", "LD1*^", "CLASS_std^", "Prob.1_std^", "Prob.2_std^", "Ld1_std")
+  model_print<-models[c(1:3,8)]
+  names(model_print)<-c("CLASS_std*", "Prob.1_std*", "Prob.2_std*", "LD1*")
   model_print<-cbind(model_print)
-  cat("\nResults and linear discriminant scores:")
-  cat("\n(*indicates data used in graphing function and ^indicates results reflecting SPSS outputs)\n")
+  cat("\nResults and linear discriminant scores:\n")
   print(model_print)
-  cat("\nCentroids*:\n")
+  cat("\nCentroids:\n")
   centroids<-centroids%>% mutate(across(where(is.numeric), round, digits =3))
   print(centroids)
   # cat("\nStructure matrix:\n")
