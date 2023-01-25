@@ -1,13 +1,12 @@
 \name{model1}
 \alias{model1}
 \docType{data}
-\title{ model1
-%%   ~~ data name/kind ... ~~
+\title{Model 1: High- versus low-input farming (Asturias and Provence)
 }
 \description{ The values of the five functional ecological attributes of the quadrats of modern arable fields from Asturias (study 1) and Haute Provence (study 2).
-%%  ~~ A concise (1-5 lines) description of the dataset. ~~
+
 }
-\usage{data("model1")}
+
 \format{
   A data frame with 121 observations on the following 6 variables.
   \describe{

@@ -21,9 +21,7 @@ wplot_phase<-function(model, x, site= c("phase 1", "phase 2", "phase 3", "phase 
   centroids <- functionalAt %>%
     group_by(Study) %>%
     summarise(centroid1 = mean(LD1))
-  x<-x%>%
-    rename("LD1"="LD1.")
-
+  colnames(x) = gsub("*", "", colnames(x))
   y<-x$LD1
   x.value<-unlist(y)
   m.value<-unlist(predictionmodel$x*-1)
@@ -63,8 +61,6 @@ wplot_phase<-function(model, x, site= c("phase 1", "phase 2", "phase 3", "phase 
 
     group1<-x[pcolumn==g1,]
     group2<-x[pcolumn==g2,]
-
-
 
     par(mfrow=c(2,1))
     par(oma=c(5,2,1,2))

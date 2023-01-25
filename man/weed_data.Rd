@@ -4,7 +4,7 @@
 \title{A function to extract the functional attributes of named species from the trait database.
 %%  ~~function to do ... ~~
 }
-\description{A function which extracts the functional attributes of named species \code{\link[WeedModels]{trait_data}}. This function extracts the SLA, ARNNODE, LOGCANH, LOGCAND and VEGPROP of a column of four-three coded species names.
+\description{A function which extracts the functional attributes of named species \code{\link[WeedEco]{trait_data}}. This function extracts the SLA, ARNNODE, LOGCANH, LOGCAND and VEGPROP of a column of four-three coded species names.
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
@@ -30,7 +30,7 @@ weed_data(x, trait="ALL")
     \item{\code{ARNODE}}{leaf area:leaves per node}
     \item{\code{LOGCANH}}{maximum canopy height converted to a log scale (base2)}
     \item{\code{LOGCAND}}{maximum canopy diameter converted to a log scale (base2) }
-    \item{\code{VEGPRO}}{vegetative propagation - 1 = yes 0 = no}
+    \item{\code{VEGPROP}}{vegetative propagation - 1 = yes 0 = no}
     \item{\code{lifehist}}{life history of the species - annual, biannual, perennial}
     }
     }

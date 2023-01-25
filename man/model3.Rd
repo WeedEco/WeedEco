@@ -1,13 +1,12 @@
 \name{model3}
 \alias{model3}
 \docType{data}
-\title{ model3
-%%   ~~ data name/kind ... ~~
+\title{Model 3: High versus low disturbance (Highgrove and Laxton)
 }
 \description{ The values of the two functional ecological attributes of the quadrats of modern arable fields from Highgrove and Laxton, UK.
 %%  ~~ A concise (1-5 lines) description of the dataset. ~~
 }
-\usage{data("model3")}
+
 \format{
   A data frame with 36 observations on the following 4 variables.
   \describe{

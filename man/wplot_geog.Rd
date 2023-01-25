@@ -1,45 +1,31 @@
 \name{wplot_geog}
 \alias{wplot_geog}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Plotting function for displaying the output of \code{\link[weedmodels]{wmodel.LDA}}, plotting the archaeobotanical samples linear discriminant scores, the chosen model's centroids, and the model's discriminant scores with separate symbols for the different modern study's arable fields.
+\title{Plotting function for displaying the output of \code{\link[WeedEco]{wmodel.LDA}}, plotting the archaeobotanical samples linear discriminant scores, the chosen model's centroids, and the model's discriminant scores with separate symbols for the different modern study's arable fields.
 %%  ~~function to do ... ~~
 }
-\description{A function which plots the archaeobotanical samples linear discriminant scores from following \code{\link[weedmodels]{wmodel.LDA}} compared to with the chosen modern model's centroids, and the model's discriminant scores separated according to modern study location
+\description{A function which plots the archaeobotanical samples linear discriminant scores from following \code{\link[WeedEco]{wmodel.LDA}} compared to with the chosen modern model's centroids, and the model's discriminant scores separated according to modern study location
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
 wplot_geog(model, x)
 
 #defaults
-wplot_geog(model,
-  x,
-  xlims= NULL,
-  ticks= NULL,
-  col1= "black",
-  col2= "black",
-  col3= "black",
-  pch1= 1,
-  pch3= 5,
-  xlab="Discriminant function",
-  compact= F,
-  priority= "descending",
-  site= "samples",
-  lines= F,
-  legend= F)
+wplot_geog(model, x,xlims= NULL,ticks= NULL,col1= "black",col2= "black",col3= "black",pch1= 1,pch3= 5,xlab="Discriminant function",compact= F,priority= "descending",site= "samples",lines= F,legend= F)
 
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
-  \item{model}{The modern model to be plotted – either "model1", "model3" or "model3" following \code{\link[weedmodels]{wmodel.LDA}}
+  \item{model}{The modern model to be plotted – either "model1", "model3" or "model3" following \code{\link[WeedEco]{wmodel.LDA}}
 %%     ~~Describe \code{model} here~~
 }
-  \item{x}{The LD1 column from the results dataframe of \code{\link[weedmodels]{wmodel.LDA}}. Can also use linear discriminant score from other sources.
+  \item{x}{The unstandarised LD1* column from the results dataframe of \code{\link[WeedEco]{wmodel.LDA}}. Can also use linear discriminant scores from alternative sources.
 %%     ~~Describe \code{x} here~~
 }
   \item{xlims}{The limits of the x axis
 %%     ~~Describe \code{xlims} here~~
 }
-  \item{ticks}{The location of the x axis labels
+  \item{ticks}{The location of the x axis ticks
 %%     ~~Describe \code{ticks} here~~
 }
   \item{col1}{The colour of the modern model's centroids
@@ -74,14 +60,12 @@ wplot_geog(model,
 }
 \item{legend}{Adds a legend to the plot
 }
-\item{lcol}{ colour for archaeobotanical samples in legend - use if multiple colours are used in col3
+\item{lcol}{Colour for archaeobotanical samples in legend - use if multiple colours are used in col3
 }
-\item{lpch}{symbol shape for archaeobotanical samples in legend - use if multiple symbols are used in pch3
+\item{lpch}{Symbol shape for archaeobotanical samples in legend - use if multiple symbols are used in pch3
 }
 }
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
+
 \value{
 %%  ~Describe the value returned
 %%  If it is a LIST, use
@@ -99,34 +83,31 @@ model 3 - see Bogaard, A., Hodgson, J., Kropp, C., McKerracher, M. and Stroud, E
 \author{Elizabeth Stroud
 %%  ~~who you are~~
 }
-\note{
-%%  ~~further notes~~
-}
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{\code{\link[weedmodels]{wmodel.LDA}}, \code{\link[weedmodels]{wplot_arch}}, \code{\link[weedmodels]{wplot_basic}}
+\seealso{\code{\link[WeedEco]{wmodel.LDA}}, \code{\link[WeedEco]{wplot_arch}}, \code{\link[WeedEco]{wplot_basic}}
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
 ##example dataset
+
 LD1<-runif(40, min=-6.6, max=6)
 Study<-sample(1:3, 40, replace=T)
 data<-data.frame(Study,LD1)
 
 ##If using with defaults
+
 wplot_geog("model1", data$LD1)
 wplot_geog("model2", data$LD1)
 wplot_geog("model3", data$LD1)
 
 ##Use of model 1 -  modern data from Asturias, Spain and Haute Provence, France
-- see Bogaard et al. 2016
+#- see Bogaard et al. 2016
 
 wplot_geog("model1",data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",
 col3="purple", pch1=1, pch3=19, compact =F, priority = "ascending", lines=T, site="example")
 
 ##Use of model 2 - modern data from Evvia, Greece; Asturias, Spain; Haute Provence,
-France; and oases and rain fed terraces in Morocco - see Bogaard et al. 2018
+#France; and oases and rain fed terraces in Morocco - see Bogaard et al. 2018
 
 wplot_geog("model2", data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green",  col2="red",
 col3="purple", pch1=1, pch3=19, compact =F, priority = "ascending", lines=T, site="example")
@@ -138,6 +119,7 @@ col3="purple", pch1=1, pch3=19, compact =F, priority = "ascending", lines=T, sit
 
 
 ##Different priority options using "ascending", "descending", "density", "random", "none"
+
 par(mfrow=c(3,2),
     oma=c(0,0,0,0),
     mar=c(0,0,0,0))
@@ -158,6 +140,7 @@ pch1=1,  pch3=19,compact =F, priority = "none")
 mtext("none",3, -1.5)
 
 ## options with compact T and F using ascending and descending priority
+
 par(mfrow=c(2,2),
     oma=c(0,0,0,0),
     mar=c(0,0,0,0))
@@ -176,17 +159,9 @@ pch1=1, pch3=19,compact =T, priority = "descending")
 mtext("descending, FALSE", 3,-1.5)
 
 ## options with different col and pch for different archaeobotanical sites or different phases
+
 wplot_geog("model2", data$LD1, col3=data$Study,pch3=data$Study, legend=T, site=c("Site 1",
 "Site 2","Site 3"))
 
-
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory (show via RShowDoc("KEYWORDS")):
-% \keyword{ ~kwd1 }
-% \keyword{ ~kwd2 }
-% Use only one keyword per line.
-% For non-standard keywords, use \concept instead of \keyword:
-% \concept{ ~cpt1 }
-% \concept{ ~cpt2 }
-% Use only one concept per line.
+

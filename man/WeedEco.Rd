@@ -1,25 +1,19 @@
-\name{Weedmodels}
-\alias{weedmodels}
+\name{WeedEco-package}
+\alias{WeedEco}
 \alias{weedles}
 \alias{weedmodels}
 \docType{package}
-\title{Weedmodels
-\packageTitle{Weedmodels}
+\title{WeedEco:
+\packageTitle{WeedEco}
 }
 \description{
-\packageDescription{Weedmodels}
+\packageDescription{WeedEco}
 }
-\details{
 
-The DESCRIPTION file:
-\packageDESCRIPTION{Weedmodels}
-\packageIndices{Weedmodels}
-~~ An overview of how to use the package, including the most important functions ~~
-}
 \author{
-\packageAuthor{Weedmodels}
+\packageAuthor{WeedEco}
 
-Maintainer: \packageMaintainer{Weedmodels}
+Maintainer: \packageMaintainer{WeedEco}
 }
 \references{
 Package usage- see REFERENCE TO PAPER
@@ -29,14 +23,5 @@ model 1 - see Bogaard, A., Hodgson, J., Nitsch, E., Jones, G., Styring, A., Diff
 model 2 - see Bogaard, A., Styring, A., Ater, M., Hmimsa, Y., Green, L., Stroud, E., Whitlam, J., Diffey, C., Nitsch, E., Charles, M., Jones, G. and Hodgson, J.2018 'From traditional farming in Morocco to Early Urban Agroecology in northern Mesopotamia: combining Present-day Arable Weed Surveys and crop isotope analysis to reconstruct past Agrosystems in (Semi-)arid Regions' \emph{Environmental Archaeology} 23, 303-322
 
 model 3 - see Bogaard, A., Hodgson, J., Kropp, C., McKerracher, M. and Stroud, E. (in press 2022). ‘Lessons from Laxton, Highgrove and Lorsch: Building arable weed-based models for the investigation of early medieval agriculture in England’, in M. McKerracher and H. Hamerow (eds) \emph{New Perspectives on the Medieval ‘Agricultural Revolution’: Crop, Stock and Furrow} (Liverpool: Liverpool University Press).
-%% ~put references to the literature/web site here ~
-}
 
-\keyword{ package~~ Optionally other standard keywords, one per line, from file KEYWORDS in the R documentation directory ~~ }
-\seealso{
-~~ Optional links to other man pages, e.g. ~~
-~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
-}
-\examples{
-~~ simple examples of the most important functions ~~
 }

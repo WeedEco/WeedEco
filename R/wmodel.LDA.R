@@ -81,7 +81,7 @@ wmodel.LDA<-function(model,x){
   names(models)<-c("CLASS_std*", "Prob.1_std*", "Prob.2_std*", "Ld1_std","Class", "Prob.1", "Prob.2", "LD1*")
   models$`LD1*`<-models$LD1*-1
   models<-models%>% mutate(across(where(is.numeric), round, digits =3))
-  model<-cbind(models,x)
+  model<-models
   model_print<-models[c(1:3,8)]
   names(model_print)<-c("CLASS_std*", "Prob.1_std*", "Prob.2_std*", "LD1*")
   model_print<-cbind(model_print)

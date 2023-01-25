@@ -1,5 +1,5 @@
-ave_wdata<-function(newname, species1, species2, species3=NULL, species4=NULL, species5=NULL,species6=NULL,species7=NULL, species8=NULL){
-  species<-c(species1,species2,species3, species4, species5, species6, species7, species8)
+ave_wdata<-function(newname, species1, species2, species3=NULL, species4=NULL){
+  species<-c(species1,species2,species3, species4)
 
  species_lookup <- data.frame(trait_data)
   SLA<-species_lookup[match(species, species_lookup$species.code), c("SLA")]
