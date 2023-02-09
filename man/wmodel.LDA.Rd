@@ -1,18 +1,18 @@
 \name{wmodel.LDA}
 \alias{wmodel.LDA}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Linear discriminant analysis based on functional ecological attributes of archaeological weed species
+\title{Linear discriminant analysis based on functional ecological attributes of weed species
 
 }
-\description{This function conducts linear discriminant analysis classification using one of three modern models (i.e. sets of discriminated modern arable fields) to classify archaeobotanical samples on the basis of relevant functional ecological attributes of weed species. The function provides the classification of each sample (class), as well as the discriminant scores of each sample (LD1) and the posterior probability 1 and 2 (posterior.1 and posterior.2)
+\description{This function conducts linear discriminant analysis classification using one of three modern models (i.e. sets of discriminated modern arable fields) to classify unknown cases on the basis of relevant functional ecological attributes of weed species. The function provides the classification of each sample (class), as well as the discriminant scores of each sample (LD1) and the posterior probability 1 and 2 (posterior.1 and posterior.2)
 }
 \usage{
 wmodel.LDA(model,x)
 }
 
 \arguments{
-  \item{model}{ Either "model1", "model2" or "model3" (also 1, 2 or 3). This argument allows the choice between three modern models against which the archaeobotanical dataset is classified}
-   \item{x}{The archaeobotanical data that will be compared against the model. Note data must be labelled with specific headers - see below.
+  \item{model}{ Either "model1", "model2" or "model3" (also 1, 2 or 3). This argument allows the choice between three modern models against which the unknown cases are classified}
+   \item{x}{The data that will be compared against the model. Note data must be labelled with specific headers - see below.
 %%     ~~Describe \code{x} here~~
 }
 }

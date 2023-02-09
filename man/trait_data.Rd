@@ -1,10 +1,10 @@
 \name{trait_data}
 \alias{trait_data}
 \docType{data}
-\title{Trait data of 929 archaeobotanically relevant species
+\title{Trait data of 929  species
 %%   ~~ data name/kind ... ~~
 }
-\description{ The trait data (SLA, ARNODE, LOGCAHN, LOGCADN, VEGPROP) of 929 archaeobotanically relevant species, including the unique four-three species code for each species. The life history (lifehist) of each species is also included - it is required for understanding species inclusion in model 3
+\description{ The trait data (SLA, ARNODE, LOGCAHN, LOGCADN, VEGPROP) of 929 relevant species, including the unique four-three species code for each species. The life history (lifehist) of each species is also included - it is required for understanding species inclusion in model 3
 %%  ~~ A concise (1-5 lines) description of the dataset. ~~
 }
 

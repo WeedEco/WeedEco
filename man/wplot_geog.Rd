@@ -1,10 +1,11 @@
 \name{wplot_geog}
 \alias{wplot_geog}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Plotting function for displaying the output of \code{\link[WeedEco]{wmodel.LDA}}, plotting the archaeobotanical samples linear discriminant scores, the chosen model's centroids, and the model's discriminant scores with separate symbols for the different modern study's arable fields.
+\title{Plotting function for displaying samples' linear discriminant scores from  \code{\link[WeedEco]{wmodel.LDA}} compared to with the chosen modern model's centroids, and the model's discriminant scores separated according to modern study location
+
 %%  ~~function to do ... ~~
 }
-\description{A function which plots the archaeobotanical samples linear discriminant scores from following \code{\link[WeedEco]{wmodel.LDA}} compared to with the chosen modern model's centroids, and the model's discriminant scores separated according to modern study location
+\description{A function which plots the samples' linear discriminant scores from \code{\link[WeedEco]{wmodel.LDA}}, the chosen model's centroids, and the model's discriminant scores with separate symbols for the different modern study's arable fields.
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
@@ -34,13 +35,13 @@ wplot_geog(model, x,xlims= NULL,ticks= NULL,col1= "black",col2= "black",col3= "b
   \item{col2}{The colour of the modern model's datapoints
 %%     ~~Describe \code{col2} here~~
 }
-  \item{col3}{The colour of the archaeobotanical datapoints
+  \item{col3}{The colour of the entered samples' datapoints
 %%     ~~Describe \code{col3} here~~
 }
   \item{pch1}{The symbol of the modern model's centroids- must be between 0 and 2
 %%     ~~Describe \code{pch1} here~~
 }
-  \item{pch3}{The symbol of the archaeobotanical datapoints
+  \item{pch3}{The symbol of the entered samples' datapoints
 %%     ~~Describe \code{pch3} here~~
 }
  \item{xlab}{The label for the x axis
@@ -55,14 +56,14 @@ wplot_geog(model, x,xlims= NULL,ticks= NULL,col1= "black",col2= "black",col3= "b
  \item{lines}{Adds lines from group centroid to x-axis
 %%     ~~Describe \code{lines} here~~
 }
-\item{site}{Adds the name of the archaeobotanical data to be shown in the legend
+\item{site}{Adds the name of the entered data to be shown in the legend
 %%     ~~Describe \code{site} here~~
 }
 \item{legend}{Adds a legend to the plot
 }
-\item{lcol}{Colour for archaeobotanical samples in legend - use if multiple colours are used in col3
+\item{lcol}{Colour for the entered samples' in legend - use if multiple colours are used in col3
 }
-\item{lpch}{Symbol shape for archaeobotanical samples in legend - use if multiple symbols are used in pch3
+\item{lpch}{Symbol shape for the entered samples' in legend - use if multiple symbols are used in pch3
 }
 }
 
@@ -84,7 +85,7 @@ model 3 - see Bogaard, A., Hodgson, J., Kropp, C., McKerracher, M. and Stroud, E
 %%  ~~who you are~~
 }
 
-\seealso{\code{\link[WeedEco]{wmodel.LDA}}, \code{\link[WeedEco]{wplot_arch}}, \code{\link[WeedEco]{wplot_basic}}
+\seealso{\code{\link[WeedEco]{wmodel.LDA}}, \code{\link[WeedEco]{wplot_phase}}, \code{\link[WeedEco]{wplot_basic}}
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{

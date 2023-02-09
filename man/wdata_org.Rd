@@ -1,34 +1,26 @@
 \name{wdata_org}
 \alias{wdata_org}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Function for manipulating archaeobotanical scoresheets and obtaining functional trait data for \code{\link[WeedEco]{wmodel.LDA}}
+\title{Function for manipulating scoresheets and obtaining functional trait data for \code{\link[WeedEco]{wmodel.LDA}}
 %%  ~~function to do ... ~~
 }
-\description{Changes archaeobotanical data into presence/absence data and extracts the functional data for the listed species, and calculates the average of each functional attribute for each sample.
+\description{Changes archaeobotanical data or other cases the investigator wishes to classify, such as survey data from other farming regimes, into presence/absence data and extracts the functional data for the listed species, and calculates the average of each functional attribute for each sample.
 }
 \usage{
-wdata_org(abotdata, samples, codes,codename, model, fl_pr, sp_av, vg_pr)
-
-## Defaults
 wdata_org(abotdata, samples, codes,codename, model, fl_pr=NULL, sp_av=NULL, vg_pr=NULL)
-
 }
 
 \arguments{
-  \item{abotdata}{The archaeobotanical data set. Data should be arranged with each sample as a column and each species as rows. One column needs to contain the species codes of the taxa (see LOCATION for list of taxa and corresponding codes).
-
+  \item{abotdata}{The data set to be transformed. Data should be arranged with each sample as a column and each species as rows. One column needs to contain the species codes of the taxa (see LOCATION for list of taxa and corresponding codes).
 }
 \item{samples}{The column number in which the sample data starts
-
 }
 \item{codes}{The column number containing the species codes
 }
 \item{codename}{The name of the column containing the species codes
-
 }
 \item{model}{The model being used; 1, 2 or 3 - this will determine which functional attributes are used
 }
-
 \item{fl_pr}{The flowering period data for the species (needs to be set up as two columns: one containing species codes and one containing flowering data labelled FLOWPER). This is only required for model 1 and model 3
 }
 \item{sp_av}{The averaged species data of composite taxa - this can be the ouput of \code{\link[WeedEco]{ave.wdata}}

@@ -16,7 +16,7 @@
     \item{\code{ARNODE}}{Leaf area per node to fresh leaf thickness}
     \item{\code{LOGCANH}}{Maximum canopy height converted to a log scale (base 2)}
     \item{\code{LOGCAND}}{Maximum canopy diameter converted to a log scale (base 2)}
-    \item{\code{husbandry}}{Location of the modern arable fields}
+    \item{\code{regime}}{Location of the modern arable fields}
   }
 }
 \details{

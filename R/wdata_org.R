@@ -6,8 +6,9 @@ wdata_org<-function(dataframe,samples, codes, codename, model, fl_pr=NULL, sp_av
   data[data >0]<-1
   samplenames<-row.names(t(data[1,]))
   trait_dataN<- trait_data[,c(2:7)]
-  fibscodes<-labels[,codes]
-  data2<-cbind(fibscodes,data)
+  Codes<-as.data.frame(labels[,codes])
+  names(Codes)<-codename
+  data2<-cbind(Codes,data)
   if(is.null(sp_av)==TRUE) {species_lookup <- trait_dataN
   }else {species_lookup <- rbind(trait_dataN,sp_av)}
 

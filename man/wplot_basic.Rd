@@ -1,29 +1,22 @@
 \name{wplot_basic}
 \alias{wplot_basic}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Plotting function to display functional ecological model centroids, the model's linear discriminant scores and the archaeological samples' linear discriminant scores from \code{\link[WeedEco]{wmodel.LDA}}
-%%  ~~function to do ... ~~
+\title{Plotting function to display the linear discriminant scores from \code{\link[WeedEco]{wmodel.LDA}} against the functional ecological model centroids and linear discriminant scores
 }
-\description{A function which plots the linear discriminant scores of the modern models based on arable fields from \code{\link[WeedEco]{wmodel.LDA}}, their group centroids and the archaeobotanical data’s discriminant scores.
-
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+\description{A function which plots the linear discriminant scores from \code{\link[WeedEco]{wmodel.LDA}} against the functional ecological model centroids and linear discriminant scores
 }
 \usage{
-wplot_basic(model, x)
-
-## Defaults
 wplot_basic (model, x, xlims= NULL,ticks = NULL,col1 = "black",col2 = "black",
-col3 = "black", pch1 = 1,pch2 = 2,pch3 = 0, xlab="Discriminant function",
+col3 = "black", pch1 = 1, pch2 = 2, pch3 = 0, xlab="Discriminant function",
 compact =  FALSE, priority = "density",
 lines = TRUE, legend = "split", site = "samples")
-
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{model}{The modern model to be plotted – either "model1", "model2", or "model3" - use the model against which the archaeobotanical samples have a been classified against, using \code{\link[WeedEco]{wmodel.LDA}}.
+  \item{model}{The modern model to be plotted – either "model1", "model2", or "model3" - use the model against which the samples have a been classified against, using \code{\link[WeedEco]{wmodel.LDA}}.
 %%     ~~Describe \code{model} here~~
 }
-  \item{x}{The column x from the data frame which contains the linear discriminant scores of the archaeobotanical data - if using data from \code{\link[WeedEco]{wmodel.LDA}}, such column will be called LD1
+  \item{x}{The column x from the data frame which contains the linear discriminant scores of the anaylsised data - if using data from \code{\link[WeedEco]{wmodel.LDA}}, such column will be called LD1
 %%     ~~Describe \code{x} here~~
 }
   \item{xlims}{The limits of the x axis
@@ -41,7 +34,7 @@ lines = TRUE, legend = "split", site = "samples")
 }
   \item{pch2}{The symbol of the modern model's datapoints - must be between 0 and 2
 }
-  \item{pch3}{The symbol of the archaeobotanical datapoints
+  \item{pch3}{The symbol of entered samples datapoints
 }
 \item{xlab}{Label on the x axis, default is "Discriminant function"
 }
@@ -51,13 +44,13 @@ lines = TRUE, legend = "split", site = "samples")
 }
  \item{lines}{Adds lines from group centroid to x-axis
 }
-\item{legend}{Adds a legend showing the symbols used to denote group centroids and archaeobotanical samples. Options are "right" (located on the right- hand side), "left" (located on the left-hand side of the graph), and "split" (located on the right-hand side, with labels aligning with the graphed data)
+\item{legend}{Adds a legend showing the symbols used to denote group centroids and entered samples (x). Options are "right" (located on the right- hand side), "left" (located on the left-hand side of the graph), and "split" (located on the right-hand side, with labels aligning with the graphed data)
 }
 \item{site}{Add labels in the legend for the archaeobotanical data
 }
 \item{lcol}{Colour for archaeobotanical samples in legend - use if multiple colours are used in col3
 }
-\item{lpch}{Symbol shape for archaeobotanical samples in legend - use if multiple symbols are used in pch3
+\item{lpch}{Symbol shape for entered samples in legend - use if multiple symbols are used in pch3
 }
 }
 
@@ -72,7 +65,7 @@ model 3 - see Bogaard, A., Hodgson, J., Kropp, C., McKerracher, M. and Stroud, E
 %%  ~~who you are~~
 }
 
-\seealso{\code{\link[WeedEco]{wmodel.LDA}}, \code{\link[WeedEco]{wplot_arch}}, \code{\link[WeedEco]{wplot_geog}}
+\seealso{\code{\link[WeedEco]{wmodel.LDA}}, \code{\link[WeedEco]{wplot_phase}}, \code{\link[WeedEco]{wplot_geog}}
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
