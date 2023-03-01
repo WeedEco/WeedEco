@@ -13,7 +13,7 @@
     \item{\code{SLA}}{Mean specific leaf area}
     \item{\code{ARNODE}}{Leaf area per node to fresh leaf thickness}
     \item{\code{LOGCANH}}{Maximum canopy height converted to a log scale (base 2)}
-    \item{\code{LOGCANH}}{Maximum canopy diameter converted to a log scale (base 2)}
+    \item{\code{LOGCAND}}{Maximum canopy diameter converted to a log scale (base 2)}
     \item{\code{FLOWPER}}{Length of flowering period}
     \item{\code{Study}}{Study location 1 (Asturias, Spain) and study location 2 (Haute Provence, France)}
   }

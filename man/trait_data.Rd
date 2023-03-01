@@ -13,15 +13,15 @@
   \describe{
     \item{\code{Species}}{column containing the full Latin name}
     \item{\code{species.code}}{column containing the four-three species code}
-    \item{\code{SLA}}{mean specific leaf area}
-    \item{\code{ARNODE}}{leaf area:leaves per node}
-    \item{\code{LOGCANH}}{maximum canopy height converted to a log scale (base 2)}
-    \item{\code{LOGCAND}}{maximum canopy diameter converted to a log scale (base 2) }
-    \item{\code{VEGPROP}}{vegetative propagation - 1 = yes 0 = no}
+    \item{\code{SLA}}{mean specific leaf area (mm\eqn{^2}/mg)}
+    \item{\code{ARNODE}}{Leaf area (mm\eqn{^2}) per node/leaf thickness (mm)}
+    \item{\code{LOGCANH}}{maximum canopy height (mm) converted to a log scale (base 2)}
+    \item{\code{LOGCAND}}{maximum canopy diameter (mm) converted to a log scale (base 2) }
+    \item{\code{VEGPROP}}{vegetative propagation (1 = yes 0 = no)}
     \item{\code{lifehist}}{life history of the species - annual, biannual, perennial}
   }
 }
-\details{
+\details{ The data verion is 2022
 %%  ~~ If necessary, more details than the __description__ above ~~
 }
 \source{

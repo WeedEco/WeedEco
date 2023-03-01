@@ -81,7 +81,7 @@ wplot_geog<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "blac
     functionalAt <- data.frame(Study = as.factor(data.model$Study),
                                Classification= predictionmodel$class,
                                LD1 = predictionmodel$x,
-                               husbandry= data.model$husbandry)
+                               husbandry= data.model$regime)
 
     centroids <- functionalAt %>%
       group_by(Study) %>%
