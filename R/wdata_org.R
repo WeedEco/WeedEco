@@ -5,7 +5,7 @@ wdata_org<-function(dataframe,samples, codes, codename, model, fl_pr=NULL, sp_av
   labels<-dataframe[, 1:samples]
   data[data >0]<-1
   samplenames<-row.names(t(data[1,]))
-  trait_dataN<- trait_data[,c(2:7)]
+  trait_dataN<- trait_data[,c(3:8)]
   Codes<-as.data.frame(labels[,codes])
   names(Codes)<-codename
   data2<-cbind(Codes,data)

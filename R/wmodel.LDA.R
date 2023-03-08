@@ -22,20 +22,20 @@ wmodel.LDA<-function(model,x){
   if(model=='model3'|model== 3) model_lda50 <- lda(Study ~ FLOWPER+VEGPROP,data.model, prior=c(1,1)/2 )
   predictionmodel <- predict(model_lda,data.model)
   predictionmodel50<- predict(model_lda50,data.model)
-  functionalAt <- data.frame(Study = as.factor(data.model$Study),
+  functionalAt <- data.frame(Group = as.factor(data.model$Study),
                              Classification= predictionmodel$class,
                              LD1 = predictionmodel$x)
-  functionalAt50 <- data.frame(Study = as.factor(data.model$Study),
+  functionalAt50 <- data.frame(Group = as.factor(data.model$Study),
                              Classification= predictionmodel50$class,
                              LD1 = predictionmodel50$x)
 
   centroids <- functionalAt %>%
-    group_by(Study) %>%
+    group_by(Group) %>%
     summarise(Centroid1 = mean(LD1))
   centroids<-as.data.frame(centroids)
   centroids$Centroid1<-centroids$Centroid1*-1
   centroids50 <- functionalAt50 %>%
-    group_by(Study) %>%
+    group_by(Group) %>%
     summarise(Centroid1 = mean(LD1))
   centroids50<-as.data.frame(centroids50)
   centroids50$Centroid1<-centroids50$Centroid1*-1

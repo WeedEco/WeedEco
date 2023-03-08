@@ -4,7 +4,7 @@
 \title{A function to extract the functional attributes of named species from the trait database.
 %%  ~~function to do ... ~~
 }
-\description{A function which extracts the functional attributes of named species \code{\link[WeedEco]{trait_data}}. This function extracts the SLA, ARNNODE, LOGCANH, LOGCAND and VEGPROP of a column of four-three coded species names.
+\description{A function which extracts the functional attributes of named species \code{\link[WeedEco]{trait_data}}. This function extracts the SLA, ARNNODE, LOGCANH, LOGCAND and VEGPROP of either four-three coded species names or Flora Europaea numbers.
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
@@ -15,9 +15,9 @@ weed_data(x, trait="ALL")
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{The column of a dataframe containing the four-three species codes
+  \item{x}{The four-three species code or Flora Europaea number. Note that Flora Europaea numbers must be numeric
 %%     ~~Describe \code{x} here~~
-}\item{trait}{The traits required. The default returns all traits, however indivaual traits can be returned by entering their names: SLA, ARNODE, LOGCAND,LOGCANH, VEGPROP
+}\item{trait}{The traits required. The default returns all traits, however individual traits can be returned by entering their names: SLA, ARNODE, LOGCAND,LOGCANH, VEGPROP
 %%     ~~Describe \code{x} here~~
 }
 }
@@ -25,11 +25,12 @@ weed_data(x, trait="ALL")
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{ \describe{
-    \item{\code{species.code}}{column containing the four-three species code}
-    \item{\code{SLA}}{mean specific leaf area}
-    \item{\code{ARNODE}}{leaf area:leaves per node}
-    \item{\code{LOGCANH}}{maximum canopy height converted to a log scale (base2)}
-    \item{\code{LOGCAND}}{maximum canopy diameter converted to a log scale (base2) }
+    \item{\code{FlEurNo}}{the Flora Europaea number}
+    \item{\code{species.code}}{the four-three species code}
+    \item{\code{SLA}}{ mean specific leaf area (mm\eqn{^2}/mg)}
+    \item{\code{ARNODE}}{Leaf area (mm\eqn{^2}) per node/leaf thickness (mm)}
+    \item{\code{LOGCANH}}{maximum canopy height (mm) converted to a log scale (base2)}
+    \item{\code{LOGCAND}}{maximum canopy diameter (mm) converted to a log scale (base2) }
     \item{\code{VEGPROP}}{vegetative propagation - 1 = yes 0 = no}
     \item{\code{lifehist}}{life history of the species - annual, biannual, perennial}
     }
