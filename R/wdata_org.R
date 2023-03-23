@@ -167,7 +167,7 @@ if (model==2){
     if(is.null(vg_pr)==TRUE) {species_lookup <- species_lookup
     }else {
       vg_prn<-vg_pr[!is.na(vg_pr$LIFEHIST),]
-      species_lookup<-rbind(vg_prn[,c(1:2)], sp_av[,c(1,6)])}
+      species_lookup<-rbind(vg_prn[,c(2:3)], sp_av[,c(1,6)])}
     names <- colnames(data2)
     species_names <-  data2[,grepl(codename, names) | grepl("Codes", names) | grepl("Code", names)]#####
     matched_speciesVEGPROP <- species_lookup[match(species_names, species_lookup$species.code), c("VEGPROP")]
