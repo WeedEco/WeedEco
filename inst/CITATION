@@ -1,0 +1,11 @@
+citHeader("To cite WeedEco in publications use:")
+
+bibentry(
+bibtype = "Manual",
+  title    = "WeedEco: Classification of unknown cases using linear discriminant analysis to understand farming regimes",
+  author   = "Stroud, E",
+  year     = "2023",
+  note = "R package version 0.1.0",
+  url = "https://github.com/"
+
+)

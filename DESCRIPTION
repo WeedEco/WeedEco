@@ -2,17 +2,16 @@ Package:WeedEco
 Type: Package
 Title: Classification of unknown cases (e.g. archaeobotanical data or other modern weed survey data) using linear discriminant analysis to understand farming regimes
 Version: 0.1.0
-Author: Elizabeth Stroud
-Maintainer: Elizabeth Stroud <elizabeth.stroud@arch.ox.ac.uk>
-Description: This package contains functions which conduct linear discriminant analysis using one of three modern models (i.e., sets of discriminated modern arable fields) to classify archaeobotanical data or other cases the investigator wishes to classify, such as survey data from other farming regimes, on the basis of relevant functional ecological traits (or attributes) of weed species. Other functions include a data organisation function, as well as functions for plotting the results of the LDA.
-License: MIT
-Depends:
+Authors@R:person("Elizabeth","Stroud", email= "elizabeth.stroud@arch.ox.ac.uk", role=c("aut","cre"),comment= c(ORCID ="0000-0003-4299-6638"))
+Description: This package contains functions which conduct linear discriminant analysis using one of three modern models (i.e., sets of discriminated modern arable fields) to classify archaeobotanical data or other cases the investigator wishes to classify, such as survey data from other farming regimes, on the basis of relevant functional ecological traits (or attributes) of weed species. Other functions include a data organisation function, as well as functions for plotting the results of the linear discriminant analysis.
+License: CC BY 4.0
+Imports:
   dplyr,
   MASS, 
   beeswarm
 Encoding: UTF-8
 LazyData: true
 Suggests: 
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    rlang(>= 1.1.0)
 Config/testthat/edition: 3
-

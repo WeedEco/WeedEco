@@ -1,4 +1,4 @@
-wplot_geog<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",col3="black", pch1=1,pch3=5, xlab="Discriminant function",compact= F, priority= "descending", site= "Samples", lcol=col3, lpch=pch3,lines=T, legend=T){
+wplot_geog<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",col3="black", pch1=1,pch3=5, xlab="Discriminant function",compact= FALSE, priority= "descending", site= "Samples", lcol=col3, lpch=pch3,lines=TRUE, legend=TRUE){
 
   if(model=='model1'|model== 1) {
     data.model<-data.frame(model1)

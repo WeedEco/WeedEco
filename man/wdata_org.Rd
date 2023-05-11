@@ -7,11 +7,11 @@
 \description{Changes archaeobotanical data or other cases the investigator wishes to classify, such as survey data from other farming regimes, into presence/absence data and extracts the functional data for the listed species, and calculates the average of each functional attribute for each sample.
 }
 \usage{
-wdata_org(abotdata, samples, codes,codename, model, fl_pr=NULL, sp_av=NULL, vg_pr=NULL)
+wdata_org(dataframe, samples, codes,codename, model, fl_pr=NULL, sp_av=NULL, vg_pr=NULL)
 }
 
 \arguments{
-  \item{abotdata}{The data set to be transformed. Data should be arranged with each sample as a column and each species as rows. One column needs to contain the species codes of the taxa (see LOCATION for list of taxa and corresponding codes).
+  \item{dataframe}{The data set to be transformed. Data should be arranged with each sample as a column and each species as rows. One column needs to contain the species codes of the taxa (see LOCATION for list of taxa and corresponding codes).
 }
 \item{samples}{The column number in which the sample data starts
 }
@@ -23,7 +23,7 @@ wdata_org(abotdata, samples, codes,codename, model, fl_pr=NULL, sp_av=NULL, vg_p
 }
 \item{fl_pr}{The flowering period data for the species (needs to be set up as two columns: one containing species codes and one containing flowering data labelled FLOWPER). This is only required for model 1 and model 3
 }
-\item{sp_av}{The averaged species data of composite taxa - this can be the ouput of \code{\link[WeedEco]{ave.wdata}}
+\item{sp_av}{The averaged species data of composite taxa - this can be the ouput of \code{\link[WeedEco]{ave_wdata}}
 }
 \item{vg_pr}{Modified vegetative proprogation values - all values VEGPROP values need to be re-entered if this argument is used
 
@@ -42,25 +42,20 @@ wdata_org(abotdata, samples, codes,codename, model, fl_pr=NULL, sp_av=NULL, vg_p
 }
 \author{Elizabeth Stroud
 }
-\note{
-}
 
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
 ## Random data
 species<-c("Chenopodium album" , "Anthemis cotula", "Brassica rapa ssp campestris",
   "Raphanus raphanistrum", "Agrostemma githago" , "Poa annua" )
 code<-c("chenalb", "anthcot", "brasrap","raphrap","agrogit", "poa_ann")
-s.1246<-sample(1:3, 6, replace=T)
-s.46178<-sample(1:5, 6, replace=T)
-s.1<-sample(0:8, 6, replace=T)
-s.23<-sample(0:3, 6, replace=T)
-s.987<-sample(3:9, 6, replace=T)
+s.1246<-sample(1:3, 6, replace=TRUE)
+s.46178<-sample(1:5, 6, replace=TRUE)
+s.1<-sample(0:8, 6, replace=TRUE)
+s.23<-sample(0:3, 6, replace=TRUE)
+s.987<-sample(3:9, 6, replace=TRUE)
 dataset<-data.frame(species,code,s.1246,s.46178,s.1,s.23,s.987)
 code<-c("chenalb", "anthcot", "brasrap","raphrap","agrogit", "poa_ann")
-FLOWPER<-sample(3:9, 6, replace=T)
+FLOWPER<-sample(3:9, 6, replace=TRUE)
 x<-data.frame(code,FLOWPER)
 
 ## Use

@@ -2,10 +2,8 @@
 \alias{trait_data}
 \docType{data}
 \title{Trait data of 929  species
-%%   ~~ data name/kind ... ~~
 }
 \description{ The trait data (SLA, ARNODE, LOGCAHN, LOGCADN, VEGPROP) of 929 relevant species, including the unique four-three species code for each species. The life history (lifehist) of each species is also included - it is required for understanding species inclusion in model 3
-%%  ~~ A concise (1-5 lines) description of the dataset. ~~
 }
 
 \format{
@@ -19,17 +17,15 @@
     \item{\code{LOGCANH}}{maximum canopy height (mm) converted to a log scale (base 2)}
     \item{\code{LOGCAND}}{maximum canopy diameter (mm) converted to a log scale (base 2) }
     \item{\code{VEGPROP}}{vegetative propagation (1 = yes, 0 = no)}
-    \item{\code{lifehist}}{life history of the species - annual, biannual, perennial}
+    \item{\code{LIFEHIST}}{life history of the species - annual, biannual, perennial}
   }
 }
-\details{ The data verion is 2022
-%%  ~~ If necessary, more details than the __description__ above ~~
+\details{ The data verion is 2021
 }
 \source{ORA DOI
 %%  ~~ reference to a publication or URL from which the data were obtained ~~
 }
 \references{References to submited paper, data paper and ORA website/github
-%%  ~~ possibly secondary sources and usages ~~
 }
 
 \keyword{datasets}
