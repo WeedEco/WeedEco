@@ -1,5 +1,7 @@
-weed_data<-function(x,trait="all"){#### remember x$x
+weed_data<-function(x=NULL,trait="all"){#### remember x$x
   species_lookup <- data.frame(trait_data)
+if(is.null(x))
+  wdata<-species_lookup[1:3]
 if (is.character(x)){
   if(trait=='all'|trait== "ALL") {
   FlEurNo<-species_lookup[match(x, species_lookup$species.code), c("FlEurNo")]

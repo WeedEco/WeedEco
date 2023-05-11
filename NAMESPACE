@@ -1,1 +1,7 @@
 exportPattern("^[[:alpha:]]+")
+import(dplyr)
+importFrom(MASS,"lda")
+importFrom(beeswarm,"swarmy")
+importFrom("graphics", "axis", "legend", "mtext", "par", "points",
+               "segments")
+importFrom("stats", "na.omit", "predict")

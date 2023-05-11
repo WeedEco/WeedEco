@@ -6,8 +6,8 @@
 #of known crop husbandry regimes and classify the archaeobotanical samples in to either low intensity/extensive or high intensity/intensive
 #cultivation. Currently two model types are available - model1 is ast/prov data, while the model2 is evvia, ast/prov and morocco
 #suitable for semi-arid locations
-wmodel.LDA<-function(model,x){
 
+wmodel.LDA<-function(model,x){
   if(model=='model1'|model== 1) data.model<-data.frame(model1)
   if(model=='model1'|model== 1) discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCANH+LOGCAND+FLOWPER,data.model, CV = TRUE)
   if(model=='model1'|model== 1) model_lda <- lda(Study ~SLA+ARNODE+LOGCANH+LOGCAND+FLOWPER, data.model)
@@ -22,9 +22,7 @@ wmodel.LDA<-function(model,x){
   if(model=='model3'|model== 3) model_lda50 <- lda(Study ~ FLOWPER+VEGPROP,data.model, prior=c(1,1)/2 )
   predictionmodel <- predict(model_lda,data.model)
   predictionmodel50<- predict(model_lda50,data.model)
-  functionalAt <- data.frame(Group = as.factor(data.model$Study),
-                             Classification= predictionmodel$class,
-                             LD1 = predictionmodel$x)
+  functionalAt <- data.frame(Group = as.factor(data.model$Study), Classification= predictionmodel$class,LD1 = predictionmodel$x)
   functionalAt50 <- data.frame(Group = as.factor(data.model$Study),
                              Classification= predictionmodel50$class,
                              LD1 = predictionmodel50$x)
@@ -79,7 +77,8 @@ wmodel.LDA<-function(model,x){
   x<-na.omit(x)
   models <- cbind( as.data.frame(predict(model_lda50,x)),as.data.frame((predict(model_lda,x))))
   names(models)<-c("CLASS_std*", "Prob.1_std*", "Prob.2_std*", "Ld1_std","Class", "Prob.1", "Prob.2", "LD1*")
-  models$`LD1*`<-models$LD1*-1
+  models$`LD1*`<-models$`LD1*`*-1
+  models$Ld1_std<-models$Ld1_std*-1
   models<-models%>% mutate(across(where(is.numeric), round, digits =3))
   model<-models
   model_print<-models[c(1:3,8)]

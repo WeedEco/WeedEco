@@ -1,2 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^README\.Rmd$
+^.RDataTmp
+^.Rd2pdf36497
+^LICENSE\.md$
+^README.docx

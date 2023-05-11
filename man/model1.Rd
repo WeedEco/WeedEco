@@ -18,17 +18,10 @@
     \item{\code{Study}}{Study location 1 (Asturias, Spain) and study location 2 (Haute Provence, France)}
   }
 }
-\details{
-%%  ~~ If necessary, more details than the __description__ above ~~
-}
-\source{
+\source{Stroud et al. in prep
 %%  ~~ reference to a publication or URL from which the data were obtained ~~
 }
 \references{Bogaard, A., Hodgson, J., Nitsch, E., Jones, G., Styring, A., Diffey, C., Pouncett, J., Herbig, C., Charles, M., Ertuğ, F., Tugay, O. Filipović, D. and Fraser, R. (2016) 'Combining functional weed ecology and crop stable isotope ratios to identify cultivation intensity: a comparison of cereal production regimes in Haute Provence, France and Asturias, Spain' \emph{Vegetation History and Archaeobotany} 25, 57-73
-
 }
-\examples{
 
-
-}
 \keyword{datasets}

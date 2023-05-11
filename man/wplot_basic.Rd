@@ -9,7 +9,7 @@
 wplot_basic (model, x, xlims= NULL,ticks = NULL,col1 = "black",col2 = "black",
 col3 = "black", pch1 = 1, pch2 = 2, pch3 = 0, xlab="Discriminant function",
 compact =  FALSE, priority = "density",
-lines = TRUE, legend = "split", site = "samples")
+lines = TRUE, site = "Samples", lcol=col3, lpch=pch3,legend = "split")
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -44,13 +44,14 @@ lines = TRUE, legend = "split", site = "samples")
 }
  \item{lines}{Adds lines from group centroid to x-axis
 }
-\item{legend}{Adds a legend showing the symbols used to denote group centroids and entered samples (x). Options are "right" (located on the right- hand side), "left" (located on the left-hand side of the graph), and "split" (located on the right-hand side, with labels aligning with the graphed data)
-}
+
 \item{site}{Add labels in the legend for the archaeobotanical data
 }
 \item{lcol}{Colour for archaeobotanical samples in legend - use if multiple colours are used in col3
 }
 \item{lpch}{Symbol shape for entered samples in legend - use if multiple symbols are used in pch3
+}
+\item{legend}{Adds a legend showing the symbols used to denote group centroids and entered samples (x). Options are "right" (located on the right- hand side), "left" (located on the left-hand side of the graph), and "split" (located on the right-hand side, with labels aligning with the graphed data)
 }
 }
 
@@ -72,7 +73,7 @@ model 3 - see Bogaard, A., Hodgson, J., Kropp, C., McKerracher, M. and Stroud, E
 ##Example dataset
 
 LD1<-runif(40, min=-6.6, max=6)
-Study<-sample(1:3, 40, replace=T)
+Study<-sample(1:3, 40, replace=TRUE)
 data<-data.frame(Study,LD1)
 
 ##Usage with defaults
@@ -85,20 +86,20 @@ wplot_basic("model3", data$LD1)
 #(Bogaard \emph{et al.} 2016)
 
 wplot_basic("model1",data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",
-col3="purple",pch1=1, pch2=2, pch3=19, compact =F, priority = "ascending", lines=T,
+col3="purple",pch1=1, pch2=2, pch3=19, compact =FALSE, priority = "ascending", lines=TRUE,
 site="example")
 
 ##Use of model2 - modern data from Evvia, Greece; Asturias, Spain; Haute Provence,
 #France; and oases and rainfed terraces in Morocco (Bogaard \emph{et al.} 2018)
 
 wplot_basic("model2", data$LD1, xlims=c(-7,7),ticks=-7:7, col1="green",  col2="red",
-col3="purple",pch1=1, pch2=2,pch3=19, compact =F, priority = "ascending", lines=T,
+col3="purple",pch1=1, pch2=2,pch3=19, compact =FALSE, priority = "ascending", lines=TRUE,
 site="example")
 
 ##Use of model3 - modern data from Highgrove and Laxton,UK -see Bogaard \emph{et al.} 2022
 
 wplot_basic("model3", data$LD1, xlims=c(-7,7),ticks=-7:7, col1="green",  col2="red",
-col3="purple",pch1=1,pch2=2, pch3=19, compact =F, priority = "ascending", lines=T,
+col3="purple",pch1=1,pch2=2, pch3=19, compact =FALSE, priority = "ascending", lines=TRUE,
 site="example")
 
 ## Options with different colours and symbols for different archaeological sites
@@ -112,19 +113,19 @@ par(mfrow=c(3,2),
     oma=c(0,0,0,0),
     mar=c(0,0,0,0))
 wplot_basic(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",
-col3="purple", pch1=1,pch2=2, pch3=19, compact =F, priority = "ascending")
+col3="purple", pch1=1,pch2=2, pch3=19, compact =FALSE, priority = "ascending")
 mtext("ascending", 3,-1.5)
 wplot_basic(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",
-col3="purple", pch1=1,pch2=2, pch3=19, compact =F, priority = "descending")
+col3="purple", pch1=1,pch2=2, pch3=19, compact =FALSE, priority = "descending")
 mtext("descending", 3, -1.5)
 wplot_basic(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",
-col3="purple", pch1=1, pch2=2, pch3=19, compact =F, priority = "density")
+col3="purple", pch1=1, pch2=2, pch3=19, compact =FALSE, priority = "density")
 mtext("density",3, -1.5)
 wplot_basic(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",
-col3="purple", pch1=1, pch2=2, pch3=19, compact =F, priority = "random")
+col3="purple", pch1=1, pch2=2, pch3=19, compact =FALSE, priority = "random")
 mtext("random",3,-1.5)
 wplot_basic(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",
-col3="purple", pch1=1, pch2=2, pch3=19, compact =F, priority = "none")
+col3="purple", pch1=1, pch2=2, pch3=19, compact =FALSE, priority = "none")
 mtext("none",3, -1.5)
 
 ## Grpah options using compact TRUE and FALSE as well as ascending and descending priority
@@ -133,16 +134,16 @@ par(mfrow=c(2,2),
     oma=c(0,0,0,0),
     mar=c(0,0,0,0))
 wplot_basic(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",
-col3="purple", pch1=1, pch2=2, pch3=19, compact =F, priority = "ascending")
+col3="purple", pch1=1, pch2=2, pch3=19, compact =FALSE, priority = "ascending")
 mtext("ascending, TRUE", 3,-1.5)
 wplot_basic(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",
-col3="purple", pch1=1, pch2=2, pch3=19, compact =T, priority = "ascending")
+col3="purple", pch1=1, pch2=2, pch3=19, compact =TRUE, priority = "ascending")
 mtext("ascending, FALSE", 3,-1.5)
 wplot_basic(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",
-col3="purple", pch1=1, pch2=2, pch3=19, compact =F, priority = "descending")
+col3="purple", pch1=1, pch2=2, pch3=19, compact =FALSE, priority = "descending")
 mtext("descending, TRUE", 3,-1.5)
 wplot_basic(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",
-col3="purple", pch1=1, pch2=2, pch3=19, compact =T, priority = "descending")
+col3="purple", pch1=1, pch2=2, pch3=19, compact =TRUE, priority = "descending")
 mtext("descending, FALSE", 3,-1.5)
 
 }

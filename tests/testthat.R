@@ -1,4 +1,4 @@
 library(testthat)
-library(FIBS)
+library(WeedEco)
 
-test_check("FIBS")
+test_check("WeedEco")
