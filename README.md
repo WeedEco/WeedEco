@@ -32,7 +32,8 @@ Stroud et al. (2023).
 **Package citation**: Stroud, E., (2023) WeedEco: Classification of
 unknown cases using linear discriminant analysis to understand farming
 regimes. R package version 0.1.0,
-\<\[<a href="https://github.com/\\" class="uri">https://github.com/\\</a>\](<a href="https://github.com/\" class="uri">https://github.com/\</a>){.uri}\>.
+\<\[<a href="https://github.com/\" class="uri">https://github.com/\\</a>\](<a href="https://github.com/)%7B.uri%7D"
+class="uri">https://github.com/\</a>\>.
 
 **Functional trait database**: \<ORA link\>
 
@@ -90,22 +91,28 @@ species<-c("Chenopodium album" , "Anthemis cotula", "Brassica rapa",
 Four_three_code<-c("chenalb", "anthcot", "brasrap","raphrap","agrogit", "poa_ann")
 s.1246<-sample(1:3, 6, replace=T)
 s.46178<-sample(1:5, 6, replace=T)
-s.1<-sample(0:8, 6, replace=T)
+s.1<-sample(0:10, 6, replace=T)
 s.23<-sample(0:3, 6, replace=T)
 s.987<-sample(3:9, 6, replace=T)
-dataset<-data.frame(species,Four_three_code,s.1246,s.46178,s.1,s.23,s.987) # the random dataset
+s.11<-sample(c(2:8,0), 6, replace=T)
+s.244<-sample(c(0,2:3), 6, replace=T)
+s.872<-sample(c(0,1,16), 6, replace=T)
+dataset<-data.frame(species,Four_three_code,s.1246,s.46178,s.1,s.23,s.987,s.11, s.244, s.872) # the random dataset
 ## Creation of random flowering period dataset
 # Note that flowering period (max duration) is not provided and must be collected from relevant literature
 FLOWPER<-sample(3:9, 6, replace=T)
 x<-data.frame(Four_three_code,FLOWPER) 
 ## Data organisation - function used to organise archaeobotncial or survey data for LDA analysis
-results<-wdata_org(dataset, samples=3, codes=2, codename="Four_three_code,", model=1, fl_pr=x)
-#>              SLA    ARNODE LOGCANH  LOGCAND  FLOWPER
-#> s.1246  23.78448 12008.417    5.50 5.500000 6.500000
-#> s.46178 23.78448 12008.417    5.50 5.500000 6.500000
-#> s.1     24.64255 13468.402    5.25 5.500000 5.250000
-#> s.23    20.59847  8737.949    6.00 5.333333 7.666667
-#> s.987   23.78448 12008.417    5.50 5.500000 6.500000
+results<-wdata_org(dataset, samples=3, codes=2, codename="Four_three_code", model=1, fl_pr=x)
+#>              SLA   ARNODE LOGCANH LOGCAND  FLOWPER
+#> s.1246  23.78448 12008.42     5.5     5.5 5.333333
+#> s.46178 23.78448 12008.42     5.5     5.5 5.333333
+#> s.1     23.78448 12008.42     5.5     5.5 5.333333
+#> s.23    23.12871 14241.86     5.6     5.4 5.600000
+#> s.987   23.78448 12008.42     5.5     5.5 5.333333
+#> s.11    23.78448 12008.42     5.5     5.5 5.333333
+#> s.244   18.10187 25830.79     6.0     6.0 3.000000
+#> s.872   18.54500 43624.62     6.0     7.0 3.000000
 ```
 
 ``` r
@@ -114,11 +121,14 @@ LDA<-wmodel.LDA(results, model = 1)
 #> 
 #> Results and linear discriminant scores:
 #>         CLASS_std* Prob.1_std* Prob.2_std*   LD1*
-#> s.1246           2           0           1 -3.019
-#> s.46178          2           0           1 -3.019
-#> s.1              2           0           1 -3.991
-#> s.23             2           0           1 -3.102
-#> s.987            2           0           1 -3.019
+#> s.1246           2           0           1 -3.861
+#> s.46178          2           0           1 -3.861
+#> s.1              2           0           1 -3.861
+#> s.23             2           0           1 -3.734
+#> s.987            2           0           1 -3.861
+#> s.11             2           0           1 -3.861
+#> s.244            2           0           1 -5.681
+#> s.872            2           0           1 -2.764
 #> 
 #> Centroids:
 #>   Group Centroid1

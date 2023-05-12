@@ -27,7 +27,7 @@ The package draws on data from the functional trait database, as well as models 
 
 When publishing results obtained via the use of this package please cite the package and its version, as well as the functional trait database and the model used. A best practice example paragraph is provided in Stroud et al. (2023).
 
-**Package citation**: Stroud, E., (2023) WeedEco: Classification of unknown cases using linear discriminant analysis to understand farming regimes. R package version 0.1.0, \<[https://github.com/\\](https://github.com/\){.uri}\>.
+**Package citation**: Stroud, E., (2023) WeedEco: Classification of unknown cases using linear discriminant analysis to understand farming regimes. R package version 0.1.0, \<[[https://github.com/\\\\](https://github.com/\\){.uri}]([https://github.com/\\](https://github.com/\){.uri}){.uri}\>.
 
 **Functional trait database**: \<ORA link\>
 
@@ -60,16 +60,19 @@ species<-c("Chenopodium album" , "Anthemis cotula", "Brassica rapa",
 Four_three_code<-c("chenalb", "anthcot", "brasrap","raphrap","agrogit", "poa_ann")
 s.1246<-sample(1:3, 6, replace=T)
 s.46178<-sample(1:5, 6, replace=T)
-s.1<-sample(0:8, 6, replace=T)
+s.1<-sample(0:10, 6, replace=T)
 s.23<-sample(0:3, 6, replace=T)
 s.987<-sample(3:9, 6, replace=T)
-dataset<-data.frame(species,Four_three_code,s.1246,s.46178,s.1,s.23,s.987) # the random dataset
+s.11<-sample(c(2:8,0), 6, replace=T)
+s.244<-sample(c(0,2:3), 6, replace=T)
+s.872<-sample(c(0,1,16), 6, replace=T)
+dataset<-data.frame(species,Four_three_code,s.1246,s.46178,s.1,s.23,s.987,s.11, s.244, s.872) # the random dataset
 ## Creation of random flowering period dataset
 # Note that flowering period (max duration) is not provided and must be collected from relevant literature
 FLOWPER<-sample(3:9, 6, replace=T)
 x<-data.frame(Four_three_code,FLOWPER) 
 ## Data organisation - function used to organise archaeobotncial or survey data for LDA analysis
-results<-wdata_org(dataset, samples=3, codes=2, codename="Four_three_code,", model=1, fl_pr=x)
+results<-wdata_org(dataset, samples=3, codes=2, codename="Four_three_code", model=1, fl_pr=x)
 ```
 
 ```{r LDA}
