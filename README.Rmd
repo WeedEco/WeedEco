@@ -27,7 +27,7 @@ The package draws on data from the functional trait database, as well as models 
 
 When publishing results obtained via the use of this package please cite the package and its version, as well as the functional trait database and the model used. A best practice example paragraph is provided in Stroud et al. (2023).
 
-**Package citation**: Stroud, E., (2023) WeedEco: Classification of unknown cases using linear discriminant analysis to understand farming regimes. R package version 0.1.0, \<[[https://github.com/\\\\](https://github.com/\\){.uri}]([https://github.com/\\](https://github.com/\){.uri}){.uri}\>.
+**Package citation**: Stroud, E., (2023) WeedEco: Classification of unknown cases using linear discriminant analysis to understand farming regimes. R package version 0.1.0, <https://github.com/WeedEco/WeedEco>
 
 **Functional trait database**: \<ORA link\>
 
@@ -45,7 +45,7 @@ You can install the package WeedEco from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("elizabethastroud/FIBS-R-Package")
+devtools::install_github("WeedEco/WeedEco")
 ```
 
 ## Example
