@@ -7,5 +7,5 @@ test_that("returns a printout", {
   VEGPROP<-runif(40, min=0.15, max=0.8)
   Study<-sample(1:3, 40, replace=T)
   data<-as.data.frame(cbind(SLA,ARNODE,LOGCAHN,LOGCADN,FLOWPER,VEGPROP,Study))
-  expect_output(model.LDA("model1", data))
+  expect_output(wmodel.LDA("model1", data))
 })

@@ -5,26 +5,26 @@
 # priority can be ascending,descending,density or random, compact can be True or false - this are from beeswarm swarmy and change the look of the graphs
 
 wplot_basic<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",col3="black", pch1=1, pch2=2, pch3=0, xlab="Discriminant function",compact= FALSE, priority= "density", lines=TRUE, site="Samples", lcol=col3, lpch=pch3, legend="split"){
-
+  REGIME<-Group<-LD1<-NULL
   if(model=='model1'|model== 1) data.model<-data.frame(model1)
-  if(model=='model1'|model== 1) discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCANH+LOGCAND+FLOWPER,data.model, CV = TRUE)
-  if(model=='model1'|model== 1) model_lda <- lda(Study ~SLA+ARNODE+LOGCANH+LOGCAND+FLOWPER,data.model)
+  if(model=='model1'|model== 1) discrim_cv <- lda(REGIME ~ SLA+ARNODE+LOGCANH+LOGCAND+FLOWPER,data.model, CV = TRUE)
+  if(model=='model1'|model== 1) model_lda <- lda(REGIME ~SLA+ARNODE+LOGCANH+LOGCAND+FLOWPER,data.model)
 
   if(model=='model2'|model== 2)data.model<-data.frame(model2)
-  if(model=='model2'|model== 2) discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCANH+LOGCAND,data.model, CV = TRUE)
-  if(model=='model2'|model== 2) model_lda <- lda(Study ~SLA+ARNODE+LOGCANH+LOGCAND,data.model)
+  if(model=='model2'|model== 2) discrim_cv <- lda(REGIME ~ SLA+ARNODE+LOGCANH+LOGCAND,data.model, CV = TRUE)
+  if(model=='model2'|model== 2) model_lda <- lda(REGIME ~SLA+ARNODE+LOGCANH+LOGCAND,data.model)
 
   if(model=='model3'|model== 3) data.model<-data.frame(model3)
-  if(model=='model3'|model== 3) discrim_cv <- lda(Study ~ FLOWPER+VEGPROP,data.model, CV = TRUE)
-  if(model=='model3'|model== 3) model_lda <- lda(Study ~FLOWPER+VEGPROP,data.model)
+  if(model=='model3'|model== 3) discrim_cv <- lda(REGIME ~ FLOWPER+VEGPROP,data.model, CV = TRUE)
+  if(model=='model3'|model== 3) model_lda <- lda(REGIME ~FLOWPER+VEGPROP,data.model)
 
   predictionmodel <- predict(model_lda,data.model)
-  functionalAt <- data.frame(Study = as.factor(data.model$Study),
+  functionalAt <- data.frame(REGIME = as.factor(data.model$REGIME),
                              Classification= predictionmodel$class,
                              LD1 = predictionmodel$x,
-                             pch= data.model$Study)
+                             pch= data.model$REGIME)
   centroids <- functionalAt %>%
-    group_by(Study) %>%
+    group_by(REGIME) %>%
     summarise(centroid1 = mean(LD1))
 
   x.value<-unlist((x))

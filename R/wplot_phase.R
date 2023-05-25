@@ -1,25 +1,26 @@
 
 wplot_phase<-function(model, x, site= c("phase 1", "phase 2", "phase 3", "phase 4", "phase 5"), g1=NULL, g2= NULL, g3=NULL, g4=NULL, g5=NULL, gcol=c("black","black","black","black", "black"),
                            gpch=c(22,23,24,8,4), gbg=c("grey","grey","grey","grey", "grey"),pcolumn, compact= FALSE, priority= "density", xlims= NULL, ylims = NULL, ticks =NULL, xlab="Discriminant function", lines=TRUE){
+  REGIME<-Group<-LD1<-NULL
   if(model=='model1'|model== 1) data.model<-data.frame(model1)
-  if(model=='model1'|model== 1) discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCANH+LOGCAND+FLOWPER,data.model, CV = TRUE)
-  if(model=='model1'|model== 1) model_lda <- lda(Study ~SLA+ARNODE+LOGCANH+LOGCAND+FLOWPER,data.model)
+  if(model=='model1'|model== 1) discrim_cv <- lda(REGIME ~ SLA+ARNODE+LOGCANH+LOGCAND+FLOWPER,data.model, CV = TRUE)
+  if(model=='model1'|model== 1) model_lda <- lda(REGIME ~SLA+ARNODE+LOGCANH+LOGCAND+FLOWPER,data.model)
 
   if(model=='model2'|model== 2)data.model<-data.frame(model2)
-  if(model=='model2'|model== 2) discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCANH+LOGCAND,data.model, CV = TRUE)
-  if(model=='model2'|model== 2) model_lda <- lda(Study ~SLA+ARNODE+LOGCANH+LOGCAND,data.model)
+  if(model=='model2'|model== 2) discrim_cv <- lda(REGIME ~ SLA+ARNODE+LOGCANH+LOGCAND,data.model, CV = TRUE)
+  if(model=='model2'|model== 2) model_lda <- lda(REGIME ~SLA+ARNODE+LOGCANH+LOGCAND,data.model)
 
   if(model=='model3'|model== 3) data.model<-data.frame(model3)
-  if(model=='model3'|model== 3) discrim_cv <- lda(Study ~ FLOWPER+VEGPROP,data.model, CV = TRUE)
-  if(model=='model3'|model== 3) model_lda <- lda(Study ~FLOWPER+VEGPROP,data.model)
+  if(model=='model3'|model== 3) discrim_cv <- lda(REGIME ~ FLOWPER+VEGPROP,data.model, CV = TRUE)
+  if(model=='model3'|model== 3) model_lda <- lda(REGIME ~FLOWPER+VEGPROP,data.model)
 
   predictionmodel <- predict(model_lda,data.model)
-  functionalAt <- data.frame(Study = as.factor(data.model$Study),
+  functionalAt <- data.frame(REGIME = as.factor(data.model$REGIME),
                              Classification= predictionmodel$class,
                              LD1 = predictionmodel$x,
-                             pch= data.model$Study)
+                             pch= data.model$REGIME)
   centroids <- functionalAt %>%
-    group_by(Study) %>%
+    group_by(REGIME) %>%
     summarise(centroid1 = mean(LD1))
   colnames(x) = gsub("*", "", colnames(x))
   y<-x$LD1

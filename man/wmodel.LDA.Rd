@@ -51,8 +51,8 @@ LOGCANH<-runif(40, min=5.5, max=6.5)
 LOGCAND<-runif(40, min=5.5, max=7)
 FLOWPER<-runif(40, min=3.5, max=7)
 VEGPROP<-runif(40, min=0.15, max=0.8)
-Study<-sample(1:3, 40, replace=TRUE)
-data<-as.data.frame(cbind(SLA,ARNODE,LOGCANH,LOGCAND,FLOWPER,VEGPROP,Study))
+
+data<-as.data.frame(cbind(SLA,ARNODE,LOGCANH,LOGCAND,FLOWPER,VEGPROP))
 
 ## Use of model 1 -  modern data from Asturias, Spain and Haute Provence, France
 #- see Bogaard et al. 2016

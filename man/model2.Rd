@@ -10,12 +10,13 @@
 \format{
   A data frame with 190 observations on the following 6 variables.
   \describe{
-    \item{\code{Study}}{Grouping variable for type of farming regime (1 or 2)}
+    \item{\code{Survey location}}{Location of the modern arable fields}
+    \item{\code{REGIME}}{Grouping variable for type of farming regime (1 or 2)}
     \item{\code{SLA}}{Mean specific leaf area}
     \item{\code{ARNODE}}{Leaf area per node to fresh leaf thickness}
     \item{\code{LOGCANH}}{Maximum canopy height converted to a log scale (base 2)}
     \item{\code{LOGCAND}}{Maximum canopy diameter converted to a log scale (base 2)}
-    \item{\code{regime}}{Location of the modern arable fields}
+
   }
 }
 

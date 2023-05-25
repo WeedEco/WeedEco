@@ -1,29 +1,30 @@
 #Weedmodels package
 #remember input csv for model.lda() needs to be in the order
-#"SLA","ARNODE","LOGCANH","LOGCAND","FLOWPER","Study"
+#"SLA","ARNODE","LOGCANH","LOGCAND","FLOWPER","REGIME"
 
 #model.LDA() will take the functional attribute scores of archeaobotanical samples and compared them to a linear discriminant analysis
-#of known crop husbandry regimes and classify the archaeobotanical samples in to either low intensity/extensive or high intensity/intensive
+#of known crop husbandry  %>% s and classify the archaeobotanical samples in to either low intensity/extensive or high intensity/intensive
 #cultivation. Currently two model types are available - model1 is ast/prov data, while the model2 is evvia, ast/prov and morocco
 #suitable for semi-arid locations
 
 wmodel.LDA<-function(model,x){
+  REGIME<-Group<-LD1<-NULL
   if(model=='model1'|model== 1) data.model<-data.frame(model1)
-  if(model=='model1'|model== 1) discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCANH+LOGCAND+FLOWPER,data.model, CV = TRUE)
-  if(model=='model1'|model== 1) model_lda <- lda(Study ~SLA+ARNODE+LOGCANH+LOGCAND+FLOWPER, data.model)
-  if(model=='model1'|model== 1) model_lda50<- lda(Study ~SLA+ARNODE+LOGCANH+LOGCAND+FLOWPER, data.model, prior=c(1,1)/2)
+  if(model=='model1'|model== 1) discrim_cv <- lda(REGIME ~ SLA+ARNODE+LOGCANH+LOGCAND+FLOWPER,data.model, CV = TRUE)
+  if(model=='model1'|model== 1) model_lda <- lda(REGIME ~SLA+ARNODE+LOGCANH+LOGCAND+FLOWPER, data.model)
+  if(model=='model1'|model== 1) model_lda50<- lda(REGIME ~SLA+ARNODE+LOGCANH+LOGCAND+FLOWPER, data.model, prior=c(1,1)/2)
   if(model=='model2'|model== 2) data.model<-data.frame(model2)
-  if(model=='model2'|model== 2) discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCANH+LOGCAND,data.model, CV = TRUE)
-  if(model=='model2'|model== 2) model_lda50 <- lda(Study ~SLA+ARNODE+LOGCANH+LOGCAND,data.model, prior=c(1,1)/2)
-  if(model=='model2'|model== 2) model_lda <- lda(Study ~SLA+ARNODE+LOGCANH+LOGCAND,data.model)
+  if(model=='model2'|model== 2) discrim_cv <- lda(REGIME ~ SLA+ARNODE+LOGCANH+LOGCAND,data.model, CV = TRUE)
+  if(model=='model2'|model== 2) model_lda50 <- lda(REGIME ~SLA+ARNODE+LOGCANH+LOGCAND,data.model, prior=c(1,1)/2)
+  if(model=='model2'|model== 2) model_lda <- lda(REGIME ~SLA+ARNODE+LOGCANH+LOGCAND,data.model)
   if(model=='model3'|model== 3) data.model<-data.frame(model3)
-  if(model=='model3'|model== 3) discrim_cv <- lda(Study ~ FLOWPER+VEGPROP,data.model, CV = TRUE)
-  if(model=='model3'|model== 3) model_lda <- lda(Study ~ FLOWPER+VEGPROP,data.model)
-  if(model=='model3'|model== 3) model_lda50 <- lda(Study ~ FLOWPER+VEGPROP,data.model, prior=c(1,1)/2 )
+  if(model=='model3'|model== 3) discrim_cv <- lda(REGIME ~ FLOWPER+VEGPROP,data.model, CV = TRUE)
+  if(model=='model3'|model== 3) model_lda <- lda(REGIME ~ FLOWPER+VEGPROP,data.model)
+  if(model=='model3'|model== 3) model_lda50 <- lda(REGIME ~ FLOWPER+VEGPROP,data.model, prior=c(1,1)/2 )
   predictionmodel <- predict(model_lda,data.model)
   predictionmodel50<- predict(model_lda50,data.model)
-  functionalAt <- data.frame(Group = as.factor(data.model$Study), Classification= predictionmodel$class,LD1 = predictionmodel$x)
-  functionalAt50 <- data.frame(Group = as.factor(data.model$Study),
+  functionalAt <- data.frame(Group = as.factor(data.model$REGIME), Classification= predictionmodel$class,LD1 = predictionmodel$x)
+  functionalAt50 <- data.frame(Group = as.factor(data.model$REGIME),
                              Classification= predictionmodel50$class,
                              LD1 = predictionmodel50$x)
 
@@ -37,8 +38,8 @@ wmodel.LDA<-function(model,x){
     summarise(Centroid1 = mean(LD1))
   centroids50<-as.data.frame(centroids50)
   centroids50$Centroid1<-centroids50$Centroid1*-1
-#   gc_proc_1 <- apply(data.model[which(data.model$Study == "1"), 2:5], 2, function(x) {x - mean (x)})
-#   gc_proc_2 <- apply(data.model[which(data.model$Study == "2"), 2:5],2, function(x) {x - mean (x)})
+#   gc_proc_1 <- apply(data.model[which(data.model$REGIME == "1"), 2:5], 2, function(x) {x - mean (x)})
+#   gc_proc_2 <- apply(data.model[which(data.model$REGIME == "2"), 2:5],2, function(x) {x - mean (x)})
 #
 #   #Calculating an SSCP matrix (see: https://stats.stackexchange.com/a/22520) for each group
 #   SSCP_1_gc <- crossprod(gc_proc_1)

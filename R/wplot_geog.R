@@ -1,19 +1,19 @@
 wplot_geog<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "black",col3="black", pch1=1,pch3=5, xlab="Discriminant function",compact= FALSE, priority= "descending", site= "Samples", lcol=col3, lpch=pch3,lines=TRUE, legend=TRUE){
-
+  REGIME<-Group<-LD1<-NULL
   if(model=='model1'|model== 1) {
     data.model<-data.frame(model1)
-    discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCANH+LOGCAND+FLOWPER,data.model, CV = TRUE)
-    model_lda <- lda(Study ~SLA+ARNODE+LOGCANH+LOGCAND+FLOWPER,data.model)
+    discrim_cv <- lda(REGIME ~ SLA+ARNODE+LOGCANH+LOGCAND+FLOWPER,data.model, CV = TRUE)
+    model_lda <- lda(REGIME ~SLA+ARNODE+LOGCANH+LOGCAND+FLOWPER,data.model)
 
     predictionmodel <- predict(model_lda,data.model)
 
-    functionalAt <- data.frame(Study = as.factor(data.model$Study),
+    functionalAt <- data.frame(REGIME = as.factor(data.model$REGIME),
                                Classification= predictionmodel$class,
                                LD1 = predictionmodel$x,
-                               husbandry= data.model$Study)
+                               husbandry= data.model$Survey.location)
 
     centroids <- functionalAt %>%
-      group_by(Study) %>%
+      group_by(REGIME) %>%
       summarise(centroid1 = mean(LD1))
     x.value<-unlist(x)
     m.value<-unlist(predictionmodel$x*-1)
@@ -50,10 +50,9 @@ wplot_geog<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "blac
     }
 
 
-    AsturiasPro<-functionalAt[functionalAt$husbandry =="1"|functionalAt$husbandry =="2",]
-    AsturiasPro$husbandry[AsturiasPro$husbandry=="1"]<-15
-    AsturiasPro$husbandry[AsturiasPro$husbandry=="2"]<-0
-
+    AsturiasPro<-functionalAt
+    AsturiasPro$husbandry[AsturiasPro$husbandry=="Asturias"]<-15
+    AsturiasPro$husbandry[AsturiasPro$husbandry=="Provence"]<-0
 
     par(mar=c(4,2,4,3), xpd=TRUE)
     plot(2:5, type='n', xlim = xlim, ylim=c(0,0.17),axes=F, xlab = "", ylab="")
@@ -75,16 +74,16 @@ wplot_geog<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "blac
   }
  if(model=='model2'|model== 2) {
   data.model<-data.frame(model2)
-    discrim_cv <- lda(Study ~ SLA+ARNODE+LOGCANH+LOGCAND,data.model, CV = TRUE)
-    model_lda <- lda(Study ~SLA+ARNODE+LOGCANH+LOGCAND,data.model)
+    discrim_cv <- lda(REGIME ~ SLA+ARNODE+LOGCANH+LOGCAND,data.model, CV = TRUE)
+    model_lda <- lda(REGIME ~SLA+ARNODE+LOGCANH+LOGCAND,data.model)
     predictionmodel <- predict(model_lda,data.model)
-    functionalAt <- data.frame(Study = as.factor(data.model$Study),
+    functionalAt <- data.frame(REGIME = as.factor(data.model$REGIME),
                                Classification= predictionmodel$class,
                                LD1 = predictionmodel$x,
-                               husbandry= data.model$regime)
+                               husbandry= data.model$Survey.location)
 
     centroids <- functionalAt %>%
-      group_by(Study) %>%
+      group_by(REGIME) %>%
       summarise(centroid1 = mean(LD1))
     x.value<-unlist(x)
     m.value<-unlist(predictionmodel$x*-1)
@@ -116,9 +115,9 @@ wplot_geog<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "blac
     if(pch1>2){
       stop('the parameter "pch1" must be 0,1 or 2')
     }
-    evvia<-functionalAt[functionalAt$husbandry=="Evvia group 2"| functionalAt$husbandry=="Evvia group 1",]
-    evvia$husbandry[evvia$husbandry=="Evvia group 1"]<-2
-    evvia$husbandry[evvia$husbandry=="Evvia group 2"]<-17
+    evvia<-functionalAt[functionalAt$husbandry=="Evvia gardens"| functionalAt$husbandry=="Evvia fields",]
+    evvia$husbandry[evvia$husbandry=="Evvia gardens"]<-2
+    evvia$husbandry[evvia$husbandry=="Evvia fields"]<-17
     AsturiasPro<-functionalAt[functionalAt$husbandry=="Asturias"| functionalAt$husbandry=="Provence",]
     AsturiasPro$husbandry[AsturiasPro$husbandry=="Asturias"]<-15
     AsturiasPro$husbandry[AsturiasPro$husbandry=="Provence"]<-0
@@ -155,16 +154,16 @@ wplot_geog<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "blac
   }
   if (model=='model3'|model== 3) {
     data.model<-data.frame(model3)
-    discrim_cv <- lda(Study ~ FLOWPER+VEGPROP,data.model, CV = TRUE)
-    model_lda <- lda(Study ~FLOWPER+VEGPROP,data.model)
+    discrim_cv <- lda(REGIME ~ FLOWPER+VEGPROP,data.model, CV = TRUE)
+    model_lda <- lda(REGIME ~FLOWPER+VEGPROP,data.model)
     predictionmodel <- predict(model_lda,data.model)
-    functionalAt <- data.frame(Study = as.factor(data.model$Study),
+    functionalAt <- data.frame(REGIME = as.factor(data.model$REGIME),
                                Classification= predictionmodel$class,
                                LD1 = predictionmodel$x,
-                               husbandry= data.model$Field)
+                               husbandry= data.model$Survey.location)
 
     centroids <- functionalAt %>%
-      group_by(Study) %>%
+      group_by(REGIME) %>%
       summarise(centroid1 = mean(LD1))
     x.value<-unlist(x)
     m.value<-unlist(predictionmodel$x*-1)
@@ -198,11 +197,11 @@ wplot_geog<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "blac
     if(pch1>2){
       stop('the parameter "pch1" must be 0,1 or 2')
     }
-    laxton<- functionalAt[functionalAt$husbandry=="LAX",]
-    laxton$husbandry<-as.character(laxton$Study)
+    laxton<- functionalAt[functionalAt$husbandry!="Highgrove",]
+    laxton$husbandry<-as.character(laxton$REGIME)
     laxton$husbandry[laxton$husbandry==1]<-17
     laxton$husbandry[laxton$husbandry==2]<-2
-    high<-functionalAt[functionalAt$husbandry== "HIGH" ,]
+    high<-functionalAt[functionalAt$husbandry== "Highgrove",]
     high$husbandry<-15
 
     par(mar=c(4,2,4,2), xpd=TRUE)
