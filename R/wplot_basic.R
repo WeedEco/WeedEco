@@ -26,8 +26,9 @@ wplot_basic<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "bla
   centroids <- functionalAt %>%
     group_by(REGIME) %>%
     summarise(centroid1 = mean(LD1))
-
-  x.value<-unlist((x))
+  colnames(x) = gsub("*", "", colnames(x))
+  y<-x$LD1
+  x.value<-unlist(y)
   m.value<-unlist(predictionmodel$x*-1)
   xmin<-min(x.value)
   xmax<-max(x.value)
@@ -71,9 +72,9 @@ wplot_basic<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "bla
   plot(2:5, type='n', xlim = xlim, ylim=c(0,0.17),axes=F, xlab = "", ylab="")
   points(swarmy(centroids$centroid1*-1, rep(0.15,2)), col= col1, pch=c(pch1+15, pch1), cex=1.75)
   points(swarmy(functionalAt$LD1*-1, rep(0.09,2), side=1, compact = compact, priority = priority),col=col2, pch=as.numeric(functionalAt$pch),cex=1.2)
-  points(swarmy(x, rep(0.03, 2), side=1,compact = compact, priority = priority), col= col3, pch=as.numeric(pch3), cex=1.2)
+  points(swarmy(x$LD1, rep(0.03, 2), side=1,compact = compact, priority = priority), col= col3, pch=as.numeric(pch3), cex=1.2)
   axis(1, ticks, cex=1.5)
-  mtext(side =1, text = xlab, line=2, cex=0.7)
+  mtext(side =1, text = xlab, line=2, cex=0.8)
   if (lines== T) segments(min(centroids$centroid1*-1), 0.148,min(centroids$centroid1*-1),-0.007 )
   if (lines== T) segments(max(centroids$centroid1*-1), 0.148,max(centroids$centroid1*-1),-0.007 )
   if (lines== T)points(swarmy(centroids$centroid1*-1, rep(0.15,2)), col= col1, pch=c(pch1+15, pch1+20), cex=1.75, bg="white")

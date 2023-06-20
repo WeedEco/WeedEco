@@ -15,7 +15,9 @@ wplot_geog<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "blac
     centroids <- functionalAt %>%
       group_by(REGIME) %>%
       summarise(centroid1 = mean(LD1))
-    x.value<-unlist(x)
+    colnames(x) = gsub("*", "", colnames(x))
+    y<-x$LD1
+    x.value<-unlist(y)
     m.value<-unlist(predictionmodel$x*-1)
     xmin<-min(x.value)
     xmax<-max(x.value)
@@ -58,7 +60,7 @@ wplot_geog<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "blac
     plot(2:5, type='n', xlim = xlim, ylim=c(0,0.17),axes=F, xlab = "", ylab="")
     points(swarmy(centroids$centroid1*-1, rep(0.15,2)), col= col1, pch=c(pch1+15, pch1), cex=1.75)
     points(swarmy(AsturiasPro$LD1*-1, rep(0.07,2), side=1, compact=compact, priority = priority),col=col2, pch=as.numeric(AsturiasPro$husbandry),cex=1.2)
-    points(swarmy(x, rep(0.02, 2), side=1,compact=compact, priority=priority), col= col3, pch=pch3,cex=1.2)
+    points(swarmy(x$LD1, rep(0.02, 2), side=1,compact=compact, priority=priority), col= col3, pch=pch3,cex=1.2)
     axis(1,ticks, cex=1.5)
     mtext(side =1, text = xlab, line=2, cex=0.8)
     if (lines== T) segments(min(centroids$centroid1*-1), 0.15,min(centroids$centroid1*-1),-0.007 )
@@ -85,7 +87,9 @@ wplot_geog<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "blac
     centroids <- functionalAt %>%
       group_by(REGIME) %>%
       summarise(centroid1 = mean(LD1))
-    x.value<-unlist(x)
+    colnames(x) = gsub("*", "", colnames(x))
+    y<-x$LD1
+    x.value<-unlist(y)
     m.value<-unlist(predictionmodel$x*-1)
     xmin<-min(x.value)
     xmax<-max(x.value)
@@ -127,25 +131,25 @@ wplot_geog<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "blac
 
     par(mar=c(4,2,2,2), xpd=TRUE)
     plot(2:5, type='n', xlim = c(min-1, max+3), ylim=c(0,0.17),axes=F, xlab = "", ylab="")
-    points(swarmy(centroids$centroid1*-1, rep(0.16,2)), col= col1, pch=c(pch1+15, pch1), cex=1.75)
+    points(swarmy(centroids$centroid1*-1, rep(0.17,2)), col= col1, pch=c(pch1+15, pch1), cex=1.75)
     points(swarmy(evvia$LD1*-1, rep(0.08,2), side=1, compact=compact, priority = priority),col=col2, pch=as.numeric(evvia$husbandry),cex=1.2)
     points(swarmy(AsturiasPro$LD1*-1, rep(0.11,2), side=1, compact=compact, priority = priority),col=col2, pch=as.numeric(AsturiasPro$husbandry),cex=1.2)
     points(swarmy(Morocco$LD1*-1, rep(0.05,2), side=1, compact=compact, priority = priority),col=col2, pch=as.numeric(Morocco$husbandry),cex=1.2)
 
-    points(swarmy(x, rep(0.02, 2), side=1,compact=compact, priority=priority), col= col3, pch=pch3,cex=1.2)
+    points(swarmy(x$LD1, rep(0.02, 2), side=1,compact=compact, priority=priority), col= col3, pch=pch3,cex=1.2)
     axis(1, ticks, cex=1.5)
     mtext(side =1, text = xlab, line=2, cex=0.8)
-    if (lines== T) segments(min(centroids$centroid1*-1), 0.16,min(centroids$centroid1*-1),-0.007 )
-    if (lines== T) segments(max(centroids$centroid1*-1), 0.16,max(centroids$centroid1*-1),-0.007 )
-    if (lines== T)points(swarmy(centroids$centroid1*-1, rep(0.16,2)), col= col1, pch=c(pch1+15, pch1+20), cex=1.75, bg="white")
+    if (lines== T) segments(min(centroids$centroid1*-1), 0.17,min(centroids$centroid1*-1),-0.007 )
+    if (lines== T) segments(max(centroids$centroid1*-1), 0.17,max(centroids$centroid1*-1),-0.007 )
+    if (lines== T)points(swarmy(centroids$centroid1*-1, rep(0.17,2)), col= col1, pch=c(pch1+15, pch1+20), cex=1.75, bg="white")
 
 
     if(legend==T){legend(max+0.5,0.11,  c( "Evvia fields", "Evvia gardens"), pch=c(2,17), col=col2, cex=0.85, bty="n")
       legend(max+0.5,0.14,  c( "Haute \nProvence", "Asturias" ), pch=c(0,15), col=col2, cex=0.85, bty="n")
-      legend(max+0.5,0.085,  c( "Morocco \noases","Morocco \nrain-fed \nterraces"), pch=c(1,16), col=col2, cex=0.85, bty="n")
+      legend(max+0.5,0.09,  c( "Morocco \noases","Morocco \nrain-fed \nterraces"), pch=c(1,16), col=col2, cex=0.85, bty="n")
 
       lname<-unique(site)
-      legend(max+0.5,0.17, c("Group 1 \ncentroid"), pch=c(pch1+15), col= c(col1), cex=0.85, bty="n")
+      legend(max+0.5,0.175, c("Group 1 \ncentroid"), pch=c(pch1+15), col= c(col1), cex=0.85, bty="n")
       legend(max+0.5,0.16, c("Group 2 \ncentroid"), pch=c(pch1), col= c(col1), cex=0.85, bty="n")
 
       legend(max+0.5,0.04, legend =site, pch=c(lpch), col= c(lcol), cex=0.85, bty="n")}
@@ -165,7 +169,9 @@ wplot_geog<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "blac
     centroids <- functionalAt %>%
       group_by(REGIME) %>%
       summarise(centroid1 = mean(LD1))
-    x.value<-unlist(x)
+    colnames(x) = gsub("*", "", colnames(x))
+    y<-x$LD1
+    x.value<-unlist(y)
     m.value<-unlist(predictionmodel$x*-1)
     xmin<-min(x.value)
     xmax<-max(x.value)
@@ -210,7 +216,7 @@ wplot_geog<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "blac
     points(swarmy(laxton$LD1*-1, rep(0.048,2), side=1, compact=compact, priority = priority),col=col2, pch=as.numeric(laxton$husbandry),cex=1.2)
     points(swarmy(high$LD1*-1, rep(0.03,2), side=1, compact=compact, priority = priority),col=col2, pch=as.numeric(high$husbandry),cex=1.2)
 
-    points(swarmy(x, rep(0.01, 2), side=1,compact=compact, priority=priority), col= col3, pch=pch3,cex=1.2)
+    points(swarmy(x$LD1, rep(0.01, 2), side=1,compact=compact, priority=priority), col= col3, pch=pch3,cex=1.2)
     axis(1, ticks, cex=1.5)
     mtext(side =1, text = xlab, line=2, cex=0.8)
     if (lines== T) segments(min(centroids$centroid1*-1), 0.069,min(centroids$centroid1*-1),-0.0041 )

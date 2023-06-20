@@ -10,7 +10,7 @@ Imports:
   MASS, 
   beeswarm
 Encoding: UTF-8
-LazyData: true
+LazyData: TRUE
 Suggests: 
     testthat (>= 3.0.0),
     rlang(>= 1.1.0)

@@ -16,34 +16,25 @@ legend= TRUE)
 }
 \arguments{
   \item{model}{The modern model to be plotted – either "model1", "model3" or "model3" following \code{\link[WeedEco]{wmodel.LDA}}
-%%     ~~Describe \code{model} here~~
 }
-  \item{x}{The unstandarised LD1* column from the results dataframe of \code{\link[WeedEco]{wmodel.LDA}}. Can also use linear discriminant scores from alternative sources.
-%%     ~~Describe \code{x} here~~
+ \item{x}{The data frame which contains the linear discriminant scores of the anaylsised data from \code{\link[WeedEco]{wmodel.LDA}}.  Can also use linear discriminant scores from alternative sources however the column needs to be called LD1
+
 }
   \item{xlims}{The limits of the x axis
-%%     ~~Describe \code{xlims} here~~
 }
   \item{ticks}{The location of the x axis ticks
-%%     ~~Describe \code{ticks} here~~
 }
   \item{col1}{The colour of the modern model's centroids
-%%     ~~Describe \code{col1} here~~
 }
   \item{col2}{The colour of the modern model's datapoints
-%%     ~~Describe \code{col2} here~~
 }
   \item{col3}{The colour of the entered samples' datapoints
-%%     ~~Describe \code{col3} here~~
 }
   \item{pch1}{The symbol of the modern model's centroids- must be between 0 and 2
-%%     ~~Describe \code{pch1} here~~
 }
   \item{pch3}{The symbol of the entered samples' datapoints
-%%     ~~Describe \code{pch3} here~~
 }
  \item{xlab}{The label for the x axis
-%%     ~~Describe \code{pch3} here~~
 }
   \item{compact}{Follows the beeswarm package's \code{\link[beeswarm]{swarmy}} compact variable
 %%     ~~Describe \code{compact} here~~
@@ -88,25 +79,25 @@ data<-data.frame(Study,LD1)
 
 ##If using with defaults
 
-wplot_geog("model1", data$LD1)
-wplot_geog("model2", data$LD1)
-wplot_geog("model3", data$LD1)
+wplot_geog("model1", data)
+wplot_geog("model2", data)
+wplot_geog("model3", data)
 
 ##Use of model 1 -  modern data from Asturias, Spain and Haute Provence, France
 #- see Bogaard et al. 2016
 
-wplot_geog("model1",data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",
+wplot_geog("model1",data,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",
 col3="purple", pch1=1, pch3=19, compact =FALSE, priority = "ascending", lines=TRUE, site="example")
 
 ##Use of model 2 - modern data from Evvia, Greece; Asturias, Spain; Haute Provence,
 #France; and oases and rain fed terraces in Morocco - see Bogaard et al. 2018
 
-wplot_geog("model2", data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green",  col2="red",
+wplot_geog("model2", data,xlims=c(-7,7),ticks=-7:7, col1="green",  col2="red",
 col3="purple", pch1=1, pch3=19, compact =FALSE, priority = "ascending", lines=TRUE, site="example")
 
 ##Use of model 3 - modern data from Highgrove and Laxton, UK- see Bogaard et al. 2022
 
-wplot_geog("model3", data$LD1, xlims=c(-7,7),ticks=-7:7, col1="green",  col2="red",
+wplot_geog("model3", data, xlims=c(-7,7),ticks=-7:7, col1="green",  col2="red",
 col3="purple", pch1=1, pch3=19, compact =FALSE, priority = "ascending", lines=TRUE, site="example")
 
 
@@ -115,19 +106,19 @@ col3="purple", pch1=1, pch3=19, compact =FALSE, priority = "ascending", lines=TR
 par(mfrow=c(3,2),
     oma=c(0,0,0,0),
     mar=c(0,0,0,0))
-wplot_geog(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple",
+wplot_geog(1,data,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple",
 pch1=1,  pch3=19,compact =FALSE, priority = "ascending")
 mtext("ascending", 3,-1.5)
-wplot_geog(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple",
+wplot_geog(1,data,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple",
 pch1=1,  pch3=19,compact =FALSE, priority = "descending")
 mtext("descending", 3, -1.5)
-wplot_geog(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple",
+wplot_geog(1,data,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple",
 pch1=1, pch3=19,compact =FALSE, priority = "density")
 mtext("density",3, -1.5)
-wplot_geog(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple",
+wplot_geog(1,data,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple",
 pch1=1,  pch3=19,compact =FALSE, priority = "random")
 mtext("random",3,-1.5)
-wplot_geog(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple",
+wplot_geog(1,data,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple",
 pch1=1,  pch3=19,compact =FALSE, priority = "none")
 mtext("none",3, -1.5)
 
@@ -136,23 +127,23 @@ mtext("none",3, -1.5)
 par(mfrow=c(2,2),
     oma=c(0,0,0,0),
     mar=c(0,0,0,0))
-wplot_geog(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple",
+wplot_geog(1,data,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple",
 pch1=1, pch3=19,
 compact =FALSE, priority = "ascending")
 mtext("ascending, TRUE", 3,-1.5)
-wplot_geog(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple",
+wplot_geog(1,data,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple",
 pch1=1, pch3=19,compact =TRUE, priority = "ascending")
 mtext("ascending, FALSE", 3,-1.5)
-wplot_geog(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple",
+wplot_geog(1,data,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple",
 pch1=1, pch3=19, compact =FALSE, priority = "descending")
 mtext("descending, TRUE", 3,-1.5)
-wplot_geog(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple",
+wplot_geog(1,data,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",col3="purple",
 pch1=1, pch3=19,compact =TRUE, priority = "descending")
 mtext("descending, FALSE", 3,-1.5)
 
 ## options with different col and pch for different archaeobotanical sites or different phases
 
-wplot_geog("model2", data$LD1, col3=data$Study,pch3=data$Study, legend=TRUE, site=c("Site 1",
+wplot_geog("model2", data, col3=data$Study,pch3=data$Study, legend=TRUE, site=c("Site 1",
 "Site 2","Site 3"))
 
 }

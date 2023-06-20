@@ -16,7 +16,7 @@ lines = TRUE, site = "Samples", lcol=col3, lpch=pch3,legend = "split")
   \item{model}{The modern model to be plotted – either "model1", "model2", or "model3" - use the model against which the samples have a been classified against, using \code{\link[WeedEco]{wmodel.LDA}}.
 %%     ~~Describe \code{model} here~~
 }
-  \item{x}{The column x from the data frame which contains the linear discriminant scores of the anaylsised data - if using data from \code{\link[WeedEco]{wmodel.LDA}}, such column will be called LD1
+  \item{x}{The data frame which contains the linear discriminant scores of the anaylsised data - if using data from a source other than \code{\link[WeedEco]{wmodel.LDA}}, column needs to be called LD1
 %%     ~~Describe \code{x} here~~
 }
   \item{xlims}{The limits of the x axis
@@ -78,33 +78,33 @@ data<-data.frame(Study,LD1)
 
 ##Usage with defaults
 
-wplot_basic("model1", data$LD1)
-wplot_basic("model2", data$LD1)
-wplot_basic("model3", data$LD1)
+wplot_basic("model1", data)
+wplot_basic("model2", data)
+wplot_basic("model3", data)
 
 ## Use of model 1 - modern data from Asturias, Spain and Haute Provence, France
 #(Bogaard \emph{et al.} 2016)
 
-wplot_basic("model1",data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",
+wplot_basic("model1",data,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",
 col3="purple",pch1=1, pch2=2, pch3=19, compact =FALSE, priority = "ascending", lines=TRUE,
 site="example")
 
 ##Use of model2 - modern data from Evvia, Greece; Asturias, Spain; Haute Provence,
 #France; and oases and rainfed terraces in Morocco (Bogaard \emph{et al.} 2018)
 
-wplot_basic("model2", data$LD1, xlims=c(-7,7),ticks=-7:7, col1="green",  col2="red",
+wplot_basic("model2", data, xlims=c(-7,7),ticks=-7:7, col1="green",  col2="red",
 col3="purple",pch1=1, pch2=2,pch3=19, compact =FALSE, priority = "ascending", lines=TRUE,
 site="example")
 
 ##Use of model3 - modern data from Highgrove and Laxton,UK -see Bogaard \emph{et al.} 2022
 
-wplot_basic("model3", data$LD1, xlims=c(-7,7),ticks=-7:7, col1="green",  col2="red",
+wplot_basic("model3", data, xlims=c(-7,7),ticks=-7:7, col1="green",  col2="red",
 col3="purple",pch1=1,pch2=2, pch3=19, compact =FALSE, priority = "ascending", lines=TRUE,
 site="example")
 
 ## Options with different colours and symbols for different archaeological sites
 
-wplot_basic("model1", data$LD1, col3=data$Study,pch3=data$Study, site=c("Site 1",
+wplot_basic("model1", data, col3=data$Study,pch3=data$Study, site=c("Site 1",
 "Site 2","Site 3"))
 
 ##Different priority options using "ascending", "descending", "density", "random", "none"
@@ -112,19 +112,19 @@ wplot_basic("model1", data$LD1, col3=data$Study,pch3=data$Study, site=c("Site 1"
 par(mfrow=c(3,2),
     oma=c(0,0,0,0),
     mar=c(0,0,0,0))
-wplot_basic(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",
+wplot_basic(1,data1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",
 col3="purple", pch1=1,pch2=2, pch3=19, compact =FALSE, priority = "ascending")
 mtext("ascending", 3,-1.5)
-wplot_basic(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",
+wplot_basic(1,data,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",
 col3="purple", pch1=1,pch2=2, pch3=19, compact =FALSE, priority = "descending")
 mtext("descending", 3, -1.5)
-wplot_basic(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",
+wplot_basic(1,data,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",
 col3="purple", pch1=1, pch2=2, pch3=19, compact =FALSE, priority = "density")
 mtext("density",3, -1.5)
-wplot_basic(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",
+wplot_basic(1,data,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",
 col3="purple", pch1=1, pch2=2, pch3=19, compact =FALSE, priority = "random")
 mtext("random",3,-1.5)
-wplot_basic(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",
+wplot_basic(1,data,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",
 col3="purple", pch1=1, pch2=2, pch3=19, compact =FALSE, priority = "none")
 mtext("none",3, -1.5)
 
@@ -133,16 +133,16 @@ mtext("none",3, -1.5)
 par(mfrow=c(2,2),
     oma=c(0,0,0,0),
     mar=c(0,0,0,0))
-wplot_basic(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",
+wplot_basic(1,data,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",
 col3="purple", pch1=1, pch2=2, pch3=19, compact =FALSE, priority = "ascending")
 mtext("ascending, TRUE", 3,-1.5)
-wplot_basic(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",
+wplot_basic(1,data,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",
 col3="purple", pch1=1, pch2=2, pch3=19, compact =TRUE, priority = "ascending")
 mtext("ascending, FALSE", 3,-1.5)
-wplot_basic(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",
+wplot_basic(1,data,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",
 col3="purple", pch1=1, pch2=2, pch3=19, compact =FALSE, priority = "descending")
 mtext("descending, TRUE", 3,-1.5)
-wplot_basic(1,data$LD1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",
+wplot_basic(1,data,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",
 col3="purple", pch1=1, pch2=2, pch3=19, compact =TRUE, priority = "descending")
 mtext("descending, FALSE", 3,-1.5)
 

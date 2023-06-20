@@ -39,7 +39,7 @@ When publishing results obtained via the use of this package please cite the pac
 
 **Example paper**: Stroud et al. (in prep). Seeing the fields through the weeds: introducing the WeedEco R package for comparing past and present arable farming systems using functional weed ecology. Vegetation History and Archaeobotany
 
-## Installation
+## Installation 
 
 You can install the package WeedEco from [GitHub](https://github.com/) with:
 
@@ -48,7 +48,7 @@ You can install the package WeedEco from [GitHub](https://github.com/) with:
 devtools::install_github("WeedEco/WeedEco")
 ```
 
-## Example
+## Example 
 
 This is a basic example which shows the use of the package with a simulated data set. Please see Stroud et al. (2023) for a fully worked example using archaeobotanical data. Please note that each species used requires its correct four_three code - the unique identifier which links it with the corresponding species within the functional trait database. More details can be found here \<insert link\>.
 
@@ -83,7 +83,7 @@ LDA<-wmodel.LDA(results, model = 1)
 
 ```{r Plot}
 ## Visulastion using wplot_basic
-wplot_basic(model = 1, LDA$`LD1*`)
+wplot_basic(model = 1, LDA)
 ```
 
 ## 

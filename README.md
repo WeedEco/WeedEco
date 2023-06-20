@@ -102,15 +102,15 @@ FLOWPER<-sample(3:9, 6, replace=T)
 x<-data.frame(Four_three_code,FLOWPER) 
 ## Data organisation - function used to organise archaeobotncial or survey data for LDA analysis
 results<-wdata_org(dataset, samples=3, codes=2, codename="Four_three_code", model=1, fl_pr=x)
-#>              SLA    ARNODE  LOGCANH LOGCAND  FLOWPER
-#> s.1246  23.78448 12008.417 5.500000    5.50 6.333333
-#> s.46178 23.78448 12008.417 5.500000    5.50 6.333333
-#> s.1     23.78448 12008.417 5.500000    5.50 6.333333
-#> s.23    24.50975  3949.456 5.500000    5.25 5.750000
-#> s.987   23.78448 12008.417 5.500000    5.50 6.333333
-#> s.11    25.00962 12802.710 5.400000    5.60 7.000000
-#> s.244   24.50975  3949.456 5.500000    5.25 5.750000
-#> s.872   23.91040 19031.292 5.333333    6.00 7.333333
+#>              SLA    ARNODE LOGCANH LOGCAND  FLOWPER
+#> s.1246  23.78448 12008.417     5.5     5.5 6.333333
+#> s.46178 23.78448 12008.417     5.5     5.5 6.333333
+#> s.1     23.78448 12008.417     5.5     5.5 6.333333
+#> s.23    23.12871 14241.862     5.6     5.4 6.400000
+#> s.987   23.78448 12008.417     5.5     5.5 6.333333
+#> s.11    23.78448 12008.417     5.5     5.5 6.333333
+#> s.244   24.83237  5685.177     5.4     5.2 7.000000
+#> s.872   22.06833  9088.447     6.0     5.5 7.000000
 ```
 
 ``` r
@@ -119,14 +119,14 @@ LDA<-wmodel.LDA(results, model = 1)
 #> 
 #> Results and linear discriminant scores:
 #>         CLASS_std* Prob.1_std* Prob.2_std*   LD1*
-#> s.1246           2       0.000       1.000 -3.139
-#> s.46178          2       0.000       1.000 -3.139
-#> s.1              2       0.000       1.000 -3.139
-#> s.23             2       0.000       1.000 -4.097
-#> s.987            2       0.000       1.000 -3.139
-#> s.11             2       0.000       1.000 -2.048
-#> s.244            2       0.000       1.000 -4.097
-#> s.872            2       0.001       0.999 -1.593
+#> s.1246           2           0           1 -3.139
+#> s.46178          2           0           1 -3.139
+#> s.1              2           0           1 -3.139
+#> s.23             2           0           1 -3.157
+#> s.987            2           0           1 -3.139
+#> s.11             2           0           1 -3.139
+#> s.244            2           0           1 -3.214
+#> s.872            2           0           1 -2.518
 #> 
 #> Centroids:
 #>   Group Centroid1
@@ -136,7 +136,7 @@ LDA<-wmodel.LDA(results, model = 1)
 
 ``` r
 ## Visulastion using wplot_basic
-wplot_basic(model = 1, LDA$`LD1*`)
+wplot_basic(model = 1, LDA)
 ```
 
 <img src="man/figures/README-Plot-1.png" width="100%" />
