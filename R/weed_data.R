@@ -1,9 +1,67 @@
-weed_data<-function(x=NULL,trait="all"){#### remember x$x
+weed_data<-function(x=NULL,trait="all", WFO=FALSE){#### remember x$x
   species_lookup <- data.frame(trait_data)
 if(is.null(x))
-  wdata<-species_lookup[1:3]
+  wdata<-species_lookup[,c(1:3,5)]
 if (is.character(x)){
-  if(trait=='all'|trait== "ALL") {
+  if(WFO==TRUE){
+    if(trait=='all'|trait== "ALL") {
+      species.code<-species_lookup[match(x, species_lookup$WFO_code), c("species.code")]
+      SLA<- species_lookup[match(x, species_lookup$WFO_code), c("SLA")]
+      SLA<-as.numeric(SLA)
+      ARNODE<- species_lookup[match(x,species_lookup$WFO_code), c("ARNODE")]
+      ARNODE<-as.numeric(ARNODE)
+      LOGCANH<- species_lookup[match(x, species_lookup$WFO_code), c("LOGCANH")]
+      LOGCANH<-as.numeric(LOGCANH)
+      LOGCAND<- species_lookup[match(x, species_lookup$WFO_code), c("LOGCAND")]
+      LOGCAND<-as.numeric(LOGCAND)
+      VEGPROP<- species_lookup[match(x, species_lookup$WFO_code), c("VEGPROP")]
+      LIFEHIST<-species_lookup[match(x, species_lookup$WFO_code), c("LIFEHIST")]
+      wdata<-data.frame(x,species.code,SLA,ARNODE,LOGCANH,LOGCAND,VEGPROP, LIFEHIST)
+      names(wdata)<-c("WFO_code", "species.code","SLA", "ARNODE", "LOGCANH", "LOGCAND", "VEGPROP", "LIFEHIST")
+      wdata<-wdata[!is.na(wdata$LIFEHIST), ]
+    }
+    if(trait=='vegprop'|trait== "VEGPROP") {
+      species.code<-species_lookup[match(x, species_lookup$WFO_code), c("species.code")]
+      VEGPROP<- species_lookup[match(x, species_lookup$WFO_code), c("VEGPROP")]
+      LIFEHIST<-species_lookup[match(x, species_lookup$WFO_code), c("LIFEHIST")]
+      wdata<-data.frame(x,species.code,VEGPROP, LIFEHIST)
+      names(wdata)<-c("WFO_code","species.code","VEGPROP","LIFEHIST")
+      wdata<-wdata[!is.na(wdata$LIFEHIST), ]
+    }
+    if(trait=='sla'|trait== "SLA") {
+      species.code<-species_lookup[match(x, species_lookup$WFO_code), c("species.code")]
+      SLA<- species_lookup[match(x, species_lookup$WFO_code), c("SLA")]
+      SLA<-as.numeric(SLA)
+      wdata<-data.frame(x,species.code,SLA)
+      names(wdata)<-c("WFO_code","species.code","SLA")
+      wdata<-wdata[!is.na(wdata$SLA), ]
+    }
+    if(trait=='ARNODE'|trait== "arnode") {
+      species.code<-species_lookup[match(x, species_lookup$WFO_code), c("species.code")]
+      ARNODE<- species_lookup[match(x, species_lookup$WFO_code), c("ARNODE")]
+      ARNODE<-as.numeric(ARNODE)
+      wdata<-data.frame(x, species.code,ARNODE)
+      names(wdata)<-c("WFO_code","species.code","ARNODE")
+      wdata<-wdata[!is.na(wdata$ARNODE), ]
+    }
+    if(trait=='logcanh'|trait== "LOGCANH") {
+      species.code<-species_lookup[match(x, species_lookup$WFO_code), c("species.code")]
+      LOGCANH<- species_lookup[match(x, species_lookup$WFO_code), c("LOGCANH")]
+      LOGCANH<-as.numeric(LOGCANH)
+      wdata<-data.frame(x,species.code,LOGCANH)
+      names(wdata)<-c("WFO_code","species.code","LOGCANH")
+      wdata<-wdata[!is.na(wdata$LOGCANH), ]
+    }
+    if(trait=='logcand'|trait== "LOGCAND") {
+      species.code<-species_lookup[match(x, species_lookup$WFO_code), c("species.code")]
+      LOGCAND<- species_lookup[match(x, species_lookup$WFO_code), c("LOGCAND")]
+      LOGCAND<-as.numeric(LOGCAND)
+      wdata<-data.frame(x,species.code,LOGCAND)
+      names(wdata)<-c("WFO_code","species.code","LOGCAND")
+      wdata<-wdata[!is.na(wdata$LOGCAND), ]
+    }
+  }else if(WFO==FALSE){
+    if(trait=='all'|trait== "ALL") {
   FlEurNo<-species_lookup[match(x, species_lookup$species.code), c("FlEurNo")]
   SLA<- species_lookup[match(x, species_lookup$species.code), c("SLA")]
   SLA<-as.numeric(SLA)
@@ -19,7 +77,7 @@ if (is.character(x)){
   names(wdata)<-c("FlEurNo","species.code", "SLA", "ARNODE", "LOGCANH", "LOGCAND", "VEGPROP", "LIFEHIST")
   wdata<-wdata[!is.na(wdata$LIFEHIST), ]
   }
-  if(trait=='vegprop'|trait== "VEGPROP") {
+    if(trait=='vegprop'|trait== "VEGPROP") {
     FlEurNo<-species_lookup[match(x, species_lookup$species.code), c("FlEurNo")]
     VEGPROP<- species_lookup[match(x, species_lookup$species.code), c("VEGPROP")]
     LIFEHIST<-species_lookup[match(x, species_lookup$species.code), c("LIFEHIST")]
@@ -27,7 +85,7 @@ if (is.character(x)){
     names(wdata)<-c("FlEurNo","species.code","VEGPROP","LIFEHIST")
     wdata<-wdata[!is.na(wdata$LIFEHIST), ]
     }
-  if(trait=='sla'|trait== "SLA") {
+    if(trait=='sla'|trait== "SLA") {
     FlEurNo<-species_lookup[match(x, species_lookup$species.code), c("FlEurNo")]
     SLA<- species_lookup[match(x, species_lookup$species.code), c("SLA")]
     SLA<-as.numeric(SLA)
@@ -35,7 +93,7 @@ if (is.character(x)){
     names(wdata)<-c("FlEurNo","species.code","SLA")
     wdata<-wdata[!is.na(wdata$SLA), ]
     }
-  if(trait=='ARNODE'|trait== "arnode") {
+    if(trait=='ARNODE'|trait== "arnode") {
     FlEurNo<-species_lookup[match(x, species_lookup$species.code), c("FlEurNo")]
     ARNODE<- species_lookup[match(x, species_lookup$species.code), c("ARNODE")]
     ARNODE<-as.numeric(ARNODE)
@@ -43,7 +101,7 @@ if (is.character(x)){
     names(wdata)<-c("FlEurNo","species.code","ARNODE")
     wdata<-wdata[!is.na(wdata$ARNODE), ]
     }
-  if(trait=='logcanh'|trait== "LOGCANH") {
+    if(trait=='logcanh'|trait== "LOGCANH") {
     FlEurNo<-species_lookup[match(x, species_lookup$species.code), c("FlEurNo")]
     LOGCANH<- species_lookup[match(x, species_lookup$species.code), c("LOGCANH")]
     LOGCANH<-as.numeric(LOGCANH)
@@ -51,7 +109,7 @@ if (is.character(x)){
     names(wdata)<-c("FlEurNo","species.code","LOGCANH")
     wdata<-wdata[!is.na(wdata$LOGCANH), ]
     }
-  if(trait=='logcand'|trait== "LOGCAND") {
+    if(trait=='logcand'|trait== "LOGCAND") {
     FlEurNo<-species_lookup[match(x, species_lookup$species.code), c("FlEurNo")]
     LOGCAND<- species_lookup[match(x, species_lookup$species.code), c("LOGCAND")]
     LOGCAND<-as.numeric(LOGCAND)
@@ -59,6 +117,7 @@ if (is.character(x)){
     names(wdata)<-c("FlEurNo","species.code","LOGCAND")
     wdata<-wdata[!is.na(wdata$LOGCAND), ]
     }}
+  }
 if (is.numeric(x)){
   if(trait=='all'|trait== "ALL") {
       species.code<- species_lookup[match(x, species_lookup$FlEurNo), c("species.code")]

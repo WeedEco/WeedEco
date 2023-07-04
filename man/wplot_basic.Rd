@@ -112,7 +112,7 @@ wplot_basic("model1", data, col3=data$Study,pch3=data$Study, site=c("Site 1",
 par(mfrow=c(3,2),
     oma=c(0,0,0,0),
     mar=c(0,0,0,0))
-wplot_basic(1,data1,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",
+wplot_basic(1,data,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",
 col3="purple", pch1=1,pch2=2, pch3=19, compact =FALSE, priority = "ascending")
 mtext("ascending", 3,-1.5)
 wplot_basic(1,data,xlims=c(-7,7),ticks=-7:7, col1="green", col2="red",

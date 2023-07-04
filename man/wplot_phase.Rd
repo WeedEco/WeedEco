@@ -2,10 +2,8 @@
 \alias{wplot_phase}
 
 \title{ Function to plot samples' linear discriminant scores and model's centroids by phase or site
-
 }
 \description{A function which plots the samples' linear discriminant scores from \code{\link[WeedEco]{wmodel.LDA}} compared to the chosen modern model's group centroids as stacked graphs depending on number of grouping variables (i.e. sites or phase).
-
 }
 \usage{
 wplot_phase(model, x,
@@ -14,7 +12,7 @@ g1=NULL, g2= NULL, g3=NULL, g4=NULL, g5=NULL,
 gcol=c("black","black","black","black", "black"),
 gpch=c(22,23,24,8,4), gbg=c("grey","grey","grey","grey", "grey"), pcolumn, compact= FALSE,
 priority= "density", xlims= NULL, ylims = NULL, ticks =NULL, xlab="Discriminant function",
-lines=TRUE)
+lines=TRUE, lcex=1)
 }
 \arguments{
 \item{model}{Either "model1", "model2" or "model3" - following \code{\link[WeedEco]{wmodel.LDA}}}
@@ -36,6 +34,7 @@ lines=TRUE)
 \item{ticks}{The location of the x axis ticks}
 \item{xlab}{x axis label}
 \item{lines}{Adds lines from group centroid to x-axis}
+\item{lcex}{Size of the legend text}
 }
 \author{Elizabeth Stroud
 }

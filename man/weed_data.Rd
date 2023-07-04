@@ -8,24 +8,25 @@
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-weed_data(x=NULL, trait="all")
+weed_data(x=NULL, trait="all", WFO=FALSE)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
-  \item{x}{The four-three species code or Flora Europaea number. Note that Flora Europaea numbers must be numeric. If is is left blank a list of species, Flora Europaea numbers and 4_3 for the entire 929 species will be returned
-%%     ~~Describe \code{x} here~~
+  \item{x}{The four-three species code, Flora Europaea number or World Flora Online number. If this is left blank a list of species, Flora Europaea numbers, WFO numbers and 4_3 codes for the entire 929 species will be returned. Note that Flora Europaea numbers must be numeric and if using WFO numbers, the WFO aurgument must be set to TRUE.
 }\item{trait}{The traits required. The default returns all traits, however individual traits can be returned by entering their names: SLA, ARNODE, LOGCAND,LOGCANH, VEGPROP
-%%     ~~Describe \code{x} here~~
-}
-}
+}\item{WFO}{TRUE or FALSE depending on whether x is the World Flora online numbers (TRUE) or not (FALSE)
+}}
 
 \value{ \describe{
     \item{\code{FlEurNo}}{the Flora Europaea number}
-    \item{\code{species.code}}{the four-three species code}
+    \item{\code{WFO_code}}{the World Flora Online number}
+    \item{\code{species.code}}{the species name}
+    \item{\code{Species_authority}}{the species authority}
+    \item{\code{Species}}{the Flora Europaea number}
     \item{\code{SLA}}{ mean specific leaf area (mm\eqn{^2}/mg)}
     \item{\code{ARNODE}}{Leaf area (mm\eqn{^2}) per node/leaf thickness (mm)}
-    \item{\code{LOGCANH}}{maximum canopy height (mm) converted to a log scale (base2)}
-    \item{\code{LOGCAND}}{maximum canopy diameter (mm) converted to a log scale (base2) }
+    \item{\code{LOGCANH}}{maximum canopy height (mm) classified into a log scale (base2) bins}
+    \item{\code{LOGCAND}}{maximum canopy diameter (mm) classified into a log scale (base2) bins}
     \item{\code{VEGPROP}}{vegetative propagation - 1 = yes 0 = no}
     \item{\code{lifehist}}{life history of the species - annual, biannual, perennial}
     }
@@ -47,4 +48,6 @@ data<-as.data.frame(cbind(species, code))
 results<-weed_data(data$code)
 four_threecodes<-weed_data()
 vegprop_only<-weed_data(data$code, trait="VEGPROP")
+WFO_only<- weed_data("wfo-000856381", WFO=TRUE)
+Flora_EU<- weed_data(41967)
 }

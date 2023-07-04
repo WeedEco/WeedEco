@@ -1,7 +1,7 @@
 
 
 wplot_phase<-function(model, x, site= c("phase 1", "phase 2", "phase 3", "phase 4", "phase 5"), g1=NULL, g2= NULL, g3=NULL, g4=NULL, g5=NULL, gcol=c("black","black","black","black", "black"),
-                      gpch=c(22,23,24,8,4), gbg=c("grey","grey","grey","grey", "grey"),pcolumn, compact= FALSE, priority= "density", xlims= NULL, ylims = NULL, ticks =NULL, xlab="Discriminant function", lines=TRUE){
+                        gpch=c(22,23,24,8,4), gbg=c("grey","grey","grey","grey", "grey"),pcolumn, compact= FALSE, priority= "density", xlims= NULL, ylims = NULL, ticks =NULL, xlab="Discriminant function", lines=TRUE, lcex=1){
   REGIME<-Group<-LD1<-NULL
   if(model=='model1'|model== 1) data.model<-data.frame(model1)
   if(model=='model1'|model== 1) discrim_cv <- lda(REGIME ~ SLA+ARNODE+LOGCANH+LOGCAND+FLOWPER,data.model, CV = TRUE)
@@ -76,7 +76,7 @@ wplot_phase<-function(model, x, site= c("phase 1", "phase 2", "phase 3", "phase 
     segments(min(centroids$centroid1*-1), 0.58,min(centroids$centroid1*-1),-0.6)
     segments(max(centroids$centroid1*-1), 0.589,max(centroids$centroid1*-1),-0.04 )
     points(beeswarm::swarmy(centroids$centroid1*-1, rep(0.6,2)),col= c("black", "black"), pch=c(21, 21), cex=1.75, bg=c( "black","white" ))
-    legend("right", inset=c(0.05,0.05), c("group 1", "group 2"), col="black", pch=c(17,2), cex=0.85, bty="n")
+    legend("right", inset=c(0.05,0.05), c("group 1", "group 2"), col="black", pch=c(17,2), cex=lcex, bty="n")
     par(mar = c(0,0,0,0))
     plot(2:3, type='n', xlim = xlim, ylim=c(0,1),axes=F, xlab = "", ylab="")
     points(beeswarm::swarmy(group1$LD1, rep(0.2, 2), side=1, compact = compact, priority = priority), cex=1.5, col=gcol[1], pch=gpch[1], bg=gbg[1])
@@ -85,7 +85,7 @@ wplot_phase<-function(model, x, site= c("phase 1", "phase 2", "phase 3", "phase 
     segments(min(centroids$centroid1*-1), 0.58,min(centroids$centroid1*-1),-0.6)
     segments(max(centroids$centroid1*-1), 0.589,max(centroids$centroid1*-1),-0.04 )
     points(beeswarm::swarmy(centroids$centroid1*-1, rep(0.6,2)),col= c("black", "black"), pch=c(21, 21), cex=1.75, bg=c( "black","white" ))
-    legend("right", inset=c(0.05,0.05), site[1], col=gcol[1], pch=gpch[1], pt.bg=gbg[1],cex=0.85, bty="n")
+    legend("right", inset=c(0.05,0.05), site[1], col=gcol[1], pch=gpch[1], pt.bg=gbg[1],cex=lcex, bty="n")
     par(mar = c(0,0,0,0))
     plot(2:3, type='n', xlim = xlim, ylim=c(0,1),axes=F, xlab = "", ylab="")
     points(beeswarm::swarmy(group2$LD1, rep(0.2, 2), side=1, compact = compact, priority = priority), cex=1.5, col=gcol[2], pch=gpch[2], bg=gbg[2])
@@ -95,7 +95,7 @@ wplot_phase<-function(model, x, site= c("phase 1", "phase 2", "phase 3", "phase 
     segments(max(centroids$centroid1*-1), 0.589,max(centroids$centroid1*-1),-0.04 )
     points(beeswarm::swarmy(centroids$centroid1*-1, rep(0.6,2)),col= c("black", "black"), pch=c(21, 21), cex=1.75, bg=c( "black","white"))
 
-    legend("right", inset=c(0.05,0.05), site[2], col=gcol[2], pch=gpch[2],pt.bg=gbg[2], cex=0.85, bty="n")
+    legend("right", inset=c(0.05,0.05), site[2], col=gcol[2], pch=gpch[2],pt.bg=gbg[2], cex=lcex, bty="n")
     par(mfrow=c(1,1))
   }
   else if(is.null(g4)){
@@ -112,7 +112,7 @@ wplot_phase<-function(model, x, site= c("phase 1", "phase 2", "phase 3", "phase 
     segments(min(centroids$centroid1*-1), 0.58,min(centroids$centroid1*-1),-0.6)
     segments(max(centroids$centroid1*-1), 0.589,max(centroids$centroid1*-1),-0.04 )
     points(beeswarm::swarmy(centroids$centroid1*-1, rep(0.6,2)),col= c("black", "black"), pch=c(21, 21), cex=1.75, bg=c( "black","white" ))
-    legend("right", inset=c(0.05,0.05), c("group 1", "group 2"), col="black", pch=c(17,2), cex=1.2, bty="n")
+    legend("right", inset=c(0.05,0.05), c("group 1", "group 2"), col="black", pch=c(17,2), cex=lcex, bty="n")
     par(mar = c(0,0,0,0))
     plot(2:3, type='n', xlim = xlim, ylim=c(0,1),axes=F, xlab = "", ylab="")
     points(beeswarm::swarmy(group1$LD1, rep(0.2, 2), side=1,compact = compact, priority = priority), cex=1.5, col=gcol[1], pch=gpch[1],bg=gbg[1])
@@ -121,7 +121,7 @@ wplot_phase<-function(model, x, site= c("phase 1", "phase 2", "phase 3", "phase 
     segments(min(centroids$centroid1*-1), 0.58,min(centroids$centroid1*-1),-0.6)
     segments(max(centroids$centroid1*-1), 0.589,max(centroids$centroid1*-1),-0.04 )
     points(beeswarm::swarmy(centroids$centroid1*-1, rep(0.6,2)),col= c("black", "black"), pch=c(21, 21), cex=1.75, bg=c( "black","white"))
-    legend("right", inset=c(0.05,0.05), site[1], col=gcol[1], pch=gpch[1], pt.bg=gbg[1],cex=1.2, bty="n")
+    legend("right", inset=c(0.05,0.05), site[1], col=gcol[1], pch=gpch[1], pt.bg=gbg[1],cex=lcex, bty="n")
     par(mar = c(0,0,0,0))
     plot(2:3, type='n', xlim = xlim, ylim=c(0,1),axes=F, xlab = "", ylab="")
     points(beeswarm::swarmy(group2$LD1, rep(0.2, 2), side=1, compact = compact, priority = priority), cex=1.5, col=gcol[2], pch=gpch[2], bg=gbg[2])
@@ -130,7 +130,7 @@ wplot_phase<-function(model, x, site= c("phase 1", "phase 2", "phase 3", "phase 
     segments(min(centroids$centroid1*-1), 0.58,min(centroids$centroid1*-1),-0.6)
     segments(max(centroids$centroid1*-1), 0.589,max(centroids$centroid1*-1),-0.04 )
     points(beeswarm::swarmy(centroids$centroid1*-1, rep(0.6,2)),col= c("black", "black"), pch=c(21, 21), cex=1.75, bg=c( "black","white"))
-    legend("right", inset=c(0.05,0.05), site[2], col=gcol[2], pch=gpch[2],pt.bg=gbg[2], cex=1.2, bty="n")
+    legend("right", inset=c(0.05,0.05), site[2], col=gcol[2], pch=gpch[2],pt.bg=gbg[2], cex=lcex, bty="n")
     par(mar = c(0,0,0,0))
     plot(2:3, type='n', xlim = xlim, ylim=c(0,1),axes=F, xlab = "", ylab="")
     points(beeswarm::swarmy(group3$LD1, rep(0.2, 2), side=1, compact = compact, priority = priority), cex=1.5, col=gcol[3], pch=gpch[3], bg=gbg[3])
@@ -139,7 +139,7 @@ wplot_phase<-function(model, x, site= c("phase 1", "phase 2", "phase 3", "phase 
     segments(min(centroids$centroid1*-1), 0.58,min(centroids$centroid1*-1),-0.6)
     segments(max(centroids$centroid1*-1), 0.589,max(centroids$centroid1*-1),-0.04 )
     points(beeswarm::swarmy(centroids$centroid1*-1, rep(0.6,2)),col= c("black", "black"), pch=c(21, 21), cex=1.75, bg=c( "black","white"))
-    legend("right", inset=c(0.05,0.05), site[3], col=gcol[3], pch=gpch[3],pt.bg=gbg[3], cex=1.2, bty="n")
+    legend("right", inset=c(0.05,0.05), site[3], col=gcol[3], pch=gpch[3],pt.bg=gbg[3], cex=lcex, bty="n")
     par(mfrow=c(1,1))}
   else if(is.null(g5)){
     group1<-x[pcolumn==g1,]
@@ -156,7 +156,7 @@ wplot_phase<-function(model, x, site= c("phase 1", "phase 2", "phase 3", "phase 
     segments(min(centroids$centroid1*-1), 0.58,min(centroids$centroid1*-1),-0.6)
     segments(max(centroids$centroid1*-1), 0.589,max(centroids$centroid1*-1),-0.04 )
     points(beeswarm::swarmy(centroids$centroid1*-1, rep(0.6,2)),col= c("black", "black"), pch=c(21, 21), cex=1.75, bg=c( "black","white" ))
-    legend("right", inset=c(0.05,0.05), c("group 1", "group 2"), col="black", pch=c(17,2), cex=0.95, bty="n")
+    legend("right", inset=c(0.05,0.05), c("group 1", "group 2"), col="black", pch=c(17,2), cex=lcex, bty="n")
     par(mar = c(0,0,0,0))
     plot(2:3, type='n', xlim =xlim, ylim=c(0,1),axes=F, xlab = "", ylab="")
     points(beeswarm::swarmy(group1$LD1, rep(0.2, 2), side=1, compact = compact, priority = priority), cex=1.5, col=gcol[1], pch=gpch[1], bg=gbg[1])
@@ -165,7 +165,7 @@ wplot_phase<-function(model, x, site= c("phase 1", "phase 2", "phase 3", "phase 
     segments(min(centroids$centroid1*-1), 0.58,min(centroids$centroid1*-1),-0.6)
     segments(max(centroids$centroid1*-1), 0.589,max(centroids$centroid1*-1),-0.04 )
     points(beeswarm::swarmy(centroids$centroid1*-1, rep(0.6,2)),col= c("black", "black"), pch=c(21, 21), cex=1.75, bg=c( "black","white"))
-    legend("right", inset=c(0.05,0.05), site[1], col=gcol[1], pch=gpch[1], pt.bg=gbg[1],cex=0.95, bty="n")
+    legend("right", inset=c(0.05,0.05), site[1], col=gcol[1], pch=gpch[1], pt.bg=gbg[1],cex=lcex, bty="n")
     par(mar = c(0,0,0,0))
     plot(2:3, type='n', xlim = xlim, ylim=c(0,1),axes=F, xlab = "", ylab="")
     points(beeswarm::swarmy(group2$LD1, rep(0.2, 2), side=1, compact = compact, priority = priority), cex=1.5, col=gcol[2], pch=gpch[2], bg=gbg[2])
@@ -174,7 +174,7 @@ wplot_phase<-function(model, x, site= c("phase 1", "phase 2", "phase 3", "phase 
     segments(min(centroids$centroid1*-1), 0.58,min(centroids$centroid1*-1),-0.6)
     segments(max(centroids$centroid1*-1), 0.589,max(centroids$centroid1*-1),-0.04 )
     points(beeswarm::swarmy(centroids$centroid1*-1, rep(0.6,2)),col= c("black", "black"), pch=c(21, 21), cex=1.75, bg=c( "black","white"))
-    legend("right", inset=c(0.05,0.05), site[2], col=gcol[2], pch=gpch[2],pt.bg=gbg[2], cex=0.95, bty="n")
+    legend("right", inset=c(0.05,0.05), site[2], col=gcol[2], pch=gpch[2],pt.bg=gbg[2], cex=lcex, bty="n")
     par(mar = c(0,0,0,0))
     plot(2:3, type='n', xlim = xlim, ylim=c(0,1),axes=F, xlab = "", ylab="")
     points(beeswarm::swarmy(group3$LD1, rep(0.2, 2), side=1, compact = compact, priority = priority), cex=1.5, col=gcol[3], pch=gpch[3], bg=gbg[3])
@@ -183,7 +183,7 @@ wplot_phase<-function(model, x, site= c("phase 1", "phase 2", "phase 3", "phase 
     segments(min(centroids$centroid1*-1), 0.58,min(centroids$centroid1*-1),-0.6)
     segments(max(centroids$centroid1*-1), 0.589,max(centroids$centroid1*-1),-0.04 )
     points(beeswarm::swarmy(centroids$centroid1*-1, rep(0.6,2)),col= c("black", "black"), pch=c(21, 21), cex=1.75, bg=c( "black","white"))
-    legend("right", inset=c(0.05,0.05), site[3], col=gcol[3], pch=gpch[3],pt.bg=gbg[3], cex=0.95, bty="n")
+    legend("right", inset=c(0.05,0.05), site[3], col=gcol[3], pch=gpch[3],pt.bg=gbg[3], cex=lcex, bty="n")
     par(mar = c(0,0,0,0))
     plot(2:3, type='n', xlim = xlim, ylim=c(0,1),axes=F, xlab = "", ylab="")
     points(beeswarm::swarmy(group4$LD1, rep(0.2, 2), side=1,compact = compact, priority = priority), cex=1.25, col=gcol[4], pch=gpch[4], bg=gbg[4])
@@ -192,7 +192,7 @@ wplot_phase<-function(model, x, site= c("phase 1", "phase 2", "phase 3", "phase 
     segments(min(centroids$centroid1*-1), 0.58,min(centroids$centroid1*-1),-0.6)
     segments(max(centroids$centroid1*-1), 0.589,max(centroids$centroid1*-1),-0.04 )
     points(beeswarm::swarmy(centroids$centroid1*-1, rep(0.6,2)),col= c("black", "black"), pch=c(21, 21), cex=1.75, bg=c( "black","white"))
-    legend("right", inset=c(0.05,0.05), site[4], col=gcol[4], pch=gpch[4], cex=0.95,pt.bg=gbg[4], bty="n")
+    legend("right", inset=c(0.05,0.05), site[4], col=gcol[4], pch=gpch[4], cex=lcex,pt.bg=gbg[4], bty="n")
     par(mfrow=c(1,1))}
   else{
     group1<-x[pcolumn==g1,]
@@ -210,7 +210,7 @@ wplot_phase<-function(model, x, site= c("phase 1", "phase 2", "phase 3", "phase 
     segments(min(centroids$centroid1*-1), 0.58,min(centroids$centroid1*-1),-0.6)
     segments(max(centroids$centroid1*-1), 0.589,max(centroids$centroid1*-1),-0.04 )
     points(beeswarm::swarmy(centroids$centroid1*-1, rep(0.6,2)),col= c("black", "black"), pch=c(21, 21), cex=1.75, bg=c( "black","white" ))
-    legend("right", inset=c(0.05,0.05), c("group 1", "group 2"), col="black", pch=c(17,2), cex=0.85, bty="n")
+    legend("right", inset=c(0.05,0.05), c("group 1", "group 2"), col="black", pch=c(17,2), cex=lcex, bty="n")
     par(mar = c(0,0,0,0))
     plot(2:3, type='n', xlim = xlim, ylim=c(0,1),axes=F, xlab = "", ylab="")
     points(beeswarm::swarmy(group1$LD1, rep(0.2, 2), side=1, compact = compact, priority = priority), cex=1.25, col=gcol[1], pch=gpch[1], bg=gbg[1])
@@ -219,7 +219,7 @@ wplot_phase<-function(model, x, site= c("phase 1", "phase 2", "phase 3", "phase 
     segments(min(centroids$centroid1*-1), 0.58,min(centroids$centroid1*-1),-0.6)
     segments(max(centroids$centroid1*-1), 0.589,max(centroids$centroid1*-1),-0.04 )
     points(beeswarm::swarmy(centroids$centroid1*-1, rep(0.6,2)),col= c("black", "black"), pch=c(21, 21), cex=1.75, bg=c( "black","white"))
-    legend("right", inset=c(0.05,0.05), site[1], col=gcol[1], pch=gpch[1], pt.bg=gbg[1], cex=0.85, bty="n")
+    legend("right", inset=c(0.05,0.05), site[1], col=gcol[1], pch=gpch[1], pt.bg=gbg[1], cex=lcex, bty="n")
     par(mar = c(0,0,0,0))
     plot(2:3, type='n', xlim = xlim, ylim=c(0,1),axes=F, xlab = "", ylab="")
     points(beeswarm::swarmy(group2$LD1, rep(0.2, 2), side=1, compact = compact, priority = priority), cex=1.25, col=gcol[2], pch=gpch[2], bg=gbg[2])
@@ -228,7 +228,7 @@ wplot_phase<-function(model, x, site= c("phase 1", "phase 2", "phase 3", "phase 
     segments(min(centroids$centroid1*-1), 0.58,min(centroids$centroid1*-1),-0.6)
     segments(max(centroids$centroid1*-1), 0.589,max(centroids$centroid1*-1),-0.04 )
     points(beeswarm::swarmy(centroids$centroid1*-1, rep(0.6,2)),col= c("black", "black"), pch=c(21, 21), cex=1.75, bg=c( "black","white"))
-    legend("right", inset=c(0.05,0.05), site[2], col=gcol[2], pch=gpch[2],pt.bg=gbg[2], cex=0.85, bty="n")
+    legend("right", inset=c(0.05,0.05), site[2], col=gcol[2], pch=gpch[2],pt.bg=gbg[2], cex=lcex, bty="n")
     par(mar = c(0,0,0,0))
     plot(2:3, type='n', xlim =xlim, ylim=c(0,1),axes=F, xlab = "", ylab="")
     points(beeswarm::swarmy(group3$LD1, rep(0.2, 2), side=1, compact = compact, priority = priority), cex=1.25, col=gcol[3], pch=gpch[3],bg=gbg[3])
@@ -237,7 +237,7 @@ wplot_phase<-function(model, x, site= c("phase 1", "phase 2", "phase 3", "phase 
     segments(min(centroids$centroid1*-1), 0.58,min(centroids$centroid1*-1),-0.6)
     segments(max(centroids$centroid1*-1), 0.589,max(centroids$centroid1*-1),-0.04 )
     points(beeswarm::swarmy(centroids$centroid1*-1, rep(0.6,2)),col= c("black", "black"), pch=c(21, 21), cex=1.75, bg=c( "black","white"))
-    legend("right", inset=c(0.05,0.05), site[3], col=gcol[3], pch=gpch[3],pt.bg=gbg[3], cex=0.85, bty="n")
+    legend("right", inset=c(0.05,0.05), site[3], col=gcol[3], pch=gpch[3],pt.bg=gbg[3], cex=lcex, bty="n")
     par(mar = c(0,0,0,0))
     plot(2:3, type='n', xlim = xlim, ylim=c(0,1),axes=F, xlab = "", ylab="")
     points(beeswarm::swarmy(group4$LD1, rep(0.2, 2), side=1, compact = compact, priority = priority), cex=1.25, col=gcol[4], pch=gpch[4], bg=gbg[4])
@@ -246,7 +246,7 @@ wplot_phase<-function(model, x, site= c("phase 1", "phase 2", "phase 3", "phase 
     segments(min(centroids$centroid1*-1), 0.58,min(centroids$centroid1*-1),-0.6)
     segments(max(centroids$centroid1*-1), 0.589,max(centroids$centroid1*-1),-0.04 )
     points(beeswarm::swarmy(centroids$centroid1*-1, rep(0.6,2)),col= c("black", "black"), pch=c(21, 21), cex=1.75, bg=c( "black","white"))
-    legend("right", inset=c(0.05,0.05), site[4], col=gcol[4], pch=gpch[4],pt.bg=gbg[4], cex=0.85, bty="n")
+    legend("right", inset=c(0.05,0.05), site[4], col=gcol[4], pch=gpch[4],pt.bg=gbg[4], cex=lcex, bty="n")
     par(mar = c(0,0,0,0))
     plot(2:3, type='n', xlim = xlim, ylim=c(0,1),axes=F, xlab = "", ylab="")
     points(beeswarm::swarmy(group5$LD1, rep(0.2, 2), side=1, compact = compact, priority = priority), cex=1.25, col=gcol[5], pch=gpch[5], bg=gbg[5])
@@ -255,7 +255,7 @@ wplot_phase<-function(model, x, site= c("phase 1", "phase 2", "phase 3", "phase 
     segments(min(centroids$centroid1*-1), 0.58,min(centroids$centroid1*-1),-0.6)
     segments(max(centroids$centroid1*-1), 0.589,max(centroids$centroid1*-1),-0.04 )
     points(beeswarm::swarmy(centroids$centroid1*-1, rep(0.6,2)),col= c("black", "black"), pch=c(21, 21), cex=1.75, bg=c( "black","white"))
-    legend("right", inset=c(0.05,0.05), site[5], col=gcol[5], pch=gpch[5],pt.bg=gbg[5], cex=1, bty="n")}
+    legend("right", inset=c(0.05,0.05), site[5], col=gcol[5], pch=gpch[5],pt.bg=gbg[5], cex=lcex, bty="n")}
   par(mfrow=c(1,1))
 }
 
