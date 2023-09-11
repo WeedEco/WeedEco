@@ -194,6 +194,7 @@ if (model==2){
     if(sum(is.na(VEGPROPdata))>0){
       y<-which(is.na(VEGPROPdata), arr.ind=TRUE)
       x<-VEGPROPdata[y[1:nrow(y)],1]
+
       warning(list(x)," has returned an NA: it does not match the trait database's four_three code list or are annual/biennal species. This/these species is/are excluded from the results")
     }
     data3<-data2[,2:ncol(data2)]
