@@ -11,7 +11,6 @@ wdata_org<-function(dataframe,samples, codes, codename, model, fl_pr=NULL, sp_av
   data2<-cbind(Codes,data)
   if(is.null(sp_av)==TRUE) {species_lookup <- trait_dataN
   }else {species_lookup <- rbind(trait_dataN,sp_av)}
-
 if (model==1){
   #SLA
   names <- colnames(data2)
@@ -20,6 +19,11 @@ if (model==1){
   matched_speciesSLA<-as.numeric(unlist(matched_speciesSLA))
   matched_speciesSLA<-as.data.frame(matched_speciesSLA)
   SLAdata<-cbind(data2,matched_speciesSLA)
+  if(sum(is.na(SLAdata))>0){
+    y<-which(is.na(SLAdata), arr.ind=TRUE)
+    length<-length(y)
+    x<-SLAdata[y[1:nrow(y)],1]
+  warning(list(x) , "has returned an NA: it does not match the trait database's four_three code list. This/these species is/are excluded from the results")}
   data3<-data2[,2:ncol(data2)]
   matched_SLA<-as.data.frame(sapply(data3,function(data3) data3*matched_speciesSLA))
   SLApositive<-matched_SLA
@@ -74,6 +78,11 @@ if (model==1){
   matched_speciesFLOWPER <-as.numeric(unlist(matched_speciesFLOWPER))
   matched_speciesFLOWPER <-as.data.frame(matched_speciesFLOWPER)
   FLOWPERdata<-cbind(data2,matched_speciesFLOWPER)
+  if(sum(is.na(FLOWPERdata))>0){
+    y<-which(is.na(FLOWPERdata), arr.ind=TRUE)
+    x<-FLOWPERdata[y[1:nrow(y)],1]
+    warning(list(x)," has returned an NA : no flowering period data has been provided or it does not match the entered dataset. This/these species is/are excluded from the results")
+      }
   data3<-data2[,2:ncol(data2)]
   matched_FLOWPER <- as.data.frame(sapply(data3,function(data3) data3*matched_speciesFLOWPER))
   FLOWPERsumsample<-colSums(matched_FLOWPER, na.rm=TRUE)
@@ -102,6 +111,11 @@ if (model==2){
   matched_speciesSLA<-as.numeric(unlist(matched_speciesSLA))
   matched_speciesSLA<-as.data.frame(matched_speciesSLA)
   SLAdata<-cbind(data2,matched_speciesSLA)
+  if(sum(is.na(SLAdata))>0){
+    y<-which(is.na(SLAdata), arr.ind=TRUE)
+    length<-length(y)
+    x<-SLAdata[y[1:nrow(y)],1]
+    warning(list(x) , "has returned an NA: it does not match the trait database's four_three code list. This/these species is/are excluded from the results")}
   data3<-data2[,2:ncol(data2)]
   matched_SLA<-as.data.frame(sapply(data3,function(data3) data3*matched_speciesSLA))
   SLApositive<-matched_SLA
@@ -168,6 +182,7 @@ if (model==2){
     }else {
       vg_prn<-vg_pr[!is.na(vg_pr$LIFEHIST),]
       species_lookup<-rbind(vg_prn[,c(2:3)], sp_av[,c(1,6)])}
+    trait_dataN<- trait_data[,c(5:10)]
     names <- colnames(data2)
     species_names <-  data2[,grepl(codename, names) | grepl("Codes", names) | grepl("Code", names)]#####
     matched_speciesVEGPROP <- species_lookup[match(species_names, species_lookup$species.code), c("VEGPROP")]
@@ -176,6 +191,11 @@ if (model==2){
     matched_speciesVEGPROP[matched_speciesVEGPROP==0]<-"2"
     matched_speciesVEGPROP[matched_speciesVEGPROP==1]<-"4"
     VEGPROPdata<-cbind(data2,matched_speciesVEGPROP)
+    if(sum(is.na(VEGPROPdata))>0){
+      y<-which(is.na(VEGPROPdata), arr.ind=TRUE)
+      x<-VEGPROPdata[y[1:nrow(y)],1]
+      warning(list(x)," has returned an NA: it does not match the trait database's four_three code list or they are annual/biennal species. This/these species is/are excluded from the results")
+    }
     data3<-data2[,2:ncol(data2)]
     matched_speciesVEGPROP <-as.numeric(unlist(matched_speciesVEGPROP))
     matched_speciesVEGPROP <-as.data.frame(matched_speciesVEGPROP)
@@ -199,6 +219,10 @@ if (model==2){
     matched_speciesFLOWPER <-as.numeric(unlist(matched_speciesFLOWPER))
     matched_speciesFLOWPER <-as.data.frame(matched_speciesFLOWPER)
     FLOWPERdata<-cbind(data2,matched_speciesFLOWPER)
+    if(sum(is.na(FLOWPERdata))>0){
+      y<-which(is.na(FLOWPERdata), arr.ind=TRUE)
+      x<-FLOWPERdata[y[1:nrow(y)],1]
+      warning(list(x)," has returned an NA : no flowering period data has been provided or it does not match the entered dataset. This/these species is/are excluded from the results")}
     data3<-data2[,2:ncol(data2)]
     matched_FLOWPER <- as.data.frame(sapply(data3,function(data3) data3*matched_speciesFLOWPER))
     FLOWPERsumsample<-colSums(matched_FLOWPER, na.rm=TRUE)
