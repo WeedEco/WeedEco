@@ -23,7 +23,7 @@ if (model==1){
     y<-which(is.na(SLAdata), arr.ind=TRUE)
     length<-length(y)
     x<-SLAdata[y[1:nrow(y)],1]
-  warning(list(x) , "has returned an NA: it does not match the trait database's four_three code list. This/these species is/are excluded from the results")}
+  warning(list(x) , " has returned an NA: it does not match the trait database's four_three code list. This/these species is/are excluded from the results")}
   data3<-data2[,2:ncol(data2)]
   matched_SLA<-as.data.frame(sapply(data3,function(data3) data3*matched_speciesSLA))
   SLApositive<-matched_SLA
@@ -115,7 +115,7 @@ if (model==2){
     y<-which(is.na(SLAdata), arr.ind=TRUE)
     length<-length(y)
     x<-SLAdata[y[1:nrow(y)],1]
-    warning(list(x) , "has returned an NA: it does not match the trait database's four_three code list. This/these species is/are excluded from the results")}
+    warning(list(x) , " has returned an NA: it does not match the trait database's four_three code list. This/these species is/are excluded from the results")}
   data3<-data2[,2:ncol(data2)]
   matched_SLA<-as.data.frame(sapply(data3,function(data3) data3*matched_speciesSLA))
   SLApositive<-matched_SLA
