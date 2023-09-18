@@ -31,7 +31,7 @@ Stroud et al. (2023).
 
 **Package citation**: Stroud, E., (2023) WeedEco: Classification of
 unknown cases using linear discriminant analysis to understand farming
-regimes. R package version 0.1.0, <https://github.com/WeedEco/WeedEco>
+regimes. R package version 1.0.0, <https://github.com/WeedEco/WeedEco>
 
 **Functional trait database**: \<ORA link\>
 
