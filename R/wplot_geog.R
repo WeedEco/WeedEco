@@ -120,8 +120,8 @@ wplot_geog<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "blac
       stop('the parameter "pch1" must be 0,1 or 2')
     }
     evvia<-functionalAt[functionalAt$husbandry=="Evvia gardens"| functionalAt$husbandry=="Evvia fields",]
-    evvia$husbandry[evvia$husbandry=="Evvia gardens"]<-2
-    evvia$husbandry[evvia$husbandry=="Evvia fields"]<-17
+    evvia$husbandry[evvia$husbandry=="Evvia gardens"]<-17
+    evvia$husbandry[evvia$husbandry=="Evvia fields"]<-2
     AsturiasPro<-functionalAt[functionalAt$husbandry=="Asturias"| functionalAt$husbandry=="Provence",]
     AsturiasPro$husbandry[AsturiasPro$husbandry=="Asturias"]<-15
     AsturiasPro$husbandry[AsturiasPro$husbandry=="Provence"]<-0
@@ -146,7 +146,7 @@ wplot_geog<-function(model, x, xlims= NULL,ticks =NULL, col1="black",col2= "blac
 
     if(legend==T){legend(max+0.5,0.11,  c( "Evvia fields", "Evvia gardens"), pch=c(2,17), col=col2, cex=0.85, bty="n")
       legend(max+0.5,0.14,  c( "Haute \nProvence", "Asturias" ), pch=c(0,15), col=col2, cex=0.85, bty="n")
-      legend(max+0.5,0.09,  c( "Morocco \noases","Morocco \nrain-fed \nterraces"), pch=c(1,16), col=col2, cex=0.85, bty="n")
+      legend(max+0.5,0.09,  c( "Morocco \nrain-fed \nterraces","Morocco \noases"), pch=c(1,16), col=col2, cex=0.85, bty="n")
 
       lname<-unique(site)
       legend(max+0.5,0.175, c("Group 1 \ncentroid"), pch=c(pch1+15), col= c(col1), cex=0.85, bty="n")
