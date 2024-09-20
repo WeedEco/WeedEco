@@ -33,7 +33,12 @@ Stroud et al. (2023).
 unknown cases using linear discriminant analysis to understand farming
 regimes. R package version 1.0.0, <https://github.com/WeedEco/WeedEco>
 
-**Functional trait database**: \<ORA link\>
+**Functional trait database**: Hodgson, J., Jones, G., Charles, M., 
+Stroud, E., Ater, M., Band, P., Cerabolini, B., Diffey, C., Ertug, F.,
+Ferguson, H., Filipović, D., Forster, E., Green, L., Halstead, P., Herbig, C., 
+Hmimsa, Y., Hodgson, J., Hoppe, C., Hynd, A., … Bogaard, A. (2023).
+A functional trait database of arable weeds from Eurasia and North Africa.
+University of Oxford. http://dx.doi.org/10.5287/ora-pp4y9nkoz
 
 **Model 1**: Bogaard, A., Hodgson, J., Nitsch, E. *et al.* (2016)
 Combining functional weed ecology and crop stable isotope ratios to
