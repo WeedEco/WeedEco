@@ -27,7 +27,7 @@ et al. (2021)](https://library.oapen.org/handle/20.500.12657/58568).
 When publishing results obtained via the use of this package please cite
 the package and its version, as well as the functional trait database
 and the model used. A best practice example paragraph is provided in
-Stroud et al. (2023).
+Stroud et al. (2024).
 
 **Package citation**: Stroud, E., (2023) WeedEco: Classification of
 unknown cases using linear discriminant analysis to understand farming
@@ -62,10 +62,11 @@ McKerracher, M., and H. Hamerow (eds) *New Perspectives on the Medieval
 Press. [Online
 resource](https://library.oapen.org/handle/20.500.12657/58568)
 
-**Example paper**: Stroud et al. (in prep). Seeing the fields through
-the weeds: introducing the WeedEco R package for comparing past and
-present arable farming systems using functional weed ecology. Vegetation
-History and Archaeobotany
+**Example paper**: Stroud, E., Charles, M., Jones, G. et al. Seeing the
+fields through the weeds: introducing the WeedEco R package for comparing
+past and present arable farming systems using functional weed ecology. 
+Veget Hist Archaeobot 33, 475–487 (2024). 
+https://doi.org/10.1007/s00334-023-00964-8 
 
 ## Installation
 
